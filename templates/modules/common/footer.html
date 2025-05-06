@@ -33,7 +33,7 @@
               </a>
             </th:block>
           </p>
-          <th:block th:if="${theme.config.footer.enable_powerby}">
+          <!-- <th:block th:if="${theme.config.footer.enable_powerby}">
             <th:block th:with="theme = ${themeFinder.activation()}">
               <p class="site_powered">
                 Powered by<a
@@ -54,9 +54,9 @@
                 </a>
               </p>
             </th:block>
-          </th:block>
+          </th:block> -->
 
-          <th:block
+          <!-- <th:block
             th:if="${theme.config.footer.driven_by != null} and ${theme.config.footer.driven_by != 'none'}"
           >
             <th:block th:if="${theme.config.footer.driven_by == 'aliyun'}">
@@ -183,7 +183,7 @@
                 >提供云服务
               </p>
             </th:block>
-          </th:block>
+          </th:block> -->
           <th:block th:if="${theme.config.footer.enable_birthday}">
             <div class="site_life">
               <i class="joe-font joe-icon-jiasu"></i>已运行&nbsp;<strong class="joe_run__day"
@@ -245,6 +245,7 @@
           </th:block>
         </div>
       </div>
+        <halo:footer />
     </footer>
   </th:block>
 </html>
