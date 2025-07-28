@@ -2,17 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <th:block th:fragment="key_css">
     <style th:inline="text">
-      [# th:if="${theme.config.other.rip_mode}"]
-      html {
-
-          -webkit-filter: grayscale(100%);
-          -moz-filter: grayscale(100%);
-          -ms-filter: grayscale(100%);
-          -o-filter: grayscale(100%);
-          filter: grayscale(100%);
-          filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
-      }
-      [/]
       @font-face {
           font-family: "Joe Font";
           font-weight: 400;

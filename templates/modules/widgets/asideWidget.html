@@ -16,7 +16,7 @@
     </section>
   </th:block>
   <th:block th:fragment="enable_reward(reward_data)">
-    <th:block th:if="${theme.config.other.enable_clean_mode != true}">
+    <th:block>
       <section class="joe_aside__item reward">
         <div class="joe_aside__item-title">
           <i class="joe-font joe-icon-coffee"></i>
@@ -84,7 +84,7 @@
     </section>
   </th:block>
   <th:block th:fragment="show_newreply(new_reply_data)">
-    <th:block th:if="${theme.config.other.enable_clean_mode !=true}">
+    <th:block>
       <section class="joe_aside__item newreply">
         <div class="joe_aside__item-title">
           <i class="joe-font joe-icon-message"></i>

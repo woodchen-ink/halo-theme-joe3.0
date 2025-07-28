@@ -3130,46 +3130,9 @@ spec:
           value: ''
           help: '已废弃，此设置项将在未来版本移除，请使用 Halo 自带的代码注入代替，https://docs.halo.run/user-guide/settings#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5'
           language: javascript
-        - $formkit: radio
-          name: show_loaded_time
-          label: 控制台输出页面加载耗时
-          value: false
-          options:
-            - value: true
-              label: 是
-            - value: false
-              label: 否
     - group: other
       label: 其他
       formSchema:
-        - $formkit: select
-          name: enable_debug
-          label: 调试模式
-          help: '调试模式开启后，页面会展示 vconsole 的绿色调试按钮，便于排查移动端的线上问题'
-          value: false
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
-        - $formkit: select
-          name: rip_mode
-          label: RIP模式
-          value: false
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
-        - $formkit: select
-          name: enable_clean_mode
-          label: 绿色模式
-          value: false
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
         - $formkit: select
           name: check_baidu_collect
           label: 检查百度收录情况
@@ -3184,13 +3147,3 @@ spec:
           label: 百度推送Token
           value: ''
           help: '文章页未收录时会自动将当前链接推送给百度加快收录，Token在百度收录平台注册账号获取（必须启用“检查百度收录”并填入token才生效），https://ziyuan.baidu.com/linksubmit'
-        - $formkit: select
-          name: enable_console_theme
-          label: 控制台输出主题信息
-          help: 是否在控制台输出主题相关信息
-          value: false
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭

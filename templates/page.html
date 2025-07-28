@@ -119,9 +119,7 @@
                 </th:block>
               </article>
             </div>
-            <th:block
-              th:if="${theme.config.other.enable_clean_mode != true} and ${theme.config.post.enable_comment}"
-            >
+            <th:block th:if="${theme.config.post.enable_comment}">
               <div class="joe_comment">
                 <th:block
                   th:if="${#annotations.getOrDefault(singlePage, 'enable_comment', 'true') != 'true'}"
@@ -150,9 +148,7 @@
                 </th:block>
               </div>
             </th:block>
-            <th:block
-              th:if="${theme.config.other.enable_clean_mode == true} or ${theme.config.post.enable_comment !=true}"
-            >
+            <th:block th:if="${theme.config.post.enable_comment !=true}">
               <div class="joe_comment">
                 <div class="joe_comment__close">
                   <svg
@@ -182,9 +178,9 @@
       </div>
       <script>
         // 等待文档加载完成
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener('DOMContentLoaded', function () {
           // 获取文章内容
-          const postContent = document.getElementById("singlePage-inner").innerText || "";
+          const postContent = document.getElementById('singlePage-inner').innerText || '';
 
           // 使用正则表达式匹配中文、数字和字母
           const matches = postContent.match(/[\u4e00-\u9fa5a-zA-Z0-9]/g);
@@ -193,9 +189,8 @@
           const wordCount = matches ? matches.length : 0;
 
           // 更新字数统计显示
-          document.getElementById("wordCount").innerText = `${wordCount} 字`;
+          document.getElementById('wordCount').innerText = `${wordCount} 字`;
         });
-
       </script>
       <th:block th:replace="~{modules/macro/tail :: tail}" />
     </body>

@@ -753,7 +753,6 @@ var Utils = {
 			);
 		} catch (e) {
 			if (e.name === "QuotaExceededError") {
-				console.log("数据已满，自动清空");
 				localStorage.clear();
 				setLocalStorage(key, value, expires);
 			}
@@ -828,7 +827,6 @@ var Utils = {
 			dom.href = url;
 			break;
 		default:
-			console.warn("暂不支持：" + type + " 类型");
 			return;
 		}
 		//IE

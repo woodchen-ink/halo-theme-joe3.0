@@ -412,7 +412,6 @@ const postContext = {
 	/*跳转到指定评论 */
 	async jumpToComment() {
 		if (
-			ThemeConfig.enable_clean_mode ||
 			!ThemeConfig.enable_comment ||
 			PageAttrs.metas_enable_comment === "false"
 		)
@@ -443,7 +442,6 @@ const postContext = {
 			);
 			tocbot.refresh();
 		} catch (error) {
-			console.info(error);
 		}
 	},
 	/* TODO:密码保护文章，输入密码访问 */

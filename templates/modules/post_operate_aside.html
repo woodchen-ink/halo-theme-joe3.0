@@ -10,9 +10,7 @@
       >
         <th:block th:replace="~{modules/macro/favorite :: aside}" />
       </th:block>
-      <th:block
-        th:if="${theme.config.other.enable_clean_mode != true} and ${theme.config.post.enable_comment}"
-      >
+      <th:block th:if="${theme.config.post.enable_comment}">
         <li class="post-operate-comment">
           <i class="joe-font joe-icon-message"></i>
           <th:block

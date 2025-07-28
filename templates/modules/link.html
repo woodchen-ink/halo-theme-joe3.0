@@ -158,9 +158,7 @@
       rel="stylesheet"
       th:href="${theme.config.basic.waline.waline_css}"
     />
-    <th:block
-      th:if="${ttheme.config.other.enable_clean_mode != true} and ${theme.config.theme.cursor_skin != 'off'}"
-    >
+    <th:block th:if="${theme.config.theme.cursor_skin != 'off'}">
       <link
         rel="stylesheet"
         th:href="${source_link+'/assets/cursor/style/min/'+theme.config.theme.cursor_skin+'.min.css'}"

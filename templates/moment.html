@@ -116,9 +116,7 @@
                                 <em class="journal-likes-num">[[${moment.stats.upvote}]]</em>
                               </span>
                             </th:block>
-                            <th:block
-                              th:if="${theme.config.journals.enable_comment_journal} and ${theme.config.other.enable_clean_mode != true}"
-                            >
+                            <th:block th:if="${theme.config.journals.enable_comment_journal}">
                               <th:block
                                 th:if="${theme.config.basic.comment_option == 'default'} or ${#strings.trim(theme.config.basic.waline.waline_serverURL) ==''}"
                               >
@@ -161,9 +159,7 @@
                                 ></span>
                               </th:block>
                             </th:block>
-                            <th:block
-                              th:if="${theme.config.journals.enable_comment_journal} and ${theme.config.other.enable_clean_mode != true}"
-                            >
+                            <th:block th:if="${theme.config.journals.enable_comment_journal}">
                               <div class="joe_journal_comment">
                                 <th:block
                                   th:if="${theme.config.basic.comment_option == 'default'} or ${#strings.trim(theme.config.basic.waline.waline_serverURL) ==''}"
@@ -195,19 +191,19 @@
                                     let imageUploader = 'true';
                                     if(waline_config_imageUpload_option === "lskypro"){
                                       imageUploader = (file) => {
-                          
+
                                       let lskypro_apiURL = /*[[${theme.config.basic.waline.lskypro.lskypro_apiURL}]]*/'';
                                       let lskypro_apiTOKEN = /*[[${theme.config.basic.waline.lskypro.lskypro_apiTOKEN}]]*/'';
-                                      
+
                                       let formData = new FormData();
                                       let headers = new Headers();
-                            
+
                                       formData.append('file', file);
                                       if(lskypro_apiTOKEN.trim()!==''){
                                         headers.append('Authorization', "Bearer " + lskypro_apiTOKEN.trim());
                                       }
-                                      headers.append('Accept', 'application/json');    
-                            
+                                      headers.append('Accept', 'application/json');
+
                                       return fetch(lskypro_apiURL.trim(), {
                                         method: 'POST',
                                         headers: headers,
