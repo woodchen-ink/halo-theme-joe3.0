@@ -52,13 +52,14 @@
 }
 
 .evan-big-banner .author-avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50% !important;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: uk-flicker 2s ease-in-out;
+  display: block;
   
   &:hover {
     transform: scale(1.05);
@@ -66,9 +67,11 @@
   }
   
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    display: block;
   }
 }
 .evan-big-banner .infomation .title {
@@ -274,7 +277,12 @@ body.page-index {
     height: 3rem;
   }
   .evan-big-banner .author-avatar {
-    width: 80px;
-    height: 80px;
+    width: 80px !important;
+    height: 80px !important;
+    
+    img {
+      width: 80px !important;
+      height: 80px !important;
+    }
   }
 }
