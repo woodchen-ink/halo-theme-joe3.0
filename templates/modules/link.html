@@ -171,6 +171,11 @@
       as="style"
       th:href="${source_link+'/assets/css/min/beauty.min.css?v='+theme.spec.version}"
     />
+    <link
+      rel="preload stylesheet"
+      as="style"
+      th:href="${source_link+'/assets/css/min/liquidglass.min.css?v='+theme.spec.version}"
+    />
     <style
       th:if="${theme.config.custom.custom_css != null and theme.config.custom.custom_css != ''}"
       th:utext="${theme.config.custom.custom_css}"
