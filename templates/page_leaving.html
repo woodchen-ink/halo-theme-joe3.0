@@ -74,12 +74,6 @@
                         >
                           <span class="text">[[${wordCount}]] 字</span>
                         </th:block>
-                        <th:block
-                          th:if="${#annotations.getOrDefault(singlePage, 'enable_collect_check', 'true')} and ${theme.config.other.check_baidu_collect}"
-                        >
-                          <span class="line">/</span>
-                          <span class="text" id="joe_baidu_record">正在检测是否收录...</span>
-                        </th:block>
                       </div>
                     </div>
                   </div>

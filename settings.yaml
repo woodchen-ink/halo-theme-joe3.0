@@ -3133,17 +3133,3 @@ spec:
     - group: other
       label: 其他
       formSchema:
-        - $formkit: select
-          name: check_baidu_collect
-          label: 检查百度收录情况
-          value: false
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
-        - $formkit: text
-          name: baidu_token
-          label: 百度推送Token
-          value: ''
-          help: '文章页未收录时会自动将当前链接推送给百度加快收录，Token在百度收录平台注册账号获取（必须启用“检查百度收录”并填入token才生效），https://ziyuan.baidu.com/linksubmit'
