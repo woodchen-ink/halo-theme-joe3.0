@@ -264,6 +264,49 @@ body.page-index .joe_header .joe_header__above {
       background: rgba(255, 255, 255, 0.3) !important;
     }
     
+    // 子菜单适配
+    .joe_dropdown__menu {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border-top: 3px solid rgba(255, 255, 255, 0.8) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+      
+      &::before {
+        border-bottom-color: rgba(255, 255, 255, 0.8) !important;
+      }
+      
+      a {
+        color: rgba(0, 0, 0, 0.8) !important;
+        
+        &:hover, &.current {
+          color: var(--theme) !important;
+          background: rgba(255, 255, 255, 0.8) !important;
+        }
+      }
+    }
+    
+    .joe_dropdown__link-icon {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    // 多级子菜单
+    .joe_nav_sub {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+      
+      a {
+        color: rgba(0, 0, 0, 0.8) !important;
+        
+        &:hover {
+          color: var(--theme) !important;
+          background: rgba(255, 255, 255, 0.8) !important;
+        }
+      }
+    }
+    
     // 滚动后的状态
     &.scrolled {
       background: var(--background) !important;
@@ -295,6 +338,49 @@ body.page-index .joe_header .joe_header__above {
       // 恢复logo分割线
       .joe_header__above-logo::after {
         background: var(--classC) !important;
+      }
+      
+      // 恢复子菜单原始样式
+      .joe_dropdown__menu {
+        background: var(--sib-background) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-top: 3px solid var(--theme) !important;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15) !important;
+        
+        &::before {
+          border-bottom-color: var(--theme) !important;
+        }
+        
+        a {
+          color: var(--classF) !important;
+          
+          &:hover, &.current {
+            color: var(--theme) !important;
+            background: var(--sib) !important;
+          }
+        }
+      }
+      
+      .joe_dropdown__link-icon {
+        color: var(--main) !important;
+      }
+      
+      // 恢复多级子菜单
+      .joe_nav_sub {
+        background: var(--sib-background) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15) !important;
+        
+        a {
+          color: var(--classF) !important;
+          
+          &:hover {
+            color: var(--theme) !important;
+            background: var(--sib) !important;
+          }
+        }
       }
     }
   }
