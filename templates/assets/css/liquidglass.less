@@ -3,7 +3,9 @@
   .joe_aside__item,
   .joe_index__item,
   .joe_header,
-  .joe_detail__article {
+  .joe_detail__article,
+  #post-inner,
+  .vditor-reset {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(12px) saturate(120%);
@@ -22,7 +24,9 @@
   .joe_aside__item::before,
   .joe_index__item::before,
   .joe_header::before,
-  .joe_detail__article::before {
+  .joe_detail__article::before,
+  #post-inner::before,
+  .vditor-reset::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -56,7 +60,9 @@
   .joe_aside__item::after,
   .joe_index__item::after,
   .joe_header::after,
-  .joe_detail__article::after {
+  .joe_detail__article::after,
+  #post-inner::after,
+  .vditor-reset::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -91,7 +97,9 @@
   .joe_aside__item:hover,
   .joe_index__item:hover,
   .joe_header:hover,
-  .joe_detail__article:hover {
+  .joe_detail__article:hover,
+  #post-inner:hover,
+  .vditor-reset:hover {
     transform: scale(1.015) translateZ(0);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
@@ -113,7 +121,9 @@
   .joe_aside__item:hover::after,
   .joe_index__item:hover::after,
   .joe_header:hover::after,
-  .joe_detail__article:hover::after {
+  .joe_detail__article:hover::after,
+  #post-inner:hover::after,
+  .vditor-reset:hover::after {
     animation-duration: 4s;
     filter: blur(0.8px);
     opacity: 0.8;
@@ -167,7 +177,9 @@
   html[data-mode="dark"] .joe_aside__item,
   html[data-mode="dark"] .joe_index__item,
   html[data-mode="dark"] .joe_header,
-  html[data-mode="dark"] .joe_detail__article {
+  html[data-mode="dark"] .joe_detail__article,
+  html[data-mode="dark"] #post-inner,
+  html[data-mode="dark"] .vditor-reset {
     background: rgba(35, 35, 35, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -176,7 +188,9 @@
   html[data-mode="dark"] .joe_aside__item::before,
   html[data-mode="dark"] .joe_index__item::before,
   html[data-mode="dark"] .joe_header::before,
-  html[data-mode="dark"] .joe_detail__article::before {
+  html[data-mode="dark"] .joe_detail__article::before,
+  html[data-mode="dark"] #post-inner::before,
+  html[data-mode="dark"] .vditor-reset::before {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.12) 0%,
@@ -190,7 +204,9 @@
   html[data-mode="dark"] .joe_aside__item::after,
   html[data-mode="dark"] .joe_index__item::after,
   html[data-mode="dark"] .joe_header::after,
-  html[data-mode="dark"] .joe_detail__article::after {
+  html[data-mode="dark"] .joe_detail__article::after,
+  html[data-mode="dark"] #post-inner::after,
+  html[data-mode="dark"] .vditor-reset::after {
     background: radial-gradient(
       circle at center,
       rgba(192, 130, 89, 0.3) 0%,
@@ -204,7 +220,9 @@
   html[data-mode="dark"] .joe_aside__item:hover,
   html[data-mode="dark"] .joe_index__item:hover,
   html[data-mode="dark"] .joe_header:hover,
-  html[data-mode="dark"] .joe_detail__article:hover {
+  html[data-mode="dark"] .joe_detail__article:hover,
+  html[data-mode="dark"] #post-inner:hover,
+  html[data-mode="dark"] .vditor-reset:hover {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.06) 0%,
@@ -280,4 +298,101 @@
 
   html[data-mode="dark"] .joe_detail__article:hover {
     background: rgba(35, 35, 35, 0.98);
+  }
+
+  /* 文章内容区域特殊处理 */
+  #post-inner,
+  .vditor-reset {
+    backdrop-filter: blur(6px) saturate(105%);
+    -webkit-backdrop-filter: blur(6px) saturate(105%);
+    background: rgba(248, 247, 246, 0.98);
+    border: 1px solid rgba(192, 130, 89, 0.1);
+    border-radius: var(--radius-wrap);
+    box-shadow: 
+      0 2px 12px rgba(0, 0, 0, 0.06),
+      0 1px 3px rgba(192, 130, 89, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    margin: 0;
+    overflow: visible; /* 重要：不隐藏溢出内容 */
+  }
+
+  #post-inner::before,
+  .vditor-reset::before {
+    background: linear-gradient(
+      135deg,
+      rgba(192, 130, 89, 0.05) 0%,
+      rgba(255, 255, 255, 0.03) 30%,
+      rgba(192, 130, 89, 0.03) 70%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    filter: blur(0.05px);
+  }
+
+  #post-inner::after,
+  .vditor-reset::after {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(
+      circle at center,
+      rgba(192, 130, 89, 0.15) 0%,
+      rgba(184, 94, 72, 0.1) 30%,
+      rgba(192, 130, 89, 0.05) 60%,
+      transparent 75%
+    );
+    filter: blur(0.2px);
+  }
+
+  #post-inner:hover,
+  .vditor-reset:hover {
+    transform: none; /* 禁用缩放 */
+    backdrop-filter: blur(8px) saturate(108%);
+    -webkit-backdrop-filter: blur(8px) saturate(108%);
+    background: rgba(248, 247, 246, 0.99);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 1px 4px rgba(192, 130, 89, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 0 0 1px rgba(192, 130, 89, 0.08);
+  }
+
+  /* 暗黑模式下的文章内容区域 */
+  html[data-mode="dark"] #post-inner,
+  html[data-mode="dark"] .vditor-reset {
+    background: rgba(35, 35, 35, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  html[data-mode="dark"] #post-inner::before,
+  html[data-mode="dark"] .vditor-reset::before {
+    background: linear-gradient(
+      135deg,
+      rgba(192, 130, 89, 0.04) 0%,
+      rgba(255, 255, 255, 0.02) 30%,
+      rgba(192, 130, 89, 0.02) 70%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+  }
+
+  html[data-mode="dark"] #post-inner:hover,
+  html[data-mode="dark"] .vditor-reset:hover {
+    background: rgba(35, 35, 35, 0.99);
+  }
+
+  /* 解决导航栏子菜单问题 - 特殊处理 */
+  .joe_header {
+    overflow: visible !important; /* 确保子菜单可以显示 */
+  }
+
+  .joe_header .joe_header__below-nav {
+    overflow: visible !important;
+  }
+
+  .joe_header .joe_header__below-nav .joe_header__below-nav-item {
+    overflow: visible !important;
+  }
+
+  .joe_header .joe_header__below-nav .joe_header__below-nav-item .dropdown {
+    overflow: visible !important;
+    z-index: 9999 !important;
   }
