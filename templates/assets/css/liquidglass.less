@@ -1,18 +1,28 @@
   /* 一键液态玻璃效果 - 适配sunai主题 */
   .liquid-glass,
-  .joe_aside__item {
+  .joe_aside__item,
+  .joe_index__item,
+  .joe_header,
+  .joe_detail__article {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(12px) saturate(120%);
     -webkit-backdrop-filter: blur(12px) saturate(120%);
-    background: rgba(248, 247, 246, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(248, 247, 246, 0.85);
+    border: 1px solid rgba(192, 130, 89, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 2px 8px rgba(192, 130, 89, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* 第一层：优化的玻璃折射效果 */
   .liquid-glass::before,
-  .joe_aside__item::before {
+  .joe_aside__item::before,
+  .joe_index__item::before,
+  .joe_header::before,
+  .joe_detail__article::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -21,10 +31,10 @@
     bottom: -1px;
     background: linear-gradient(
       135deg,
-      rgba(192, 130, 89, 0.15) 0%,
-      rgba(255, 255, 255, 0.08) 30%,
-      rgba(192, 130, 89, 0.1) 70%,
-      rgba(255, 255, 255, 0.12) 100%
+      rgba(192, 130, 89, 0.25) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      rgba(192, 130, 89, 0.18) 70%,
+      rgba(255, 255, 255, 0.2) 100%
     );
     border-radius: inherit;
     filter: blur(0.3px);
@@ -43,7 +53,10 @@
 
   /* 第二层：更透明的右下角苹果渐变光效 */
   .liquid-glass::after,
-  .joe_aside__item::after {
+  .joe_aside__item::after,
+  .joe_index__item::after,
+  .joe_header::after,
+  .joe_detail__article::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -52,9 +65,9 @@
     height: 45px;
     background: radial-gradient(
       circle at center,
-      rgba(192, 130, 89, 0.4) 0%,
-      rgba(184, 94, 72, 0.3) 30%,
-      rgba(192, 130, 89, 0.2) 60%,
+      rgba(192, 130, 89, 0.6) 0%,
+      rgba(184, 94, 72, 0.45) 30%,
+      rgba(192, 130, 89, 0.3) 60%,
       transparent 75%
     );
     border-radius: inherit;
@@ -75,26 +88,32 @@
 
   /* 悬停时的缩放和阴影过渡 */
   .liquid-glass:hover,
-  .joe_aside__item:hover {
+  .joe_aside__item:hover,
+  .joe_index__item:hover,
+  .joe_header:hover,
+  .joe_detail__article:hover {
     transform: scale(1.015) translateZ(0);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.25),
-      0 8px 16px rgba(255, 255, 255, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+      0 20px 40px rgba(0, 0, 0, 0.15),
+      0 10px 20px rgba(192, 130, 89, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 0 0 1px rgba(192, 130, 89, 0.2);
     background: linear-gradient(
       135deg,
-      rgba(192, 130, 89, 0.08) 0%,
-      rgba(244, 232, 224, 0.6) 30%,
-      rgba(184, 94, 72, 0.06) 60%,
-      rgba(238, 237, 236, 0.8) 100%
+      rgba(192, 130, 89, 0.12) 0%,
+      rgba(244, 232, 224, 0.9) 30%,
+      rgba(184, 94, 72, 0.08) 60%,
+      rgba(238, 237, 236, 0.95) 100%
     );
   }
 
   .liquid-glass:hover::after,
-  .joe_aside__item:hover::after {
+  .joe_aside__item:hover::after,
+  .joe_index__item:hover::after,
+  .joe_header:hover::after,
+  .joe_detail__article:hover::after {
     animation-duration: 4s;
     filter: blur(0.8px);
     opacity: 0.8;
@@ -145,13 +164,19 @@
 
   /* 暗黑模式适配 */
   html[data-mode="dark"] .liquid-glass,
-  html[data-mode="dark"] .joe_aside__item {
+  html[data-mode="dark"] .joe_aside__item,
+  html[data-mode="dark"] .joe_index__item,
+  html[data-mode="dark"] .joe_header,
+  html[data-mode="dark"] .joe_detail__article {
     background: rgba(35, 35, 35, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   html[data-mode="dark"] .liquid-glass::before,
-  html[data-mode="dark"] .joe_aside__item::before {
+  html[data-mode="dark"] .joe_aside__item::before,
+  html[data-mode="dark"] .joe_index__item::before,
+  html[data-mode="dark"] .joe_header::before,
+  html[data-mode="dark"] .joe_detail__article::before {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.12) 0%,
@@ -162,7 +187,10 @@
   }
 
   html[data-mode="dark"] .liquid-glass::after,
-  html[data-mode="dark"] .joe_aside__item::after {
+  html[data-mode="dark"] .joe_aside__item::after,
+  html[data-mode="dark"] .joe_index__item::after,
+  html[data-mode="dark"] .joe_header::after,
+  html[data-mode="dark"] .joe_detail__article::after {
     background: radial-gradient(
       circle at center,
       rgba(192, 130, 89, 0.3) 0%,
@@ -173,7 +201,10 @@
   }
 
   html[data-mode="dark"] .liquid-glass:hover,
-  html[data-mode="dark"] .joe_aside__item:hover {
+  html[data-mode="dark"] .joe_aside__item:hover,
+  html[data-mode="dark"] .joe_index__item:hover,
+  html[data-mode="dark"] .joe_header:hover,
+  html[data-mode="dark"] .joe_detail__article:hover {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.06) 0%,
@@ -181,4 +212,72 @@
       rgba(184, 94, 72, 0.04) 60%,
       rgba(48, 48, 48, 0.8) 100%
     );
+  }
+
+  /* 文章页特殊处理 - 减少花哨效果 */
+  .joe_detail__article {
+    backdrop-filter: blur(8px) saturate(110%);
+    -webkit-backdrop-filter: blur(8px) saturate(110%);
+    background: rgba(248, 247, 246, 0.95);
+    border: 1px solid rgba(192, 130, 89, 0.15);
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      0 1px 4px rgba(192, 130, 89, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .joe_detail__article::before {
+    background: linear-gradient(
+      135deg,
+      rgba(192, 130, 89, 0.08) 0%,
+      rgba(255, 255, 255, 0.05) 30%,
+      rgba(192, 130, 89, 0.05) 70%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+    filter: blur(0.1px);
+  }
+
+  .joe_detail__article::after {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(
+      circle at center,
+      rgba(192, 130, 89, 0.2) 0%,
+      rgba(184, 94, 72, 0.15) 30%,
+      rgba(192, 130, 89, 0.1) 60%,
+      transparent 75%
+    );
+    filter: blur(0.3px);
+  }
+
+  .joe_detail__article:hover {
+    transform: none; /* 禁用缩放效果 */
+    backdrop-filter: blur(10px) saturate(115%);
+    -webkit-backdrop-filter: blur(10px) saturate(115%);
+    box-shadow:
+      0 6px 20px rgba(0, 0, 0, 0.1),
+      0 2px 8px rgba(192, 130, 89, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 0 0 1px rgba(192, 130, 89, 0.1);
+    background: rgba(248, 247, 246, 0.98);
+  }
+
+  /* 暗黑模式下的文章页 */
+  html[data-mode="dark"] .joe_detail__article {
+    background: rgba(35, 35, 35, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  html[data-mode="dark"] .joe_detail__article::before {
+    background: linear-gradient(
+      135deg,
+      rgba(192, 130, 89, 0.06) 0%,
+      rgba(255, 255, 255, 0.03) 30%,
+      rgba(192, 130, 89, 0.04) 70%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  }
+
+  html[data-mode="dark"] .joe_detail__article:hover {
+    background: rgba(35, 35, 35, 0.98);
   }
