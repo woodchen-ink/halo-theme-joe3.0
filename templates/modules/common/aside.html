@@ -29,12 +29,6 @@
               th:insert="~{modules/widgets/asideWidget :: enable_picture(pic_data = ${aside.aside_picture})}"
             />
           </th:block>
-          <th:block th:case="'enable_music_player'">
-            <!--        音乐播放器-->
-            <th:block
-              th:insert="~{modules/widgets/asideWidget :: enable_music_player(music_data = ${aside.aside_music_player})}"
-            />
-          </th:block>
           <th:block th:case="'enable_newest_post'">
             <!--        最新文章-->
             <th:block th:insert="~{modules/widgets/asideWidget :: enable_newest_post}" />

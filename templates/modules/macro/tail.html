@@ -27,16 +27,6 @@
       <script th:src="${source_link+'/assets/lib/vue@2.6.10/vue.min.js'}"></script>
     </th:block>
     <script th:src="${source_link+'/assets/lib/fancybox/jquery.fancybox.min.js'}"></script>
-    <!-- <th:block
-      th:each="aside : ${theme.config.aside.enable_outpost_aside}"
-      th:if="${aside.template_aside == 'enable_music_player'} or ${htmlType =='post'}"
-    >
-      <th:block th:if="${#strings.trim(aside.aside_music_player.music_id) !=''}">
-        <link rel="stylesheet" th:href="${source_link+'/assets/lib/APlayer/APlayer.min.css'}" />
-        <script th:src="${source_link+'/assets/lib/APlayer/APlayer.min.js'}"></script>
-        <script th:src="${source_link+'/assets/lib/meting/meting.min.js'}"></script>
-      </th:block>
-    </th:block> -->
     <script th:src="${source_link+'/assets/js/min/custom.min.js?v='+theme.spec.version}"></script>
     <th:block th:if="${htmlType == 'post'} or ${htmlType == 'journals'} or ${htmlType == 'sheet'}">
       <script th:src="${source_link+'/assets/lib/clipboard/clipboard.min.js'}"></script>
@@ -77,7 +67,7 @@
       <script
         th:src="${source_link+'/assets/js/min/journals.min.js?v='+theme.spec.version}"
       ></script>
-    </th:block>    
+    </th:block>
     <th:block th:if="${htmlType == 'friends'}">
       <script
         th:src="${source_link+'/assets/js/min/friends.min.js?v='+theme.spec.version}"

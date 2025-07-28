@@ -1652,8 +1652,6 @@ spec:
                   label: 打赏
                 - value: 'enable_picture'
                   label: 图片
-                - value: 'enable_music_player'
-                  label: 音乐播放器
                 - value: 'enable_newest_post'
                   label: 最新文章
                 - value: 'enable_hot_post'
@@ -1749,17 +1747,6 @@ spec:
                 - $formkit: textarea
                   name: qrcode_description
                   label: 图片描述
-                  value: ''
-            - $formkit: group
-              if: $value.template_aside === 'enable_music_player'
-              name: aside_music_player
-              label: 音乐播放器
-              value: []
-              children:
-                - $formkit: text
-                  name: music_id
-                  label: 歌单ID
-                  help: '为音乐播放器配置歌单ID，大家在网页歌单页直接复制地址栏id参数后面那串数字即可，不填或填错将不会展示播放器（注意：仅支持网易云歌单ID，且不支持私密歌单）'
                   value: ''
             - $formkit: group
               if: $value.template_aside === 'show_newreply'

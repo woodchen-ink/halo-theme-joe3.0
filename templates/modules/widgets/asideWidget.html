@@ -68,28 +68,6 @@
       </div>
     </section>
   </th:block>
-  <th:block th:fragment="enable_music_player(music_data)">
-    <th:block th:if="${music_data.music_id != ''}">
-      <section class="joe_aside__item timelife">
-        <div class="joe_aside__item-title">
-          <i class="joe-font joe-icon-yinfu"></i>
-          <span class="text">我的歌单</span>
-        </div>
-        <div
-          id="aplayer"
-          class="aplayer"
-          th:data-id="${music_data.music_id}"
-          list-max-height="20px"
-          data-server="netease"
-          data-type="playlist"
-          data-fixed="false"
-          data-listfolded="true"
-          data-order="random"
-          data-mode="#f3f3f7"
-        ></div>
-      </section>
-    </th:block>
-  </th:block>
   <th:block th:fragment="enable_newest_post">
     <th:block th:replace="~{modules/macro/latest :: latest}" />
   </th:block>
