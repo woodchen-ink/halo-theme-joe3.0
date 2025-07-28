@@ -169,6 +169,13 @@
       as="style"
       th:href="${source_link+'/assets/css/min/beauty.min.css?v='+theme.spec.version}"
     />
+    <th:block th:if="${theme.config.beauty.enable_big_banner}">
+      <link
+        rel="preload stylesheet"
+        as="style"
+        th:href="${source_link+'/assets/css/min/big-banner.min.css?v='+theme.spec.version}"
+      />
+    </th:block>
     <link
       rel="preload stylesheet"
       as="style"
