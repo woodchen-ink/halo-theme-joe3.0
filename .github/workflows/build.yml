@@ -1,6 +1,9 @@
 name: Build distribution theme
 
 on:
+  push:
+    branches:
+      - latest
   release:
     types:
       - created
@@ -9,21 +12,57 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Compress zip
+      - name: Auto-update version
+        if: github.event_name == 'push'
+        run: |
+          # Get current version
+          CURRENT_VERSION=$(sed -nE 's/^ *version: "([^"]+)"$/\1/p' theme.yaml)
+          echo "Current version: $CURRENT_VERSION"
+          
+          # Generate new version based on timestamp
+          NEW_VERSION="$(date +'%Y.%m.%d')-$(date +'%H%M')"
+          echo "New version: $NEW_VERSION"
+          
+          # Update theme.yaml
+          sed -i "s/version: '[^']*'/version: '$NEW_VERSION'/" theme.yaml
+          
+          # Update package.json if exists
+          if [ -f package.json ]; then
+            sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$NEW_VERSION\"/" package.json
+          fi
+          
+          # Commit and push changes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add theme.yaml package.json
+          git commit -m "Auto-update version to $NEW_VERSION" || echo "No changes to commit"
+          git push || echo "No changes to push"
+          
+          echo "PACKAGE_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+      - name: Get version for release
+        if: github.event_name == 'release'
         run: |
           PACKAGE_VERSION=$(sed -nE 's/^ *version: "([^"]+)"$/\1/p' theme.yaml)
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+      - name: Compress zip
+        run: |
           PRE_ZIP_FOLDER=halo-theme-Joe3-${PACKAGE_VERSION}
           ARTIFACT_NAME=${PRE_ZIP_FOLDER}.zip
           ARTIFACT_PATHNAME=dist/${ARTIFACT_NAME}
           echo "halo-theme-Joe3 version $PACKAGE_VERSION"
           echo "Artifact name: ${ARTIFACT_NAME}"
           echo "Artifact pathname: ${ARTIFACT_PATHNAME}"
-          echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
           echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
           echo "RELEASE_ID=${{ github.event.release.id }}" >> $GITHUB_ENV
@@ -32,7 +71,7 @@ jobs:
           cp -r theme.yaml settings.yaml annotation-setting.yaml templates $PRE_ZIP_FOLDER/
           zip -r $ARTIFACT_PATHNAME $PRE_ZIP_FOLDER
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: halo-theme-Joe3
           path: |
@@ -43,23 +82,29 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: false
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - name: Compress zip
+          node-version: 22
+      - name: Get version for release
         run: |
           PACKAGE_VERSION=$(sed -nE 's/^ *version: "([^"]+)"$/\1/p' theme.yaml)
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+      - name: Compress zip
+        run: |
           PRE_ZIP_FOLDER=halo-theme-Joe3-${PACKAGE_VERSION}
           ARTIFACT_NAME=${PRE_ZIP_FOLDER}.zip
           ARTIFACT_PATHNAME=dist/${ARTIFACT_NAME}
           echo "halo-theme-Joe3 version $PACKAGE_VERSION"
           echo "Artifact name: ${ARTIFACT_NAME}"
           echo "Artifact pathname: ${ARTIFACT_PATHNAME}"
-          echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
           echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
           echo "RELEASE_ID=${{ github.event.release.id }}" >> $GITHUB_ENV
@@ -68,7 +113,7 @@ jobs:
           cp -r theme.yaml settings.yaml annotation-setting.yaml templates $PRE_ZIP_FOLDER/
           zip -r $ARTIFACT_PATHNAME $PRE_ZIP_FOLDER
       - name: Upload a release asset
-        uses: actions/github-script@v2
+        uses: actions/github-script@v7
         with:
           github-token: ${{secrets.TOKEN}}
           script: |
