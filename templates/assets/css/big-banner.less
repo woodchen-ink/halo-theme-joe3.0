@@ -264,24 +264,24 @@ body.page-index .joe_header .joe_header__above {
       background: rgba(255, 255, 255, 0.3) !important;
     }
     
-    // 子菜单适配
-    .joe_dropdown__menu {
-      background: rgba(255, 255, 255, 0.95) !important;
-      backdrop-filter: blur(10px) !important;
-      -webkit-backdrop-filter: blur(10px) !important;
-      border-top: 3px solid rgba(255, 255, 255, 0.8) !important;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+    // 子菜单适配 - 提高选择器优先级
+    .joe_header__above-nav .joe_dropdown__menu {
+      background: rgba(0, 0, 0, 0.85) !important;
+      backdrop-filter: blur(15px) !important;
+      -webkit-backdrop-filter: blur(15px) !important;
+      border-top: 3px solid rgba(255, 255, 255, 0.3) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
       
       &::before {
-        border-bottom-color: rgba(255, 255, 255, 0.8) !important;
+        border-bottom-color: rgba(255, 255, 255, 0.3) !important;
       }
       
       a {
-        color: rgba(0, 0, 0, 0.8) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
         
         &:hover, &.current {
-          color: var(--theme) !important;
-          background: rgba(255, 255, 255, 0.8) !important;
+          color: #fff !important;
+          background: rgba(255, 255, 255, 0.15) !important;
         }
       }
     }
@@ -292,17 +292,17 @@ body.page-index .joe_header .joe_header__above {
     
     // 多级子菜单
     .joe_nav_sub {
-      background: rgba(255, 255, 255, 0.95) !important;
-      backdrop-filter: blur(10px) !important;
-      -webkit-backdrop-filter: blur(10px) !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+      background: rgba(0, 0, 0, 0.85) !important;
+      backdrop-filter: blur(15px) !important;
+      -webkit-backdrop-filter: blur(15px) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
       
       a {
-        color: rgba(0, 0, 0, 0.8) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
         
         &:hover {
-          color: var(--theme) !important;
-          background: rgba(255, 255, 255, 0.8) !important;
+          color: #fff !important;
+          background: rgba(255, 255, 255, 0.15) !important;
         }
       }
     }
@@ -340,8 +340,8 @@ body.page-index .joe_header .joe_header__above {
         background: var(--classC) !important;
       }
       
-      // 恢复子菜单原始样式
-      .joe_dropdown__menu {
+      // 恢复子菜单原始样式 - 使用更具体的选择器
+      .joe_header__above-nav .joe_dropdown__menu {
         background: var(--sib-background) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
