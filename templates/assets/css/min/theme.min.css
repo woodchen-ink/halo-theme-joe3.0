@@ -1,1 +1,241 @@
-html{--font-default:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,"sans-serif";--background-reverse:#000;--background:#fff;--background-translucent:hsla(0,0%,100%,.7);--sub-background:#f5f5f5;--sib-background:#fff;--glass-background:hsla(0,0%,100%,.65);--main:#303133;--routine:#606266;--title:#333;--sib:#f2f6fc;--minor:#909399;--seat:#c0c4cc;--classA:#dcdfe6;--classB:#e4e7ed;--classC:#ebeef5;--classD:#f2f6fc;--classE:#dcdcdc;--classF:#333;--classG:#dcdcdc;--classH:#e9f2ff;--classI:#5a3713;--classJ:#f9e5fb;--classK:#e4e7ed;--classL:#666;--classM:#2d2e37;--quote:#50bfff;--code:#409eff;--code-background:#e8f3ff;--overdue-border:#ffbb76;--overdue-background:#fffcef;--radius-wrap:8px;--radius-inner:4px;--radius-img:5px;--box-shadow:0 0px 10px -5px #949494;--text-shadow:0 1px 2px rgba(0,0,0,.25);--shadow-code:#bdbdbd;--block-shadow:1px 2px 10px 0 #afafaf;--box-shadow-journal:#d8d8d8;--box-shadow-friend:#d8d8d8;--box-shadow-toc:inset 20px 0 30px 0 #dadada,1px 2px 10px 0 #a8a8a8;--background-toc:hsla(0,0%,100%,.95);--box-shadow-tags:2px 2px 3px 0px #c2c0b3;--background-tags:#fffaeb;--background-tag:#fdfdfd;--box-shadow-pager:0 0 3px 0 #cacaca;--notice:#fb6c28;--background-notice:#fbf5f1;--background-journal:#fff;--background-journal-block:#f5f5f5;--background-journal-gradient:linear-gradient(0deg,#d4d4d4,transparent 80%);--background-friend:#fff;--background-friend-block:#f5f5f5;--shadow-notice:inset 0 0 15px #d1dae8;--animation-notice:twinkle 1s ease infinite alternate}html,html[data-mode=dark]{background:var(--background)}html[data-mode=dark]{--background-reverse:#fff;--background:#232323;--background-translucent:rgba(35,35,35,.7);--sub-background:#303030;--sib-background:#303030;--glass-background:rgba(0,0,0,.65);--main:#999;--routine:#888;--title:#ddd;--sib:#3a3a3a;--minor:#777;--seat:#666;--classA:#515253;--classB:#454545;--classC:#414243;--classD:#303030;--classE:#585858;--classF:#bdbdbd;--classG:#303030;--classH:#454545;--classI:#36312c;--classJ:#39243c;--classK:#eee;--classL:#333;--classM:#fff;--quote:#276b92;--code:#efa141;--code-background:#353246;--overdue-border:#6f553b;--overdue-background:#2b2715;--box-shadow:1px 1px 3px 1px #1b1b1b;--text-shadow:none;--shadow-code:#191919;--block-shadow:2px 4px 10px 0 #0a0a0a;--box-shadow-journal:rgba(0,0,0,.2);--box-shadow-friend:rgba(0,0,0,.2);--box-shadow-toc:inset 0 0 30px 0 hsla(0,0%,99%,.34),1px 2px 10px 0 #181818;--background-toc:rgba(35,35,35,.98);--box-shadow-tags:2px 2px 3px 0px #111;--background-tags:#35353e;--background-tag:#2f2f2f;--box-shadow-pager:0 0 3px 0 #1b1b1b;--notice:#99f;--background-notice:#303030;--background-journal:#383838;--background-journal-block:#232323;--background-journal-gradient:linear-gradient(0deg,#151515,transparent 80%);--background-friend:#383838;--background-friend-block:#232323;--shadow-notice:inset 0 0 15px #4a4c4e;--animation-notice:twinkle-night 1s ease infinite alternate}html[data-mode=dark] body:after{background:#2b2b2b;z-index:-200}html[data-mode=dark] img{filter:brightness(.9)}html[data-mode=dark] .motto_day_words{filter:invert(1)}html[data-mode=dark] .joe_header .joe_header__above-logo svg{display:block}html[data-mode=dark] .joe_detail__article .joe_detail__article-anote{color:hsla(0,0%,100%,.61)}html[data-mode=dark] .joe_detail__article img{filter:brightness(.9)}html[data-mode=dark] .joe_detail__article .joe_detail__article-abtn{color:hsla(0,0%,100%,.61)}html[data-mode=dark] .joe_detail__article .joe_detail__overdue-wrapper{background:var(--classD)}html[data-mode=dark] .joe_detail__article-video .episodes .box .item:not(.active){background:var(--classC)}html[data-mode=dark] .aplayer{background:var(--classD)}html[data-mode=dark] .aplayer .aplayer-list li{border-color:var(--classC);color:var(--main)}html[data-mode=dark] .aplayer .aplayer-list li.aplayer-list-light,html[data-mode=dark] .aplayer .aplayer-list li:hover{background:#232324!important}html[data-mode=dark] .aplayer .aplayer-info{border-color:var(--classC)}html[data-mode=dark] .aplayer .aplayer-music{border-color:var(--classC);color:var(--classF)}html[data-mode=dark] .aplayer .aplayer-time .aplayer-icon:hover path{fill:var(--classF)!important}html[data-mode=dark] .aplayer .aplayer-lrc:before{background:-webkit-linear-gradient(180deg,rgba(0,0,0,.3),transparent);background:linear-gradient(180deg,rgba(0,0,0,.3),transparent);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc000000",endColorstr="#00000000",GradientType=0);height:5px}html[data-mode=dark] .aplayer .aplayer-lrc:after{background:-webkit-linear-gradient(180deg,transparent,rgba(0,0,0,.3));background:linear-gradient(180deg,transparent,rgba(0,0,0,.3));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000",endColorstr="#cc000000",GradientType=0)}html[data-mode=dark] .joe_detail__friends{filter:brightness(.8)}html[data-mode=dark] .toc-nodata em{opacity:.4}html[data-mode=dark] .site_driven img.baidu,html[data-mode=dark] .site_driven img.huawei,html[data-mode=dark] .site_driven img.jinshan{filter:invert(1)}
+html {
+  --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  
+  /* 主要背景色 */
+  --background-reverse: #000000; /* 和 sunai的 #000000 一致 */
+  --background: #F8F7F6;         /* sunai的主要背景 */
+  --background-translucent: hsla(30, 16%, 97%, .7); /* #F8F7F6对应的hsla */
+  --sub-background: #F8F7F6;
+  --sib-background: #F8F7F6;
+  --glass-background: hsla(30, 16%, 97%, .65);
+
+  /* 主要文本和次要文本颜色 */
+  --main: #000000;                /* sunai主要文本和图标 */
+  --routine: #393939;             /* sunai没有专门对应，用原本'次要'配色 */
+  --title: #000000;               /* 标题用主色，提高对比度 */
+  --sib: #F4E8E0;                 /* 已选择(活跃或选定的项目), sunai */
+  --minor: #909399;               /* 跟 routine 保持一致 */
+  --seat: #c0c4cc;                /* sunai没有对应，用原色 */
+
+  /* 灰阶背景&边缘 */
+  --classA: #F4E8E0;              /* sunai已选择色，作为淡色背景 */
+  --classB: #F8F7F6;
+  --classC: #F8F7F6;
+  --classD: #EEEDEC;              /* sunai悬停色 */
+  --classE: #dcdcdc;              /* 保持原色 */
+  --classF: #000000;              /* 标准黑，强调 */
+  --classG: #F4E8E0;              /* sunai已选择色 */
+  --classH: #ecec70;              /* sunai突出显示 */
+  --classI: #C08259;              /* sunai强调色(链接,按钮,徽章) */
+  --classJ: #fa6c8d;              /* sunai爱(点赞按钮)色 */
+  --classK: #e4e7ed;              /* 保持原色 */
+  --classL: #606266;              /* 次要文本色 */
+  --classM: #C08259;              /* sunai强调色 */
+  --quote: #C08259;               /* sunai强调色 */
+  
+  /* 代码和引用状态 */
+  --code: #b85e48;                /* sunai可选主题强调色 */
+  --code-background: #F4E8E0;     /* 选中色，代码背景柔和 */
+  
+  /* 过期等强调 */
+  --overdue-border: #b85e48;      /* sunai危险色 */
+  --overdue-background: #F4E8E0;  /* sunai已选择色 */
+
+  /* 圆角样式保持不变 */
+  --radius-wrap: 8px;
+  --radius-inner: 4px;
+  --radius-img: 5px;
+
+  /* 阴影与效果 */
+  --box-shadow: 0 0px 10px -5px #949494;
+  --text-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  --shadow-code: #bdbdbd;
+  --block-shadow: 1px 2px 10px 0 #afafaf;
+  --box-shadow-journal: #d8d8d8;
+  --box-shadow-friend: #d8d8d8;
+  --box-shadow-toc: inset 20px 0 30px 0 #dadada, 1px 2px 10px 0 #a8a8a8;
+  --background-toc: hsla(30, 16%, 97%, .95); /* #F8F7F6不透明度 */
+  --box-shadow-tags: 2px 2px 3px 0px #c2c0b3;
+  --background-tags: #fffbe5;     /* 接近sunai已选择色 */
+  --background-tag: #F8F7F6;
+
+  --box-shadow-pager: 0 0 3px 0 #cacaca;
+
+  /* 通知、徽章、按钮等使用强调色 */
+  --notice: #C08259;               /* sunai强调色 */
+  --background-notice: #F4E8E0;   /* sunai已选择色/淡强调 */
+  --background-journal: #FFF;
+  --background-journal-block: #F8F7F6;
+  --background-journal-gradient: linear-gradient(0deg, #c08259, transparent 80%);
+  --background-friend: #FFF;
+  --background-friend-block: #F8F7F6;
+  --shadow-notice: inset 0 0 15px #e0cbbf;
+  --animation-notice: twinkle 1s ease infinite alternate;
+}
+
+
+html,
+html[data-mode=dark] {
+    background: var(--background)
+}
+
+html[data-mode=dark] {
+    /* sunai黑色背景与反色 */
+    --background-reverse: #F8F7F6;   /* 反色，原主题主背景色 */
+    --background: #000000;           /* 主背景黑 */
+    --background-translucent: rgba(0, 0, 0, 0.7); /* 黑透明 */
+    --sub-background: #181716;       /* 深灰黑，弱分区 */
+    --sib-background: #181716;
+
+    --glass-background: rgba(0,0,0,.65);
+
+    /* 主要文本和其他文字色 */
+    --main: #F8F7F6;                 /* 主文本色，对比清晰 */
+    --routine: #ececec;              /* 略低一级文本，原#888 */
+    --title: #F8F7F6;                /* 纯白文本标题 */
+    --sib: #23201e;                  /* 选中、活跃，近sunai的#F4E8E0偏暗 */
+    --minor: #aaa;                   /* 次要文本 */
+    --seat: #777;                    /* 保留原色 */
+
+    /* 功能性背景/按钮/悬停等 */
+    --classA: #23201e;               /* sunai已选择的暗色（为减少对比突兀略调深） */
+    --classB: #181716;
+    --classC: #181716;
+    --classD: #181716;
+    --classE: #222;
+    --classF: #F8F7F6;               /* sunai主文本色，强调型，比如高亮状态 */
+    --classG: #23201e;               /* sunai已选择，暗色 */
+    --classH: #ecec70;               /* sunai突出显示（亮黄） */
+    --classI: #C08259;               /* sunai强调色(链接,按钮,徽章) */
+    --classJ: #fa6c8d;               /* sunai爱(点赞按钮) */
+    --classK: #F8F7F6;               /* 纯白，用作辅助、对比阴影等 */
+    --classL: #606266;
+    --classM: #F8F7F6;
+
+    /* 引用和代码 */
+    --quote: #C08259;                /* sunai强调色，色调温暖 */
+    --code: #b85e48;                 /* sunai可选主题强调色 */
+    --code-background: #23201e;      /* sunai已选择色变暗 xx */
+
+    --overdue-border: #b85e48;       /* sunai危险色 */
+    --overdue-background: #19160d;   /* sunai已选择或突出色的加深 */
+
+    /* 阴影，光效 */
+    --box-shadow: 1px 1px 3px 1px #191410;
+    --text-shadow: 0 1px 2px rgb(0 0 0 / 48%);
+    --shadow-code: #101010;
+    --block-shadow: 2px 4px 10px 0 #1a1411;
+    --box-shadow-journal: rgba(0,0,0,.18);
+    --box-shadow-friend: rgba(0,0,0,.18);
+    --box-shadow-toc: inset 0 0 18px 0 #352c23, 1px 2px 10px 0 #181818;
+    --background-toc: rgba(48, 43, 37, .98);
+
+    --box-shadow-tags: 2px 2px 3px 0px #222;
+    --background-tags: #2a2a1a;      /* 黄棕调，适合作为tags背景 */
+    --background-tag: #181716;
+
+    --box-shadow-pager: 0 0 3px 0 #191410;
+
+    /* sunai强调/通知 */
+    --notice: #C08259;              /* sunai强调色 */
+    --background-notice: #181716;   /* 与主题背景呼应 */
+    --background-journal: #141414;
+    --background-journal-block: #181716;
+    --background-journal-gradient: linear-gradient(0deg, #4b2f22, transparent 80%);
+    --background-friend: #141414;
+    --background-friend-block: #181716;
+    --shadow-notice: inset 0 0 15px #2e241c;
+    --animation-notice: twinkle-night 1s ease infinite alternate;
+}
+
+
+html[data-mode=dark] body:after {
+    background: #2b2b2b;
+    z-index: -200
+}
+
+html[data-mode=dark] img {
+    filter: brightness(.9)
+}
+
+html[data-mode=dark] .motto_day_words {
+    filter: invert(1)
+}
+
+html[data-mode=dark] .joe_header .joe_header__above-logo svg {
+    display: block
+}
+
+html[data-mode=dark] .joe_detail__article .joe_detail__article-anote {
+    color: hsla(0, 0%, 100%, .61)
+}
+
+html[data-mode=dark] .joe_detail__article img {
+    filter: brightness(.9)
+}
+
+html[data-mode=dark] .joe_detail__article .joe_detail__article-abtn {
+    color: hsla(0, 0%, 100%, .61)
+}
+
+html[data-mode=dark] .joe_detail__article .joe_detail__overdue-wrapper {
+    background: var(--classD)
+}
+
+html[data-mode=dark] .joe_detail__article-video .episodes .box .item:not(.active) {
+    background: var(--classC)
+}
+
+html[data-mode=dark] .aplayer {
+    background: var(--classD)
+}
+
+html[data-mode=dark] .aplayer .aplayer-list li {
+    border-color: var(--classC);
+    color: var(--main)
+}
+
+html[data-mode=dark] .aplayer .aplayer-list li.aplayer-list-light,
+html[data-mode=dark] .aplayer .aplayer-list li:hover {
+    background: #232324 !important
+}
+
+html[data-mode=dark] .aplayer .aplayer-info {
+    border-color: var(--classC)
+}
+
+html[data-mode=dark] .aplayer .aplayer-music {
+    border-color: var(--classC);
+    color: var(--classF)
+}
+
+html[data-mode=dark] .aplayer .aplayer-time .aplayer-icon:hover path {
+    fill: var(--classF) !important
+}
+
+html[data-mode=dark] .aplayer .aplayer-lrc:before {
+    background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, .3), transparent);
+    background: linear-gradient(180deg, rgba(0, 0, 0, .3), transparent);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc000000", endColorstr="#00000000", GradientType=0);
+    height: 5px
+}
+
+html[data-mode=dark] .aplayer .aplayer-lrc:after {
+    background: -webkit-linear-gradient(180deg, transparent, rgba(0, 0, 0, .3));
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .3));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000", endColorstr="#cc000000", GradientType=0)
+}
+
+html[data-mode=dark] .joe_detail__friends {
+    filter: brightness(.8)
+}
+
+html[data-mode=dark] .toc-nodata em {
+    opacity: .4
+}
+
+html[data-mode=dark] .site_driven img.baidu,
+html[data-mode=dark] .site_driven img.huawei,
+html[data-mode=dark] .site_driven img.jinshan {
+    filter: invert(1)
+}
