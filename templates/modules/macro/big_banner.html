@@ -19,6 +19,16 @@
         ></video>
       </th:block>
       <div class="infomation">
+        <!-- 作者头像 -->
+        <th:block th:if="${htmlType == 'index'}">
+          <div class="author-avatar">
+            <img
+              th:src="${theme.config.blogger.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
+              th:alt="${theme.config.blogger.name ?: site.title}"
+              onerror="Joe.errorImg(this, 'ErrAvatarImg')"
+            />
+          </div>
+        </th:block>
         <div id="EvanBigBanner_Title" class="title">
           <!-- 标题区域 -->
           <span id="EvanBigBanner_SubTitle" style="opacity: 0">

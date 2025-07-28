@@ -92,3 +92,42 @@
     };
     window.EvanBigBanner = EvanBigBanner
 })();
+
+// 首页导航栏透明效果滚动检测
+(function() {
+    "use strict";
+    
+    // 只在首页且启用大图时执行
+    if (!document.body.classList.contains('page-index') || !document.getElementById('EvanBigBanner')) {
+        return;
+    }
+    
+    const header = document.querySelector('.joe_header__above');
+    if (!header) return;
+    
+    let ticking = false;
+    
+    function updateHeader() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
+    
+    // 初始化状态
+    updateHeader();
+})();

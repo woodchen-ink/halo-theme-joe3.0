@@ -45,6 +45,31 @@
 .evan-big-banner .infomation {
   position: absolute;
   line-height: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.evan-big-banner .author-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: uk-flicker 2s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 .evan-big-banner .infomation .title {
   font-size: 2rem;
@@ -200,6 +225,40 @@
   height: 100%;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAKUlEQVQImU3IMREAIAgAwJfNkQCEsH8cijjpMf6vnXlQaIiJFx+omEBfmqIEZLe2jzcAAAAASUVORK5CYII=);
 }
+// 首页导航栏透明效果
+body.page-index {
+  .joe_header__above {
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    
+    &.scrolled {
+      background: var(--background) !important;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2) !important;
+    }
+  }
+}
+
+// 内容区域动画 - 仅在首页大图模式下生效
+body.page-index {
+  .joe_main_container {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUpFadeIn 0.8s ease-out 0.5s forwards;
+  }
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
   .evan-big-banner {
     margin-top: 0;
@@ -213,5 +272,9 @@
   }
   .evan-big-banner .evan-big-banner_bottom .waves-svg {
     height: 3rem;
+  }
+  .evan-big-banner .author-avatar {
+    width: 80px;
+    height: 80px;
   }
 }
