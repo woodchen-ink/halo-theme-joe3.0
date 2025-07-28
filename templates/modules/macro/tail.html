@@ -79,7 +79,7 @@
       <script th:src="${source_link+'/assets/js/min/leaving.min.js'}"></script>
     </th:block>
     <th:block th:if="${theme.config.beauty.enable_big_banner}">
-      <script th:src="${source_link+'/assets/js/min/beauty.min.js'}"></script>
+      <script th:src="${source_link+'/assets/js/min/beauty.min.js?v='+theme.spec.version}"></script>
     </th:block>
 
     <!-- ===== 引入页面级js end ===== -->

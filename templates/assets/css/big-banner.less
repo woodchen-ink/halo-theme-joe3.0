@@ -301,7 +301,12 @@ body.page-index .joe_header .joe_header__above {
 
 // 大图横幅尺寸调整
 body.page-index {
-  // 调整大图横幅位置，让它真正位于导航栏下方
+  // 让导航栏容器不占用高度
+  .joe_header {
+    height: 0 !important;
+  }
+  
+  // 调整大图横幅位置，让它真正从顶部开始
   .evan-big-banner {
     margin-top: 0 !important;
     height: 100vh !important;
