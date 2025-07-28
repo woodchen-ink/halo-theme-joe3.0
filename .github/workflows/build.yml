@@ -67,3 +67,72 @@ jobs:
           path: |
             dist/*.zip
           retention-days: 7
+      - name: Create Release
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs').promises;
+            const { repo: { owner, repo }, sha } = context;
+            const packageVersion = process.env.PACKAGE_VERSION;
+            const artifactPathName = process.env.ARTIFACT_PATHNAME;
+            const artifactName = process.env.ARTIFACT_NAME;
+            
+            console.log('Creating release for version:', packageVersion);
+            
+            try {
+              // Create a new release
+              const release = await github.rest.repos.createRelease({
+                owner,
+                repo,
+                tag_name: `v${packageVersion}`,
+                name: `Release v${packageVersion}`,
+                body: `🎉 Auto-generated release for version ${packageVersion}\n\n## 更新内容\n- 自动构建和打包\n- 版本号: ${packageVersion}\n- 构建时间: ${new Date().toLocaleString('zh-CN', {timeZone: 'Asia/Shanghai'})}\n\n## 下载\n下载 ${artifactName} 文件并在 Halo 后台上传安装。`,
+                draft: false,
+                prerelease: false
+              });
+              
+              console.log('Release created:', release.data.id);
+              
+              // Upload the asset
+              await github.rest.repos.uploadReleaseAsset({
+                owner,
+                repo,
+                release_id: release.data.id,
+                name: artifactName,
+                data: await fs.readFile(artifactPathName)
+              });
+              
+              console.log('Asset uploaded successfully');
+              console.log('Release URL:', release.data.html_url);
+            } catch (error) {
+              console.error('Error creating release:', error);
+              // If release already exists, try to update it
+              if (error.status === 422) {
+                console.log('Release may already exist, trying to find and update...');
+                try {
+                  const existingRelease = await github.rest.repos.getReleaseByTag({
+                    owner,
+                    repo,
+                    tag: `v${packageVersion}`
+                  });
+                  console.log('Found existing release, updating assets...');
+                  
+                  // Upload the asset to existing release
+                  await github.rest.repos.uploadReleaseAsset({
+                    owner,
+                    repo,
+                    release_id: existingRelease.data.id,
+                    name: artifactName,
+                    data: await fs.readFile(artifactPathName)
+                  });
+                  
+                  console.log('Asset updated successfully');
+                } catch (updateError) {
+                  console.error('Error updating existing release:', updateError);
+                  throw updateError;
+                }
+              } else {
+                throw error;
+              }
+            }
