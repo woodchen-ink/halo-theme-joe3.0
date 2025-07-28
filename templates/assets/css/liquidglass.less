@@ -2,8 +2,7 @@
   .liquid-glass,
   .joe_aside__item,
   .joe_index__item,
-  .joe_header,
-  .joe_detail__article {
+  .joe_detail {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(12px) saturate(120%);
@@ -21,8 +20,7 @@
   .liquid-glass::before,
   .joe_aside__item::before,
   .joe_index__item::before,
-  .joe_header::before,
-  .joe_detail__article::before {
+  .joe_detail::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -55,8 +53,7 @@
   .liquid-glass::after,
   .joe_aside__item::after,
   .joe_index__item::after,
-  .joe_header::after,
-  .joe_detail__article::after {
+  .joe_detail::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -90,8 +87,7 @@
   .liquid-glass:hover,
   .joe_aside__item:hover,
   .joe_index__item:hover,
-  .joe_header:hover,
-  .joe_detail__article:hover {
+  .joe_detail:hover {
     transform: scale(1.015) translateZ(0);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
@@ -112,8 +108,7 @@
   .liquid-glass:hover::after,
   .joe_aside__item:hover::after,
   .joe_index__item:hover::after,
-  .joe_header:hover::after,
-  .joe_detail__article:hover::after {
+  .joe_detail:hover::after {
     animation-duration: 4s;
     filter: blur(0.8px);
     opacity: 0.8;
@@ -166,8 +161,7 @@
   html[data-mode="dark"] .liquid-glass,
   html[data-mode="dark"] .joe_aside__item,
   html[data-mode="dark"] .joe_index__item,
-  html[data-mode="dark"] .joe_header,
-  html[data-mode="dark"] .joe_detail__article {
+  html[data-mode="dark"] .joe_detail {
     background: rgba(35, 35, 35, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -175,8 +169,7 @@
   html[data-mode="dark"] .liquid-glass::before,
   html[data-mode="dark"] .joe_aside__item::before,
   html[data-mode="dark"] .joe_index__item::before,
-  html[data-mode="dark"] .joe_header::before,
-  html[data-mode="dark"] .joe_detail__article::before {
+  html[data-mode="dark"] .joe_detail::before {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.12) 0%,
@@ -189,8 +182,7 @@
   html[data-mode="dark"] .liquid-glass::after,
   html[data-mode="dark"] .joe_aside__item::after,
   html[data-mode="dark"] .joe_index__item::after,
-  html[data-mode="dark"] .joe_header::after,
-  html[data-mode="dark"] .joe_detail__article::after {
+  html[data-mode="dark"] .joe_detail::after {
     background: radial-gradient(
       circle at center,
       rgba(192, 130, 89, 0.3) 0%,
@@ -203,8 +195,7 @@
   html[data-mode="dark"] .liquid-glass:hover,
   html[data-mode="dark"] .joe_aside__item:hover,
   html[data-mode="dark"] .joe_index__item:hover,
-  html[data-mode="dark"] .joe_header:hover,
-  html[data-mode="dark"] .joe_detail__article:hover {
+  html[data-mode="dark"] .joe_detail:hover {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.06) 0%,
@@ -215,7 +206,7 @@
   }
 
   /* 文章页特殊处理 - 减少花哨效果 */
-  .joe_detail__article {
+  .joe_detail {
     backdrop-filter: blur(8px) saturate(110%);
     -webkit-backdrop-filter: blur(8px) saturate(110%);
     background: rgba(248, 247, 246, 0.95);
@@ -226,7 +217,7 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
-  .joe_detail__article::before {
+  .joe_detail::before {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.08) 0%,
@@ -237,7 +228,7 @@
     filter: blur(0.1px);
   }
 
-  .joe_detail__article::after {
+  .joe_detail::after {
     width: 30px;
     height: 30px;
     background: radial-gradient(
@@ -250,7 +241,7 @@
     filter: blur(0.3px);
   }
 
-  .joe_detail__article:hover {
+  .joe_detail:hover {
     transform: none; /* 禁用缩放效果 */
     backdrop-filter: blur(10px) saturate(115%);
     -webkit-backdrop-filter: blur(10px) saturate(115%);
@@ -263,12 +254,12 @@
   }
 
   /* 暗黑模式下的文章页 */
-  html[data-mode="dark"] .joe_detail__article {
+  html[data-mode="dark"] .joe_detail {
     background: rgba(35, 35, 35, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  html[data-mode="dark"] .joe_detail__article::before {
+  html[data-mode="dark"] .joe_detail::before {
     background: linear-gradient(
       135deg,
       rgba(192, 130, 89, 0.06) 0%,
@@ -278,70 +269,6 @@
     );
   }
 
-  html[data-mode="dark"] .joe_detail__article:hover {
+  html[data-mode="dark"] .joe_detail:hover {
     background: rgba(35, 35, 35, 0.98);
-  }
-
-  /* 文章内容区域 - 透明融合处理 */
-  #post-inner,
-  .vditor-reset {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 20px;
-    margin: 0;
-    overflow: visible;
-    position: relative;
-  }
-
-  #post-inner::before,
-  #post-inner::after,
-  .vditor-reset::before,
-  .vditor-reset::after {
-    display: none !important;
-  }
-
-  #post-inner:hover,
-  .vditor-reset:hover {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    transform: none;
-  }
-
-  /* 暗黑模式下的文章内容区域 - 同样透明处理 */
-  html[data-mode="dark"] #post-inner,
-  html[data-mode="dark"] .vditor-reset {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  html[data-mode="dark"] #post-inner:hover,
-  html[data-mode="dark"] .vditor-reset:hover {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  /* 解决导航栏子菜单问题 - 特殊处理 */
-  .joe_header {
-    overflow: visible !important; /* 确保子菜单可以显示 */
-  }
-
-  .joe_header .joe_header__below-nav {
-    overflow: visible !important;
-  }
-
-  .joe_header .joe_header__below-nav .joe_header__below-nav-item {
-    overflow: visible !important;
-  }
-
-  .joe_header .joe_header__below-nav .joe_header__below-nav-item .dropdown {
-    overflow: visible !important;
-    z-index: 9999 !important;
   }
