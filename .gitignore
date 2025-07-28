@@ -24,3 +24,6 @@ node_modules
 .gradle
 
 CLAUDE.md
+.claude/settings.local.json
+templates/assets/css/min
+templates/assets/js/min

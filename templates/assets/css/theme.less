@@ -1,38 +1,37 @@
 // 全局CSS变量
 html {
-  --font-default: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
-  /* --theme: #fb6c28; */
-  --background-reverse: #000;
-  --background: #fff;
-  --background-translucent: rgba(255, 255, 255, 0.7);
-  --sub-background: #f5f5f5;
-  --sib-background: #fff;
-  --glass-background: rgba(255, 255, 255, 0.65);
-  --main: #303133;
-  --routine: #606266;
-  --title: #333;
-  --sib: #f2f6fc;
-  --minor: #909399;
-  --seat: #c0c4cc;
-  --classA: #dcdfe6;
-  --classB: #e4e7ed;
-  --classC: #ebeef5;
-  --classD: #f2f6fc;
-  --classE: #dcdcdc;
-  --classF: #333;
-  --classG: #dcdcdc;
-  --classH: #e9f2ff;
-  --classI: #5a3713;
-  --classJ: #f9e5fb;
-  --classK: #e4e7ed;
-  --classL: #666;
-  --classM: #2d2e37;
-  --quote: #50bfff;
-  --code: #409eff;
-  --code-background: #e8f3ff;
-  --overdue-border: #ffbb76;
-  --overdue-background: #fffcef;
+  --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --theme: #C08259;
+  --background-reverse: #000000;
+  --background: #F8F7F6;
+  --background-translucent: rgba(248, 247, 246, 0.7);
+  --sub-background: #EEEDEC;
+  --sib-background: #F8F7F6;
+  --glass-background: rgba(248, 247, 246, 0.65);
+  --main: #000000;
+  --routine: #000000;
+  --title: #000000;
+  --sib: #F4E8E0;
+  --minor: #000000;
+  --seat: #C08259;
+  --classA: #EEEDEC;
+  --classB: #F4E8E0;
+  --classC: #EEEDEC;
+  --classD: #F4E8E0;
+  --classE: #EEEDEC;
+  --classF: #000000;
+  --classG: #EEEDEC;
+  --classH: #F4E8E0;
+  --classI: #C08259;
+  --classJ: #F4E8E0;
+  --classK: #F4E8E0;
+  --classL: #000000;
+  --classM: #000000;
+  --quote: #C08259;
+  --code: #C08259;
+  --code-background: #F4E8E0;
+  --overdue-border: #C08259;
+  --overdue-background: #F4E8E0;
   --radius-wrap: 8px;
   --radius-inner: 4px;
   --radius-img: 5px;
@@ -45,36 +44,45 @@ html {
   --box-shadow-toc: inset 20px 0 30px 0 #dadada, 1px 2px 10px 0 #a8a8a8;
   --background-toc: rgba(255, 255, 255, 0.95);
   --box-shadow-tags: 2px 2px 3px 0px #c2c0b3;
-  --background-tags: #fffaeb;
-  --background-tag: #fdfdfd;
+  --background-tags: #F4E8E0;
+  --background-tag: #F8F7F6;
   --box-shadow-pager: 0 0 3px 0 #cacaca;
-  --notice: #fb6c28;
-  --background-notice: #fbf5f1;
-  --background-journal: #fff;
-  --background-journal-block: #f5f5f5;
+  --notice: #C08259;
+  --background-notice: #F4E8E0;
+  --background-journal: #F8F7F6;
+  --background-journal-block: #EEEDEC;
   --background-journal-gradient: linear-gradient(0deg,
       #d4d4d4,
       transparent 80%);
-  --background-friend: #fff;
-  --background-friend-block: #f5f5f5;
+  --background-friend: #F8F7F6;
+  --background-friend-block: #EEEDEC;
   --shadow-notice: inset 0 0 15px #d1dae8;
   --animation-notice: twinkle 1s ease infinite alternate;
+  /* Sunai theme specific colors */
+  --accent: #C08259;
+  --accent-secondary: #b85e48;
+  --highlight: #ecec70;
+  --danger: #b85e48;
+  --success: #518751;
+  --love: #fa6c8d;
+  --selected: #F4E8E0;
+  --hover: #EEEDEC;
   background: var(--background);
 
   &[data-mode="dark"] {
-    /* --theme: #9999ff; */
-    --background-reverse: #fff;
+    --theme: #C08259;
+    --background-reverse: #F8F7F6;
     --background: #232323;
     --background-translucent: rgba(35, 35, 35, 0.7);
     --sub-background: #303030;
     --sib-background: #303030;
     --glass-background: rgba(0, 0, 0, 0.65);
-    --main: #999;
-    --routine: #888;
-    --title: #ddd;
+    --main: #F8F7F6;
+    --routine: #F8F7F6;
+    --title: #F8F7F6;
     --sib: #3a3a3a;
-    --minor: #777;
-    --seat: #666;
+    --minor: #F8F7F6;
+    --seat: #C08259;
     --classA: #515253;
     --classB: #454545;
     --classC: #414243;
@@ -106,8 +114,17 @@ html {
     --background-tags: #35353e;
     --background-tag: #2f2f2f;
     --box-shadow-pager: 0 0 3px 0 #1b1b1b;
-    --notice: #9999ff;
+    --notice: #C08259;
     --background-notice: #303030;
+    /* Dark mode sunai colors */
+    --accent: #C08259;
+    --accent-secondary: #b85e48;
+    --highlight: #ecec70;
+    --danger: #b85e48;
+    --success: #518751;
+    --love: #fa6c8d;
+    --selected: #3a3a3a;
+    --hover: #454545;
     --background-journal: #383838;
     --background-journal-block: #232323;
     --background-journal-gradient: linear-gradient(0deg,
