@@ -229,9 +229,7 @@
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAKUlEQVQImU3IMREAIAgAwJfNkQCEsH8cijjpMf6vnXlQaIiJFx+omEBfmqIEZLe2jzcAAAAASUVORK5CYII=);
 }
 // 首页导航栏透明效果和布局优化
-body.page-index {
-  // 导航栏样式
-  .joe_header__above {
+body.page-index .joe_header .joe_header__above {
     background: rgba(255, 255, 255, 0.1) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
@@ -300,7 +298,9 @@ body.page-index {
       }
     }
   }
-  
+
+// 大图横幅尺寸调整
+body.page-index {
   // 调整大图横幅位置，让它真正位于导航栏下方
   .evan-big-banner {
     margin-top: 0 !important;
