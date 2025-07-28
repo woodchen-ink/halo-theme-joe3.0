@@ -3,7 +3,7 @@ name: Build distribution theme
 on:
   push:
     branches:
-      - latest
+      - main
   release:
     types:
       - created
