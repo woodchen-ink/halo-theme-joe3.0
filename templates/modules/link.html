@@ -11,10 +11,6 @@
     <link rel="shortcut icon" size="32x32" th:href="${site.favicon}" />
     <link rel="canonical" th:href="${site.url}" />
     <link rel="apple-touch-icon" sizes="180x180" th:href="${site.favicon}" />
-    <!-- Preload author background image for better LCP -->
-    <th:block th:if="${theme.config.blogger.show_blogger and theme.config.blogger.author_bg}">
-      <link rel="preload" as="image" th:href="${theme.config.blogger.author_bg}" />
-    </th:block>
     <th:block th:replace="~{modules/key_css :: key_css}" />
     <th:block th:if="${theme.config.theme.enable_loading_bar}">
       <!-- 加载条 -->

@@ -1912,20 +1912,7 @@ body {
 
     &.author {
       background: var(--background);
-      padding: 45px 15px 15px;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 90px;
-        left: 0;
-        width: 100%;
-        height: 30px;
-        z-index: 2;
-        background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0),
-            var(--background));
-      }
+      padding: 20px 15px;
 
       #he-plugin-simple {
         top: 4px;
@@ -1970,20 +1957,8 @@ body {
         opacity: 1;
       }
 
-      .image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 120px;
-        object-fit: cover;
-        z-index: 1;
-        border-radius: var(--radius-wrap) var(--radius-wrap) 0 0;
-      }
 
       .user {
-        position: relative;
-        z-index: 4;
         display: flex;
         flex-direction: column;
         align-items: center;
