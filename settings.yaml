@@ -1905,16 +1905,6 @@ spec:
     - group: post
       label: 文章页
       formSchema:
-        - $formkit: radio
-          name: enable_title_shadow
-          label: 标题阴影
-          value: true
-          help: '是否为文章页标题应用文字阴影'
-          options:
-            - value: true
-              label: 是
-            - value: false
-              label: 否
         - $formkit: text
           name: post_author_link
           label: 文章页作者跳转链接

@@ -17,12 +17,7 @@
               class="joe_detail"
               th:with="contributor = ${contributorFinder.getContributor(singlePage.status.contributors[0])}"
             >
-              <h1
-                class="joe_detail__title"
-                th:classappend="${theme.config.post.enable_title_shadow ? 'txt-shadow':''}"
-              >
-                [[${singlePage.spec.title}]]
-              </h1>
+              <h1 class="joe_detail__title">[[${singlePage.spec.title}]]</h1>
               <th:block
                 th:if="${theme.config.post.enable_page_meta} and ${#annotations.getOrDefault(singlePage, 'enable_page_meta', 'true')}"
               >
