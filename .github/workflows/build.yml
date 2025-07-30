@@ -105,6 +105,9 @@ jobs:
               
               console.log('Asset uploaded successfully');
               console.log('Release URL:', release.data.html_url);
+              
+              // Clean up old releases, keep only the latest 3
+              await cleanupOldReleases();
             } catch (error) {
               console.error('Error creating release:', error);
               // If release already exists, try to update it
@@ -128,11 +131,75 @@ jobs:
                   });
                   
                   console.log('Asset updated successfully');
+                  
+                  // Clean up old releases, keep only the latest 3
+                  await cleanupOldReleases();
                 } catch (updateError) {
                   console.error('Error updating existing release:', updateError);
                   throw updateError;
                 }
               } else {
                 throw error;
+              }
+            }
+            
+            // Function to clean up old releases
+            async function cleanupOldReleases() {
+              try {
+                console.log('Starting cleanup of old releases...');
+                
+                // Get all releases
+                const releases = await github.rest.repos.listReleases({
+                  owner,
+                  repo,
+                  per_page: 100
+                });
+                
+                // Sort releases by creation date (newest first)
+                const sortedReleases = releases.data.sort((a, b) => 
+                  new Date(b.created_at) - new Date(a.created_at)
+                );
+                
+                console.log(`Found ${sortedReleases.length} total releases`);
+                
+                // Keep only the latest 3, delete the rest
+                const releasesToDelete = sortedReleases.slice(3);
+                
+                if (releasesToDelete.length === 0) {
+                  console.log('No old releases to delete');
+                  return;
+                }
+                
+                console.log(`Deleting ${releasesToDelete.length} old releases...`);
+                
+                for (const release of releasesToDelete) {
+                  try {
+                    console.log(`Deleting release: ${release.tag_name} (${release.name})`);
+                    
+                    // Delete the release
+                    await github.rest.repos.deleteRelease({
+                      owner,
+                      repo,
+                      release_id: release.id
+                    });
+                    
+                    // Delete the associated tag
+                    await github.rest.git.deleteRef({
+                      owner,
+                      repo,
+                      ref: `tags/${release.tag_name}`
+                    });
+                    
+                    console.log(`Successfully deleted release: ${release.tag_name}`);
+                  } catch (deleteError) {
+                    console.error(`Error deleting release ${release.tag_name}:`, deleteError);
+                    // Continue with other releases even if one fails
+                  }
+                }
+                
+                console.log('Cleanup completed');
+              } catch (cleanupError) {
+                console.error('Error during cleanup:', cleanupError);
+                // Don't fail the entire workflow if cleanup fails
               }
             }
