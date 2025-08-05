@@ -7300,20 +7300,20 @@ body {
   }
 }
 
-// 自定义布局：主内容居中 720px 宽度
+// 自定义布局：主内容居中 780px 宽度
 .joe_main_container.joe_container {
-  max-width: 1080px; // 720px 内容 + 280px 侧边栏 + 间距
+  max-width: 1050px; // 780px 内容 + 240px 侧边栏 + 间距
   margin: 0 auto 30px;
   justify-content: center;
   
   .joe_main {
-    width: 720px;
-    max-width: 720px;
+    width: 780px;
+    max-width: 780px;
     flex: none;
   }
   
   .joe_aside {
-    width: 280px;
+    width: 240px;
     flex: none;
     position: relative;
   }
@@ -7329,20 +7329,32 @@ body {
   }
 }
 
+// joe_bread 适配主内容区域
+.joe_bread {
+  max-width: 1050px;
+  margin: 20px auto 0;
+  
+  &__bread {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
 // 响应式调整
-@media (max-width: 1120px) {
+@media (max-width: 1090px) {
   .joe_main_container.joe_container {
     max-width: 100%;
     padding: 0 20px;
     
     .joe_main {
       width: 100%;
-      max-width: 720px;
+      max-width: 780px;
       flex: 1;
     }
     
     .joe_aside {
-      width: 280px;
+      width: 240px;
       flex: none;
     }
   }
@@ -7350,6 +7362,15 @@ body {
   .joe_main_container.joe_container.revert {
     .joe_aside {
       margin-right: 15px;
+    }
+  }
+  
+  .joe_bread {
+    max-width: 100%;
+    padding: 0 20px;
+    
+    &__bread {
+      max-width: 100%;
     }
   }
 }
@@ -7367,6 +7388,12 @@ body {
       width: 100%;
       margin-left: 0;
       margin-top: 15px;
+    }
+  }
+  
+  .joe_bread {
+    &__bread {
+      padding: 0 10px;
     }
   }
 }
