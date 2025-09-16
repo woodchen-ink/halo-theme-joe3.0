@@ -5,7 +5,7 @@ body {
   transition: background 0.25s;
 
   &:after {
-    background-color: #F8F7F6;
+    background-color: #F2F2F7;
   }
 }
 
@@ -141,6 +141,10 @@ body {
   width: 100%;
   margin: 0 auto 30px;
   padding: 0 15px;
+  background: var(--content-background);
+  border-radius: 16px;
+  box-shadow: var(--container-shadow);
+  transition: all 0.3s ease;
 
   &.revert {
     flex-direction: row-reverse;
@@ -399,7 +403,8 @@ body {
 .joe_main {
   min-width: 0;
   flex: 1;
-  padding-bottom: 15px;
+  padding: 20px;
+  background: transparent;
 }
 
 .joe_dropdown {
