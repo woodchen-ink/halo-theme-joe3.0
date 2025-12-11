@@ -4329,9 +4329,6 @@ body {
   position: relative;
   margin-bottom: 15px;
   padding: 20px;
-  background: var(--background);
-  border-radius: var(--radius-wrap);
-  box-shadow: var(--box-shadow);
 
   .post-status {
     position: absolute;
@@ -4342,7 +4339,6 @@ body {
     line-height: 26px;
     user-select: none;
     background: var(--classD);
-    border-radius: 4px;
 
     i {
       margin-right: 3px;
@@ -4375,17 +4371,11 @@ body {
       font-size: 12px;
       padding: 3px 8px;
       margin-right: 5px;
-      border-radius: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 120px;
       transition: transform 0.35s, opacity 0.35s;
-
-      &:hover {
-        opacity: 0.85;
-        transform: translate3d(0, -3px, 0);
-      }
 
       &:last-child {
         width: 100%;
