@@ -23,7 +23,6 @@
 
           --theme: [[${theme.config.basic.mode_color_light}]];
           --wave-color: [[${theme.config.beauty.light_color}?:'#fff']];
-          --scroll-bar: [[${theme.config.theme.scrollbar_color ?: '#c0c4cc'}]];
           --loading-bar:  [[${theme.config.theme.loading_bar_color ?: 'var(--theme)'}]];
           --img-max-width: 100%;
           font-family: "Joe Font", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
@@ -41,7 +40,6 @@
           --waline-active-color: [[${theme.config.basic.mode_color_dark}?:'#9999ff']];
           --theme: [[${theme.config.basic.mode_color_dark}?:'#9999ff']];
           --wave-color: [[${theme.config.beauty.dark_color}?:'#fff']];
-          --scroll-bar: [[${theme.config.theme.scrollbar_color ?: '#666'}]];
           --loading-bar: [[${theme.config.theme.loading_bar_color ?: 'var(--theme)'}]];
           --halo-search-widget-color-modal-layer: rgba(10, 11, 12, 0.8);
           --halo-search-widget-color-modal-content-bg: rgb(27, 27, 30);
@@ -84,12 +82,6 @@
           --halo-comment-widget-component-emoji-picker-color-border-over: rgba(255, 255, 255, 0.2);
 
 
-      }
-      ::-webkit-scrollbar {
-          width: [[${theme.config.theme.scrollbar_width ?: '8px'}]];
-      }
-      ::-webkit-scrollbar-thumb {
-          background: var(--scroll-bar);
       }
       [# th:if="${theme.config.basic.enable_background_light} and ${theme.config.basic.background_light_mode != ''}"]
       html[data-mode="light"] body {

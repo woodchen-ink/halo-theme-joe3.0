@@ -632,20 +632,6 @@ spec:
           key: loading_bar_color
           label: 加载条颜色
           value: '#fb6c28'
-        - $formkit: color
-          name: scrollbar_color
-          id: scrollbar_color
-          key: scrollbar_color
-          label: 滚动条颜色
-          value: '#fb6c28'
-        - $formkit: text
-          if: '$get(enable_loading_bar).value'
-          name: scrollbar_width
-          id: scrollbar_width
-          key: scrollbar_width
-          label: 滚动条宽度
-          value: '8px'
-          help: '设置全局滚动条的宽度，默认为 8px，填 0 相当于不显示'
         - $formkit: checkbox
           name: enable_offscreen_tip
           id: enable_offscreen_tip
