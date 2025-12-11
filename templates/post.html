@@ -28,18 +28,6 @@
                 th:data-clikes="${post.stats.upvote}"
                 th:data-author="${contributor.displayName}"
               >
-                <th:block th:if="${post.categories}">
-                  <div class="joe_detail__category">
-                    <th:block th:each="category : ${post.categories}">
-                      <a
-                        th:href="${category.status.permalink}"
-                        class="item item-0"
-                        th:title="${category.spec.displayName}"
-                        >[[${category.spec.displayName}]]</a
-                      >
-                    </th:block>
-                  </div>
-                </th:block>
                 <th:block
                   th:if="${#annotations.getOrDefault(post, 'use_raw_content', 'false') == 'true'}"
                 >
