@@ -152,18 +152,6 @@ const postContext = {
 				});
 			});
 		}
-		if (ThemeConfig.enable_share_weixin && $(".qrcode_wx").length) {
-			$(".qrcode_wx").qrcode({
-				width: 140,
-				height: 140,
-				render: "canvas",
-				typeNumber: -1,
-				correctLevel: 0,
-				background: "#ffffff",
-				foreground: "#000000",
-				text: location.href,
-			});
-		}
 	},
 	/* 文章点赞 */
 	initLike() {

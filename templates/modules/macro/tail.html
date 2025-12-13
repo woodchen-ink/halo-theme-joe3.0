@@ -26,9 +26,6 @@
     <th:block th:if="${theme.config.custom.favicon != null && theme.config.custom.favicon != ''}">
       <script th:src="${source_link+'/assets/lib/favico/favico.min.js'}"></script>
     </th:block>
-    <th:block th:if="${htmlType == 'post'}">
-      <script th:src="${source_link+'/assets/lib/jquery-qrcode/jquery.qrcode.min.js'}"></script>
-    </th:block>
     <!--相册-->
     <th:block th:if="${htmlType == 'photos'}">
       <script

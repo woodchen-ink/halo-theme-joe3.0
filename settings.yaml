@@ -1924,11 +1924,6 @@ spec:
           value: ''
           help: '文章页复制内容时追加的自定义版权文字（如无特殊需要不建议设置，使用默认的即可。若真的要设置，请不要填写表情等特殊内容，否则可能导致网站崩溃）【支持使用变量 {postUrl}、{postTitle}、{postAuthor}、{postDescription}、{BlogTitle}、{BlogUrl}】'
         - $formkit: checkbox
-          name: enable_share_weixin
-          id: enable_share_weixin
-          key: enable_share_weixin
-          label: 微信分享
-        - $formkit: checkbox
           name: enable_share_qq
           id: enable_share_qq
           key: enable_share_qq
