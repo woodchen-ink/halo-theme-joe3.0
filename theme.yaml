@@ -13,7 +13,7 @@ spec:
   repo: 'https://github.com/jiewenhuang/halo-theme-joe3.0'
   settingName: 'theme-Joe-setting'
   configMapName: 'theme-Joe-configMap'
-  version: '2025.12.13-1231'
+  version: '2025.12.13-1236'
   require: '>=2.19.0'
   customTemplates:
     page:
