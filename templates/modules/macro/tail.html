@@ -10,7 +10,7 @@
     <th:block th:if="${theme.config.aside.show_newreply == true} or ${htmlType == 'sheet'}">
       <script th:src="${source_link+'/assets/lib/j-marked/marked.min.js'}"></script>
     </th:block>
-    <script th:src="${source_link+'/assets/js/min/utils.min.js'}"></script>
+    <script th:src="${source_link+'/assets/js/min/utils.min.js?v='+theme.spec.version}"></script>
 
     <th:block th:if="${htmlType == 'index' && theme.config.carousel.enable_banner}">
       <script th:src="${source_link+'/assets/lib/swiper/swiper-bundle.min.js'}"></script>
