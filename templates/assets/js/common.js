@@ -956,11 +956,6 @@ const commonContext = {
 
 	document.addEventListener("DOMContentLoaded", function () {
 		commonContext.loadingBar.show();
-		// window.lazySizesConfig = window.lazySizes.cfg || {};
-		// window.lazySizesConfig.init = false;
-		// window.lazySizesConfig.loadMode = 1;
-		// window.lazySizesConfig.loadHidden = false;
-		// lazySizes.init();
 		Object.keys(commonContext).forEach(
 			(c) => !omits.includes(c) && commonContext[c]()
 		);

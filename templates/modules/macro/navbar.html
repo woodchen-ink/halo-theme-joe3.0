@@ -200,8 +200,8 @@
             <img
               width="50"
               height="50"
-              class="avatar ls-is-cached lazyloaded"
-              th:data-src="${theme.config.blogger.lazyload_avatar}"
+              class="avatar"
+              loading="lazy"
               th:src="${theme.config.blogger.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
               alt="博主头像"
               th:data-text-avatar="${theme.config.blogger.name ?: site.title}"

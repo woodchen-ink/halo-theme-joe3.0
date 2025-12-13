@@ -268,13 +268,6 @@ spec:
           label: 开启文章缩略图
           help: '是否展示首页文章列表的缩略图'
         - $formkit: attachment
-          name: lazyload_thumbnail
-          id: lazyload_thumbnail
-          key: lazyload_thumbnail
-          label: 文章预载图
-          value: '/themes/theme-Joe3/assets/img/lazyload.gif'
-          help: '文章配图加载出来之前展示的图片，体积尽可能的小'
-        - $formkit: attachment
           name: post_thumbnail
           id: post_thumbnail
           key: post_thumbnail
@@ -695,14 +688,6 @@ spec:
           label: 切换速度
           value: 500
           help: '设置轮播图的切换速度，默认500（单位：毫秒）'
-        - $formkit: attachment
-          if: '$get(enable_banner).value === true'
-          name: banner_lazyload_img
-          id: banner_lazyload_img
-          key: banner_lazyload_img
-          label: 图片预载图
-          value: '/themes/theme-Joe3/assets/img/lazyload_h.gif'
-          help: '轮播图默认为懒加载，这里可以为banner图设置加载完之前的加载图（体积尽可能的小）'
     - group: beauty
       label: 美化
       formSchema:
@@ -865,13 +850,6 @@ spec:
           label: 个人独白
           value: '行动起来，活在当下'
           help: '将覆盖每日一句，若为空则展示每日一句或博客描述'
-        - $formkit: attachment
-          name: lazyload_avatar
-          id: lazyload_avatar
-          key: lazyload_avatar
-          label: 头像预载图
-          value: '/themes/theme-Joe3/assets/svg/spinner-preloader.svg'
-          help: '头像加载出来之前展示的图片'
         - $formkit: attachment
           name: avatar
           id: avatar

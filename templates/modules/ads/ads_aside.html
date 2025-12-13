@@ -10,10 +10,10 @@
         title="广告"
       >
         <img
-          class="omit lazyload"
+          class="omit"
           width="100%"
-          th:data-src="${ads_img}"
-          th:src="${theme.config.home.lazyload_thumbnail}"
+          loading="lazy"
+          th:src="${ads_img}"
           alt="广告"
           onerror="Joe.errorImg(this)"
         />

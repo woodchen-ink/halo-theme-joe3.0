@@ -49,9 +49,9 @@
                     <a class="item jg-entry" th:href="${photo.spec.url}" data-fancybox="gallery">
                       <img
                         class="lazy-load"
-                        th:data-src="${photo.spec.url}"
+                        loading="lazy"
+                        th:src="${photo.spec.url}"
                         th:alt="${photo.spec.displayName}"
-                        th:src="@{/assets/img/photo_loading.gif}"
                         onerror="Joe.errorImg(this, 'LoadFailedImg')"
                       />
                     </a>

@@ -31,9 +31,9 @@
                   <img
                     width="35"
                     height="35"
-                    class="avatar lazyload"
-                    th:data-src="${theme.config.blogger.avatar}"
-                    th:src="${theme.config.blogger.lazyload_avatar}"
+                    class="avatar"
+                    loading="lazy"
+                    th:src="${theme.config.blogger.avatar}"
                     th:alt="${theme.config.blogger.nickname ?: site.title}"
                     onerror="Joe.errorImg(this, 'ErrAvatarImg')"
                   />

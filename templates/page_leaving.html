@@ -26,9 +26,9 @@
                     <img
                       width="35"
                       height="35"
-                      class="avatar lazyload"
-                      th:src="${theme.config.blogger.lazyload_avatar}"
-                      th:data-src="${contributor.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
+                      class="avatar"
+                      loading="lazy"
+                      th:src="${contributor.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
                       th:alt="${contributor.displayName}"
                       onload="Joe.loadedPlaceholderReplaceImg(this, 'AvatarImg')"
                       onerror="Joe.errorImg(this, 'ErrAvatarImg')"
@@ -96,10 +96,10 @@
                         <th:block th:if="${theme.config.leaving.message_source}">
                           <div class="user">
                             <img
-                              class="avatar lazyload"
-                              th:src="${theme.config.blogger.lazyload_avatar}"
+                              class="avatar"
+                              loading="lazy"
+                              th:src="${result.owner.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
                               alt="用户头像"
-                              th:data-src="${result.owner.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
                               th:data-text-avatar="${result.spec.owner.displayName}"
                               onload="Joe.loadedPlaceholderReplaceImg(this, 'AvatarImg')"
                               onerror="Joe.errorImg(this, 'ErrAvatarImg')"
@@ -122,10 +122,10 @@
                         >
                           <div class="user">
                             <img
-                              class="avatar lazyload"
-                              th:src="${theme.config.blogger.lazyload_avatar}"
+                              class="avatar"
+                              loading="lazy"
+                              th:src="${result.owner.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
                               alt="用户头像"
-                              th:data-src="${result.owner.avatar ?: (theme.config.blogger.default_avatar ?: '/themes/theme-Joe3/assets/img/transparent-placeholder.png')}"
                               th:data-text-avatar="${result.spec.owner.displayName}"
                               onload="Joe.loadedPlaceholderReplaceImg(this, 'AvatarImg')"
                               onerror="Joe.errorImg(this, 'ErrAvatarImg')"
@@ -183,8 +183,8 @@
                             const commentTime = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
                             return `<li class="item">
               <div class="user">
-                <img class="avatar lazyload" src="${ThemeConfig.lazyload_avatar}" alt="用户头像"
-                     data-src="${comment.avatar || '/themes/theme-Joe3/assets/img/transparent-placeholder.png'}" data-text-avatar="${comment.nick}" onload="Joe.loadedPlaceholderReplaceImg(this, 'AvatarImg')" onerror="Joe.errorImg(this, 'ErrAvatarImg')" />
+                <img class="avatar" loading="lazy" src="${comment.avatar || '/themes/theme-Joe3/assets/img/transparent-placeholder.png'}" alt="用户头像"
+                     data-text-avatar="${comment.nick}" onload="Joe.loadedPlaceholderReplaceImg(this, 'AvatarImg')" onerror="Joe.errorImg(this, 'ErrAvatarImg')" />
                 <div class="nickname" >${comment.nick}</div>
                 <div class="date" >${commentTime}</div>
               </div>
