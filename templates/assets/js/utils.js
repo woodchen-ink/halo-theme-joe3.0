@@ -973,6 +973,42 @@ var Utils = {
 		// return str.replace(/\r?\n/g, "<br />");
 		return str;
 	},
+	/**
+	 * 使用原生 API 复制文本到剪贴板
+	 * @param {String} text 需要复制的文本内容
+	 * @returns {Promise} 返回 Promise，成功则 resolve，失败则 reject
+	 */
+	copyToClipboard(text) {
+		return new Promise((resolve, reject) => {
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				// 使用现代浏览器的 Clipboard API
+				navigator.clipboard.writeText(text)
+					.then(() => resolve())
+					.catch((err) => reject(err));
+			} else {
+				// Fallback: 使用传统的 execCommand 方法
+				try {
+					const textarea = document.createElement('textarea');
+					textarea.value = text;
+					textarea.style.position = 'fixed';
+					textarea.style.top = '0';
+					textarea.style.left = '0';
+					textarea.style.opacity = '0';
+					document.body.appendChild(textarea);
+					textarea.select();
+					const successful = document.execCommand('copy');
+					document.body.removeChild(textarea);
+					if (successful) {
+						resolve();
+					} else {
+						reject(new Error('复制失败'));
+					}
+				} catch (err) {
+					reject(err);
+				}
+			}
+		});
+	},
 };
 
 window.Utils = Utils;

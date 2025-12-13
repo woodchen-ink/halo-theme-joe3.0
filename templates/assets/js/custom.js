@@ -912,11 +912,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				};
 				this.innerHTML = `<span class="joe_copy" style="cursor: pointer; user-select: none;font-weight:${this.options.bold};color:${this.options.color};">${this.options.title}</span>`;
 				const button = getChildren(this, "joe_copy");
-				if (typeof ClipboardJS !== "undefined" && typeof Qmsg !== "undefined") {
-					new ClipboardJS(button, { text: () => this.options.content }).on(
-						"success",
-						() => Qmsg.success("复制成功！")
-					);
+				if (typeof Utils !== "undefined" && typeof Qmsg !== "undefined") {
+					button.addEventListener("click", () => {
+						Utils.copyToClipboard(this.options.content)
+							.then(() => Qmsg.success("复制成功！"))
+							.catch(() => Qmsg.error("复制失败！"));
+					});
 				} else {
 					button.addEventListener("click", () =>
 						alert("该功能请前往前台查看！")
@@ -940,11 +941,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				};
 				this.innerHTML = `<span class="joe_copy" style="cursor: pointer; user-select: none;word-break: break-all;${this.options.spanStyle}">${this.options.title}<i style="margin-left:4px;display:inline;${this.options.iconStyle}" class="${this.options.icon}"></i></span>`;
 				const button = getChildren(this, "joe_copy");
-				if (typeof ClipboardJS !== "undefined" && typeof Qmsg !== "undefined") {
-					new ClipboardJS(button, { text: () => this.options.content }).on(
-						"success",
-						() => Qmsg.success("复制成功！")
-					);
+				if (typeof Utils !== "undefined" && typeof Qmsg !== "undefined") {
+					button.addEventListener("click", () => {
+						Utils.copyToClipboard(this.options.content)
+							.then(() => Qmsg.success("复制成功！"))
+							.catch(() => Qmsg.error("复制失败！"));
+					});
 				} else {
 					button.addEventListener("click", () =>
 						alert("该功能请前往前台查看！")

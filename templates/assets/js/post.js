@@ -145,9 +145,11 @@ const postContext = {
 					}
 				}
 
-				new ClipboardJS(shareLinkEle, {
-					text: () => copyContent,
-				}).on("success", () => Qmsg.success("文章链接已复制"));
+				$(shareLinkEle).on("click", () => {
+					Utils.copyToClipboard(copyContent)
+						.then(() => Qmsg.success("文章链接已复制"))
+						.catch(() => Qmsg.error("复制失败！"));
+				});
 			});
 		}
 		if (ThemeConfig.enable_share_weixin && $(".qrcode_wx").length) {

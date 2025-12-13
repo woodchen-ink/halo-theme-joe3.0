@@ -183,10 +183,11 @@ const commonContext = {
 					const span = $(
 						"<span class=\"copy-button\"><i class=\"joe-font joe-icon-copy\" title=\"复制代码\"></i></span>"
 					);
-					new ClipboardJS(span[0], {
-						// text: () => text + "\r\n\r\n" + ThemeConfig.copy_right_text,
-						text: () => text,
-					}).on("success", () => Qmsg.success("复制成功！"));
+					span.on("click", () => {
+						Utils.copyToClipboard(text)
+							.then(() => Qmsg.success("复制成功！"))
+							.catch(() => Qmsg.error("复制失败！"));
+					});
 					$item.addClass("c_copy").append(span);
 				}
 			}
