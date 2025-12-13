@@ -17,9 +17,6 @@
     <th:block th:if="${htmlType == 'post'} and ${theme.config.post.enable_toc == true}">
       <script th:src="${source_link+'/assets/lib/tocbot/tocbot.min.js'}"></script>
     </th:block>
-    <th:block th:if="${htmlType =='post' || htmlType =='journals' || htmlType =='sheet'}">
-      <script th:src="${source_link+'/assets/lib/vue@2.6.10/vue.min.js'}"></script>
-    </th:block>
     <script th:src="${source_link+'/assets/lib/fancybox/jquery.fancybox.min.js'}"></script>
     <script th:src="${source_link+'/assets/js/min/custom.min.js?v='+theme.spec.version}"></script>
     <th:block th:if="${theme.config.custom.favicon != null && theme.config.custom.favicon != ''}">
