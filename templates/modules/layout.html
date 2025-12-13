@@ -38,7 +38,7 @@
 
     <th:block th:replace="~{modules/config :: config}" />
     <th:block th:replace="~{modules/link :: links}" />
-    <script th:src="https://i.czl.net/jsdelivr/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://i.czl.net/jsdelivr/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <th:block
       th:if="${theme.config.custom.custom_js_head != null} and ${#strings.trim(theme.config.custom.custom_js_head) != ''}"
     >
