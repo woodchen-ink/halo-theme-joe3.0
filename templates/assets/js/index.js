@@ -387,18 +387,6 @@ const homeContext = {
 			});
 		});
 	},
-/* 激活列表特效 */
-	initListEffect() {
-		if (!ThemeConfig.enable_index_list_effect) return;
-		new WOW({
-			boxClass: "wow",
-			animateClass: ThemeConfig.index_list_effect_class || "fadeIn",
-			offset: 0,
-			mobile: true,
-			live: true,
-			scrollContainer: null,
-		}).init();
-	},
 };
 
 !(function () {

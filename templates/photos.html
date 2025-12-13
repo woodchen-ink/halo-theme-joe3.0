@@ -41,16 +41,12 @@
               >
                 <!-- 预留空间 -->
                 <div
-                  class="grid-item wow fadeIn"
+                  class="grid-item"
                   th:each="photo : ${photos.items}"
                   th:data-sjsel="${photo.spec.groupName}"
                 >
                   <div class="card__picture">
-                    <a
-                      class="item animated wow jg-entry"
-                      th:href="${photo.spec.url}"
-                      data-fancybox="gallery"
-                    >
+                    <a class="item jg-entry" th:href="${photo.spec.url}" data-fancybox="gallery">
                       <img
                         class="lazy-load"
                         th:data-src="${photo.spec.url}"

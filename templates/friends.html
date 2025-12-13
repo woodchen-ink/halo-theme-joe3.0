@@ -35,11 +35,7 @@
                   th:each="postInfo, iteration: ${friends.items}"
                   th:with="spec = ${postInfo.spec}"
                 >
-                  <li
-                    class="joe_friend__item animated wow"
-                    th:data-wow-delay="'0.'+${iteration.index}+'s'"
-                    th:data-cid="${postInfo.metadata.name}"
-                  >
+                  <li class="joe_friend__item" th:data-cid="${postInfo.metadata.name}">
                     <p class="joe_friend_info">
                       <img
                         class="joe_friend_info_logo"

@@ -1,17 +1,9 @@
 /**文章页逻辑 */
 const journalContext = {
-	/* 激活列表特效 */
+	/* 移除加载动画 */
 	initEffect() {
 		$(".joe_loading").remove();
 		$(".joe_journals__list").removeClass("hidden");
-		if (!ThemeConfig.enable_journal_effect) return;
-		new WOW({
-			boxClass: "wow",
-			animateClass: ThemeConfig.journal_list_effect_class || "fadeIn",
-			offset: 0,
-			mobile: true,
-			live: true,
-		}).init();
 	},
 
 	/* 日志发布时间格式化 */
