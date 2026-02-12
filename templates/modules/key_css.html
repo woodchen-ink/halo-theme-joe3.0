@@ -2,19 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <th:block th:fragment="key_css">
     <style th:inline="text">
-      @font-face {
-          font-family: "Joe Font";
-          font-weight: 400;
-          font-style: normal;
-          font-display: swap;
-          [# th:if="${theme.config.custom.custom_font != ''} and ${theme.config.custom.custom_font != null}"]
-          src: url("[[${theme.config.custom.custom_font}]]") format("woff2");
-          [/]
-          [# th:if="${theme.config.theme.web_font != 'off'} and (${theme.config.custom.custom_font != null} or ${theme.config.custom.custom_font != ''})"]
-          src: url("[[${(#strings.trim(theme.config.basic.source_link) !='' && theme.config.basic.enable_source_link)? theme.config.basic.source_link : '/themes/theme-Joe3'}]]/assets/font/[[${theme.config.theme.web_font}]]") format("woff2");
-          [/]
-
-      }
       html body {
           --waline-avatar-size: 2.25rem;
           --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
@@ -25,9 +12,9 @@
           --wave-color: [[${theme.config.beauty.light_color}?:'#fff']];
           --loading-bar:  [[${theme.config.theme.loading_bar_color ?: 'var(--theme)'}]];
           --img-max-width: 100%;
-          font-family: "Joe Font", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
-          --halo-comment-widget-base-font-family: "Joe Font", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
-          --halo-search-widget-base-font-family: "Joe Font", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
+          font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
+          --halo-comment-widget-base-font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
+          --halo-search-widget-base-font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
           --halo-comment-widget-base-color: var(--main);
           --halo-comment-widget-base-info-color:var(--routine);
 

@@ -18,7 +18,7 @@ const jsConfig = jsFiles.map((file) => ({
     format: "iife",
   },
   plugins: [resolve(), terser()],
-  treeshake: false,
+  treeshake: true,
 }));
 
 const lessConfig = lessFiles.map((file) => ({

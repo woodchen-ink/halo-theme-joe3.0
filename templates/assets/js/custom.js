@@ -178,9 +178,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				console.log('JoeReadLimited options:', this.options)
 
 				this.isUserCommented = false; // 是否已经评论过
+				this.checkTimer = null;
 				this.render();
 				this.checking = false; // 是否正在检查评论
-		
+
 				if (this.options.username !== 'anonymousUser') { // 非匿名用户才检查评论
 					if (this.options.commentPlugin === 'CommentWidgetPlugin') { // halo-comment-widget 插件，即 halo 默认评论插件
 						this.commentWidgetPluginCheckComment();
@@ -189,6 +190,17 @@ document.addEventListener("DOMContentLoaded", () => {
 					} else {
 						console.warn('JoeReadLimited 评论插件未实现或不可用，不检查评论！');
 					}
+				}
+			}
+
+			disconnectedCallback() {
+				if (this.checkTimer) {
+					clearInterval(this.checkTimer);
+					this.checkTimer = null;
+				}
+				if (window._commentWidgetPluginFetch) {
+					window.fetch = window._commentWidgetPluginFetch;
+					delete window._commentWidgetPluginFetch;
 				}
 			}
 

@@ -13,29 +13,37 @@ $(document).ready(function(){
     const loadingIndicator = document.querySelector('.joe_loading');
 
 function loadRealImages(){
-    // 创建 Intersection Observer 实例
     const gridItems = document.querySelectorAll('.grid-item');
+
+    // debounce isotope layout，避免每张图都触发重排
+    let layoutTimer = null;
+    const debouncedLayout = function() {
+        if (layoutTimer) clearTimeout(layoutTimer);
+        layoutTimer = setTimeout(function() {
+            $grid.isotope('layout');
+            layoutTimer = null;
+        }, 150);
+    };
 
     const observer = new IntersectionObserver(function(entries, observer) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                // 加载图片
                 const image = entry.target.querySelector('.lazy-load');
                 if (image) {
-                    image.src = image.dataset.src; // 将 data-src 的值赋给 src
-                    image.classList.remove('lazy-load'); // 移除 lazy-load 类
-                    observer.unobserve(entry.target); // 停止观察该元素
+                    image.src = image.dataset.src;
+                    image.classList.remove('lazy-load');
+                    observer.unobserve(entry.target);
                     image.onload = function() {
-                        $grid.isotope('layout');
+                        debouncedLayout();
                     };
                 }
             }
         });
     }, {
-        threshold: 0.5
+        threshold: 0.1,
+        rootMargin: '100px'
     });
 
-    // 开始观察每个 grid item
     gridItems.forEach(function(item) {
         observer.observe(item);
     });

@@ -109,7 +109,7 @@
     <!--    大图配置-->
     <script th:inline="javascript" th:if="${theme.config.beauty.enable_big_banner}">
       // 以下配置参数均为默认值
-      new EvanBigBanner({
+      window._evanBigBannerInstance = new EvanBigBanner({
         followMode: false, // 跟随模式
         followTheme: false, // 跟随主题
         titlePrint: true, // 是否启用打字机效果

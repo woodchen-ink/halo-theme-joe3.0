@@ -3,6 +3,20 @@ window.encryption = (str) => window.btoa(unescape(encodeURIComponent(str)));
 window.decrypt = (str) => decodeURIComponent(escape(window.atob(str)));
 
 const commonContext = {
+	/* 存储需要清理的定时器引用 */
+	_timers: {},
+	_offscreenBound: false,
+	_offscreenHandler: null,
+	/* PJAX 切换时统一清理资源 */
+	destroy() {
+		Object.keys(this._timers).forEach(key => {
+			clearInterval(this._timers[key]);
+			clearTimeout(this._timers[key]);
+		});
+		this._timers = {};
+		$(document).off('.joe');
+		$(window).off('.joe');
+	},
 	/* 初始化主题模式（仅用户模式） */
 	initMode() {
 		// 取消Chrome浏览器默认滚动到上次浏览位置
@@ -226,7 +240,7 @@ const commonContext = {
 
 		handleScroll();
 
-		$(document).on("scroll", Utils.throttle(handleScroll, 120));
+		$(document).on("scroll.joe", Utils.throttle(handleScroll, 120));
 		$el.on("click", function (e) {
 			e.stopPropagation();
 			$("html,body").animate(
@@ -659,7 +673,7 @@ const commonContext = {
 			new_scroll_position = last_scroll_position;
 		};
 
-		document.addEventListener("scroll", Utils.throttle(handleHeader, 100));
+		$(document).on("scroll.joe", Utils.throttle(handleHeader, 100));
 	},
 	/* 渲染最新评论中的 emoji */
 	// renderReplyEmoji() {
@@ -756,9 +770,12 @@ const commonContext = {
 	/* 首页离屏提示 */
 	offscreenTip() {
 		if (Joe.isMobile || !ThemeConfig.enable_offscreen_tip) return;
+		// 避免重复绑定
+		if (this._offscreenBound) return;
+		this._offscreenBound = true;
 		const OriginTitile = document.title;
 		let timer = null;
-		document.addEventListener("visibilitychange", function () {
+		this._offscreenHandler = function () {
 			if (
 				location.href.indexOf(ThemeConfig.blog_url) > 0 ||
         location.pathname !== "/"
@@ -775,7 +792,8 @@ const commonContext = {
 					document.title = OriginTitile;
 				}, 2000);
 			}
-		});
+		};
+		document.addEventListener("visibilitychange", this._offscreenHandler);
 	},
 	/* 总访问量 */
 	// initUV() {
@@ -828,7 +846,8 @@ const commonContext = {
 			$second.html(second);
 		};
 		getRunTime();
-		setInterval(getRunTime, 1000);
+		if (this._timers.birthday) clearInterval(this._timers.birthday);
+		this._timers.birthday = setInterval(getRunTime, 1000);
 	},
 	/* 清理工作 */
 	clean() {

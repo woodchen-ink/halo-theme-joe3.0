@@ -362,20 +362,24 @@ const postContext = {
 			}
 		};
 		toggleAsideMenu();
-		window.addEventListener("resize", Utils.throttle(toggleAsideMenu), 500);
+		window.addEventListener("resize", Utils.throttle(toggleAsideMenu, 500));
 	},
 	/* 阅读进度条 */
 	initProgress() {
 		if (!ThemeConfig.enable_progress_bar) return;
-		$(window).off("scroll");
+		$(window).off("scroll.joe-progress");
 		const progress_bar = $(".joe_progress_bar");
-		let win_h, body_h, sHeight;
+		let win_h = $(window).height();
+		let body_h = $("body").height();
+		let sHeight = body_h - win_h;
 		const updateProgress = (p) => progress_bar.css("width", p * 100 + "%");
-		$(window).on("scroll", function (e) {
-			e.stopPropagation();
+		$(window).on("resize.joe-progress", Utils.throttle(function () {
 			win_h = $(window).height();
 			body_h = $("body").height();
 			sHeight = body_h - win_h;
+		}, 500));
+		$(window).on("scroll.joe-progress", function (e) {
+			e.stopPropagation();
 			window.requestAnimationFrame(function () {
 				const perc = Math.max(0, Math.min(1, $(window).scrollTop() / sHeight));
 				updateProgress(perc);
