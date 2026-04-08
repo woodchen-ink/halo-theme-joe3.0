@@ -150,8 +150,8 @@ spec:
           id: mode_color_dark
           key: mode_color_dark
           label: 主题色（暗黑）
-          value: '#4D57B8'
-          help: '暗黑主题色色值，默认#4D57B8'
+          value: '#7B90BF'
+          help: '暗黑主题色色值，默认#7B90BF'
         - $formkit: checkbox
           name: enable_background_light
           id: enable_background_light
