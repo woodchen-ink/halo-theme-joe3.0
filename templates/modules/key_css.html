@@ -5,12 +5,12 @@
       html body {
           --waline-avatar-size: 2.25rem;
           --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
-          --waline-theme-color:[[${theme.config.basic.mode_color_light}]];
-          --waline-active-color: [[${theme.config.basic.mode_color_light}]];
+          --waline-theme-color:[[${theme.config.basic.mode_color_light == '#fb6c28' ? '#4B669A' : (theme.config.basic.mode_color_light ?: '#4B669A')}]];
+          --waline-active-color: [[${theme.config.basic.mode_color_light == '#fb6c28' ? '#4B669A' : (theme.config.basic.mode_color_light ?: '#4B669A')}]];
 
-          --theme: [[${theme.config.basic.mode_color_light}]];
+          --theme: [[${theme.config.basic.mode_color_light == '#fb6c28' ? '#4B669A' : (theme.config.basic.mode_color_light ?: '#4B669A')}]];
           --wave-color: [[${theme.config.beauty.light_color}?:'#fff']];
-          --loading-bar:  [[${theme.config.theme.loading_bar_color ?: 'var(--theme)'}]];
+          --loading-bar:  [[${theme.config.theme.loading_bar_color == '#fb6c28' ? 'var(--theme)' : (theme.config.theme.loading_bar_color ?: 'var(--theme)')}]];
           --img-max-width: 100%;
           font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
           --halo-comment-widget-base-font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
@@ -23,11 +23,11 @@
       }
       html[data-mode='dark'] body {
 
-          --waline-theme-color:[[${theme.config.basic.mode_color_dark}?:'#9999ff']];
-          --waline-active-color: [[${theme.config.basic.mode_color_dark}?:'#9999ff']];
-          --theme: [[${theme.config.basic.mode_color_dark}?:'#9999ff']];
+          --waline-theme-color:[[${theme.config.basic.mode_color_dark == '#9999ff' ? '#4D57B8' : (theme.config.basic.mode_color_dark ?: '#4D57B8')}]];
+          --waline-active-color: [[${theme.config.basic.mode_color_dark == '#9999ff' ? '#4D57B8' : (theme.config.basic.mode_color_dark ?: '#4D57B8')}]];
+          --theme: [[${theme.config.basic.mode_color_dark == '#9999ff' ? '#4D57B8' : (theme.config.basic.mode_color_dark ?: '#4D57B8')}]];
           --wave-color: [[${theme.config.beauty.dark_color}?:'#fff']];
-          --loading-bar: [[${theme.config.theme.loading_bar_color ?: 'var(--theme)'}]];
+          --loading-bar: [[${theme.config.theme.loading_bar_color == '#fb6c28' ? 'var(--theme)' : (theme.config.theme.loading_bar_color ?: 'var(--theme)')}]];
           --halo-search-widget-color-modal-layer: rgba(10, 11, 12, 0.8);
           --halo-search-widget-color-modal-content-bg: rgb(27, 27, 30);
           --halo-search-widget-color-form-input: rgb(255, 255, 255);

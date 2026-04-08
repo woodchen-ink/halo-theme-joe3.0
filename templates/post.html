@@ -299,7 +299,7 @@
         <th:block th:if="${theme.config.post.enable_progress_bar}">
           <div
             class="joe_progress_bar"
-            th:style="'background:'+${theme.config.post.progress_bar_bgc ?: ''}"
+            th:style="'background:'+${theme.config.post.progress_bar_bgc == '#fb6c28' ? 'var(--theme-gradient)' : (theme.config.post.progress_bar_bgc ?: 'var(--theme-gradient)')}"
           ></div>
         </th:block>
         <th:block

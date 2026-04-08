@@ -143,15 +143,15 @@ spec:
           id: mode_color_light
           key: mode_color_light
           label: 主题色（浅色）
-          value: '#fb6c28'
-          help: '浅色主题色色值，默认#fb6c28'
+          value: '#4B669A'
+          help: '浅色主题色色值，默认#4B669A'
         - $formkit: color
           name: mode_color_dark
           id: mode_color_dark
           key: mode_color_dark
           label: 主题色（暗黑）
-          value: '#9999ff'
-          help: '暗黑主题色色值，默认#9999ff'
+          value: '#4D57B8'
+          help: '暗黑主题色色值，默认#4D57B8'
         - $formkit: checkbox
           name: enable_background_light
           id: enable_background_light
@@ -460,7 +460,7 @@ spec:
           id: loading_bar_color
           key: loading_bar_color
           label: 加载条颜色
-          value: '#fb6c28'
+          value: '#4B669A'
         - $formkit: checkbox
           name: enable_offscreen_tip
           id: enable_offscreen_tip
@@ -1819,7 +1819,7 @@ spec:
           key: progress_bar_bgc
           if: '$get(enable_progress_bar).value === true'
           label: 进度条背景色
-          value: '#fb6c28'
+          value: '#4B669A'
           help: '浏览进度条的背景色'
         - $formkit: checkbox
           name: enable_toc

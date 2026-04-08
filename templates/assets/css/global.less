@@ -847,15 +847,15 @@ body {
           }
 
           &:nth-child(1) .sort {
-            background: #fe2d46;
+            background: var(--danger);
           }
 
           &:nth-child(2) .sort {
-            background: #f60;
+            background: var(--theme);
           }
 
           &:nth-child(3) .sort {
-            background: #faa90e;
+            background: var(--accent-secondary);
           }
 
           &:hover {
@@ -1681,8 +1681,8 @@ body {
                 color: #fff;
                 white-space: nowrap;
                 font-size: 12px;
-                background-image: linear-gradient(to right, #fc712a, #f84c39);
-                background-color: #f84c39;
+                background-image: var(--theme-gradient);
+                background-color: var(--theme);
                 border-radius: 8px;
               }
             }
@@ -3468,7 +3468,7 @@ body {
   height: 4px;
   bottom: 0;
   left: 0;
-  background: linear-gradient(45deg, #3884d9 50%, #40d968);
+  background: var(--theme-gradient);
 }
 
 .joe_loading {
@@ -4772,6 +4772,15 @@ body {
       }
     }
 
+    mark {
+      color: var(--main);
+      padding: 0 0.35em;
+      background: var(--highlight);
+      border-radius: 0.25rem;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
     // 控制带删除线的a标签是否可点击
     // del>a {
     //   pointer-events: none;
@@ -5208,7 +5217,7 @@ body {
         font-weight: bold;
         text-align: center;
         color: #fff;
-        background: #9999ff;
+        background: var(--theme);
         border-radius: 50%;
         transition: transform 0.35s;
       }
@@ -5772,19 +5781,19 @@ body {
           font-style: normal;
           font-weight: normal;
           color: #fff;
-          background: #29deb3;
+          background: var(--accent-secondary);
         }
 
         &.site-pv em {
-          background: linear-gradient(0deg, #d0339b, #d03336);
+          background: linear-gradient(0deg, #31408D, #1B2152);
         }
 
         &.site-uv em {
-          background: linear-gradient(0deg, #e2c63a, #f58044);
+          background: linear-gradient(0deg, #87A79B, #59766F);
         }
 
         &.site-page-pv em {
-          background: linear-gradient(0deg, #367eda, #964fdb);
+          background: linear-gradient(0deg, #58B8E6, #4B669A);
         }
       }
     }
@@ -5792,7 +5801,7 @@ body {
     .rss {
       i {
         font-size: 14px;
-        color: #f18651;
+        color: var(--accent-secondary);
       }
     }
 
