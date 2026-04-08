@@ -5,7 +5,7 @@ body {
   transition: background 0.25s;
 
   &:after {
-    background-color: #F8F7F6;
+    background-color: var(--background);
   }
 }
 
@@ -1897,7 +1897,7 @@ body {
       .line {
         width: 10px;
         height: 1px;
-        background: #54b5db;
+        background: var(--accent-secondary);
         margin-left: 12px;
       }
     }
@@ -2609,13 +2609,13 @@ body {
               animation: progress 750ms linear infinite;
 
               &-0 {
-                background: #E3DCD1;
+                background: var(--selected);
                 background-image: linear-gradient(135deg,
-                    #D97757 25%,
+                    var(--theme) 25%,
                     transparent 25%,
                     transparent 50%,
-                    #D97757 50%,
-                    #D97757 75%,
+                    var(--theme) 50%,
+                    var(--theme) 75%,
                     transparent 75%,
                     transparent 100%);
                 background-size: 30px 30px;
@@ -6277,7 +6277,7 @@ body {
                 margin-right: 10px;
 
                 a {
-                  color: #D97757;
+                  color: var(--theme);
                 }
               }
 
@@ -7122,64 +7122,64 @@ body {
 
   0%,
   24.9% {
-    background-color: #54b5db;
+    background-color: var(--accent);
   }
 
   25%,
   49.9% {
-    background-color: #da4733;
+    background-color: var(--danger);
   }
 
   50%,
   74.9% {
-    background-color: #3b78e7;
+    background-color: var(--accent-secondary);
   }
 
   75%,
   to {
-    background-color: #fdba2c;
+    background-color: var(--success);
   }
 }
 
 @keyframes lamp-front {
   0% {
     transform: scaleX(0);
-    background-color: #da4733;
+    background-color: var(--danger);
   }
 
   24.9% {
     transform: scaleX(0.5);
-    background-color: #da4733;
+    background-color: var(--danger);
   }
 
   25% {
     transform: scaleX(0);
-    background-color: #3b78e7;
+    background-color: var(--accent-secondary);
   }
 
   49.9% {
     transform: scaleX(0.5);
-    background-color: #3b78e7;
+    background-color: var(--accent-secondary);
   }
 
   50% {
     transform: scaleX(0);
-    background-color: #fdba2c;
+    background-color: var(--success);
   }
 
   74.9% {
     transform: scaleX(0.5);
-    background-color: #fdba2c;
+    background-color: var(--success);
   }
 
   75% {
     transform: scaleX(0);
-    background-color: #D97757;
+    background-color: var(--theme);
   }
 
   to {
     transform: scaleX(0.5);
-    background-color: #D97757;
+    background-color: var(--theme);
   }
 }
 
