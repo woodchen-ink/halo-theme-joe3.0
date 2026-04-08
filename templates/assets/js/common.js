@@ -444,12 +444,10 @@ const commonContext = {
 		const listClass = isTagCloud ? '.tags-cloud-list' : '.categories-cloud-list';
 		const entries = [];
 		const colors = [
-			"#1B2152", "#2EA7E0", "#4B669A", "#31408D",
-			"#59766F", "#756B80", "#8DA1CC", "#87A79B",
-			"#A090A3", "#537895", "#465EFB", "#5961F9",
-			"#4C83FF", "#6FA3EF", "#7E93BE", "#5E5851",
-			"#A79E92", "#5D6B8A", "#395886", "#3D6A91",
-			"#487AA5", "#5B8FB9", "#6D86B3", "#5C7295",
+			"#1B2152", "#2EA7E0", "#4B669A", "#59766F",
+			"#756B80", "#955F6D", "#1D2088", "#171614",
+			"#5E5851", "#D6CFC4", "#31408D", "#8DA1CC",
+			"#87A79B", "#A090A3", "#C28A98", "#58B8E6",
 		];
 
 		const random = (min, max) => {

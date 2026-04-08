@@ -11,7 +11,9 @@
       <th:block th:replace="${head}" />
     </th:block>
   </head>
-  <body th:style="'background-color: '+${theme.config.style.background_color ?: '#F7F5F1'}">
+  <body
+    th:style="'background-color: '+${theme.config.style.background_color == '#f2f2f2' ? '#F7F5F1' : (theme.config.style.background_color ?: '#F7F5F1')}"
+  >
     <section>
       <th:block th:replace="${content}" />
     </section>
