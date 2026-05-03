@@ -967,19 +967,27 @@ const commonContext = {
 		"travelling",
 	];
 
+	// 仅迭代函数成员, 跳过数据成员 (如 _timers / _offscreenBound 这类内部状态)
 	document.addEventListener("DOMContentLoaded", function () {
 		commonContext.loadingBar.show();
 		Object.keys(commonContext).forEach(
-			(c) => !omits.includes(c) && commonContext[c]()
+			(c) =>
+				!omits.includes(c) &&
+				typeof commonContext[c] === "function" &&
+				commonContext[c]()
 		);
 	});
 
 	window.addEventListener("load", function () {
 		if (omits.length === 1) {
-			commonContext[omits[0]]();
+			typeof commonContext[omits[0]] === "function" &&
+				commonContext[omits[0]]();
 		} else {
 			omits.forEach(
-				(c) => c !== "loadingBar" && commonContext[c] && commonContext[c]()
+				(c) =>
+					c !== "loadingBar" &&
+					typeof commonContext[c] === "function" &&
+					commonContext[c]()
 			);
 		}
 	});
