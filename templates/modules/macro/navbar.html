@@ -22,7 +22,7 @@
             >
               <img
                 th:style="'border-radius:'+${theme.config.navbar.logo_radius} ?:'4px'"
-                th:src="${site.logo}"
+                th:src="${site.logo ?: (theme.config.blogger.avatar ?: theme.config.blogger.default_avatar)}"
                 th:alt="${site.title}"
                 onerror="Joe.errorImg(this, 'ErrAvatarImg')"
               />
@@ -149,7 +149,9 @@
                   <a
                     class="login_before"
                     href="#"
-                    onclick="window.location.href='/console/login?redirect_uri='+window.location.href"
+                    onclick="
+                      window.location.href = '/console/login?redirect_uri=' + window.location.href
+                    "
                     title="登入"
                     target="_self"
                     ><i class="jiewen joe-icon-zhanghao" target="_self"></i
