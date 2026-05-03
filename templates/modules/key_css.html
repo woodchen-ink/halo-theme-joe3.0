@@ -3,12 +3,11 @@
   <th:block th:fragment="key_css">
     <style th:inline="text">
       html body {
+          /* 主题色由 theme.less 集中管理（CZL 冷色调），此处仅同步 waline 等第三方组件的 token */
           --waline-avatar-size: 2.25rem;
           --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
-          --waline-theme-color:[[${theme.config.basic.mode_color_light == '#fb6c28' ? '#4B669A' : (theme.config.basic.mode_color_light ?: '#4B669A')}]];
-          --waline-active-color: [[${theme.config.basic.mode_color_light == '#fb6c28' ? '#4B669A' : (theme.config.basic.mode_color_light ?: '#4B669A')}]];
-
-          --theme: [[${theme.config.basic.mode_color_light == '#fb6c28' ? '#4B669A' : (theme.config.basic.mode_color_light ?: '#4B669A')}]];
+          --waline-theme-color: var(--theme);
+          --waline-active-color: var(--theme);
           --wave-color: [[${theme.config.beauty.light_color}?:'#fff']];
           --loading-bar:  [[${theme.config.theme.loading_bar_color == '#fb6c28' ? 'var(--theme)' : (theme.config.theme.loading_bar_color ?: 'var(--theme)')}]];
           --img-max-width: 100%;
@@ -22,10 +21,9 @@
 
       }
       html[data-mode='dark'] body {
-
-          --waline-theme-color:[[${theme.config.basic.mode_color_dark == '#9999ff' ? '#7B90BF' : (theme.config.basic.mode_color_dark ?: '#7B90BF')}]];
-          --waline-active-color: [[${theme.config.basic.mode_color_dark == '#9999ff' ? '#7B90BF' : (theme.config.basic.mode_color_dark ?: '#7B90BF')}]];
-          --theme: [[${theme.config.basic.mode_color_dark == '#9999ff' ? '#7B90BF' : (theme.config.basic.mode_color_dark ?: '#7B90BF')}]];
+          /* 暗色主题色与 waline 同步，色值来自 theme.less .dark 块 */
+          --waline-theme-color: var(--theme);
+          --waline-active-color: var(--theme);
           --wave-color: [[${theme.config.beauty.dark_color}?:'#fff']];
           --loading-bar: [[${theme.config.theme.loading_bar_color == '#fb6c28' ? 'var(--theme)' : (theme.config.theme.loading_bar_color ?: 'var(--theme)')}]];
           --halo-search-widget-color-modal-layer: rgba(0, 0, 0, 0.8);

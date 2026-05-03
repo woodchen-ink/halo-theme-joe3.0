@@ -1,0 +1,168 @@
+// CZL 自定义 Prism 主题：与项目主色板保持一致，不依赖 prism-themes 第三方主题
+// 浅色/暗色通过 var(--xxx) 自动跟随 theme.less，无需双套样式表
+//
+// token 配色策略：
+// - keyword / selector / 控制流 → 主题色（冷蓝）
+// - string / value → 偏暖中性色，与主题色拉开
+// - comment → ink-muted 灰
+// - function / class-name → 略深的墨色，加重
+// - number / boolean / constant → 第二强调色 #2EA7E0
+// - operator / punctuation → ink-soft
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.6;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+  hyphens: none;
+}
+
+pre[class*="language-"] {
+  background: var(--paper-card);
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: var(--radius-inner);
+}
+
+:not(pre) > code[class*="language-"] {
+  background: var(--paper-card);
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  white-space: normal;
+}
+
+// 选区与高亮行
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  background: var(--highlight);
+  color: var(--ink);
+  text-shadow: none;
+}
+
+// Token 配色
+.token {
+  &.comment,
+  &.prolog,
+  &.cdata {
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  &.doctype,
+  &.punctuation,
+  &.entity {
+    color: var(--ink-soft);
+  }
+
+  &.attr-name,
+  &.class-name,
+  &.boolean,
+  &.constant,
+  &.number,
+  &.atrule {
+    color: var(--accent-secondary); // #2EA7E0 第二强调色
+  }
+
+  &.keyword {
+    color: var(--theme); // 冷蓝主题色
+    font-weight: 600;
+  }
+
+  &.property,
+  &.tag,
+  &.symbol,
+  &.deleted,
+  &.important {
+    color: var(--theme);
+  }
+
+  &.selector,
+  &.string,
+  &.char,
+  &.builtin,
+  &.inserted,
+  &.regex,
+  &.attr-value {
+    color: #7A6A45; // 偏暖中性色（仅 string 类，与冷蓝 keyword 拉开）
+
+    .punctuation {
+      color: var(--ink-soft);
+    }
+  }
+
+  &.variable,
+  &.operator,
+  &.function {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  &.url {
+    color: var(--theme);
+    text-decoration: underline;
+  }
+
+  &.bold {
+    font-weight: 700;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.namespace {
+    opacity: 0.7;
+  }
+}
+
+// 暗色模式下 string 颜色调整：原色在深底上对比度不足
+html[data-mode="dark"] {
+  .token {
+    &.selector,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted,
+    &.regex,
+    &.attr-value {
+      color: #C9B581; // 浅金色，在深底上清晰可读
+    }
+  }
+}
+
+// 行号样式
+.line-numbers {
+  .line-numbers-rows {
+    border-right-color: var(--ink-muted);
+    opacity: 0.4;
+
+    > span:before {
+      color: var(--ink-muted);
+    }
+  }
+}
+
+// 行高亮（prism-line-highlight 插件用）
+.line-highlight {
+  background: var(--highlight);
+  background: linear-gradient(to right, var(--highlight) 70%, transparent);
+
+  &:before,
+  &[data-end]:after {
+    background: var(--theme);
+    color: var(--paper-card);
+    box-shadow: 0 1px 4px var(--shadow-code);
+  }
+}

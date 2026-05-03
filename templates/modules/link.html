@@ -88,9 +88,10 @@
     </th:block>
     <th:block th:if="${htmlType == 'post' or htmlType == 'journals' or htmlType == 'sheet'}">
       <link rel="stylesheet" th:href="${source_link+'/assets/lib/prism/prism.min.css'}" />
+      <!-- 代码块主题：CZL 自定义主题，自动跟随明暗模式，不再依赖 prism-themes 第三方主题 -->
       <link
         rel="stylesheet"
-        th:href="${source_link+'/assets/lib/prism/themes'+'/prism-'+theme.config.code_block.code_theme+'.css'}"
+        th:href="${source_link+'/assets/css/min/prism-czl.min.css?v='+theme.spec.version}"
       />
     </th:block>
     <link
