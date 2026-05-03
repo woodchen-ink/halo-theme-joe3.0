@@ -12,29 +12,9 @@
         <th:block th:if="${theme.config.beauty.enable_big_banner}">
           <th:block th:replace="~{modules/macro/big_banner :: big_banner(${title})}" />
         </th:block>
-        <div
-          class="joe_container joe_main_container page-tag"
-          th:classappend="${theme.config.theme.enable_show_in_up ? 'animated fadeIn':''}"
-        >
-          <div class="joe_main">
-            <div class="joe_archive">
-              <div class="joe_archive__title">
-                <div class="joe_archive__title-title">
-                  <i class="joe-font joe-icon-feather joe_archive__title-icon"></i>以下是
-                  <span class="muted ellipsis">[[${tag.spec.displayName}]]</span>
-                  <span>相关的文章</span>
-                </div>
-              </div>
-
-              <ul class="joe_archive__list joe_list">
-                <th:block th:each="post, iteration : ${posts.items}">
-                  <th:block th:replace="~{modules/macro/post_item :: post_item}" />
-                </th:block>
-              </ul>
-              <th:block th:replace="~{modules/common/pagination :: tag}" />
-            </div>
-          </div>
-        </div>
+        <th:block
+          th:replace="~{modules/common/archive_list :: archive_list('page-tag', ${tag.spec.displayName}, 'tag')}"
+        />
         <th:block th:replace="~{modules/common/actions :: actions}" />
         <th:block th:replace="~{modules/common/footer :: footer}" />
       </div>

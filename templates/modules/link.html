@@ -11,6 +11,9 @@
     <link rel="shortcut icon" size="32x32" th:href="${site.favicon}" />
     <link rel="canonical" th:href="${site.url}" />
     <link rel="apple-touch-icon" sizes="180x180" th:href="${site.favicon}" />
+    <!-- 第三方域预连接：减少首屏 DNS+TLS 握手延迟 -->
+    <link rel="preconnect" href="//at.alicdn.com" crossorigin />
+    <link rel="preconnect" href="//i.czl.net" crossorigin />
     <th:block th:replace="~{modules/key_css :: key_css}" />
     <th:block th:if="${theme.config.theme.enable_loading_bar}">
       <!-- 加载条 -->
@@ -26,30 +29,33 @@
       </style>
       <script th:src="${source_link+'/assets/lib/nprogress/nprogress.min.js'}"></script>
     </th:block>
+    <!-- 首屏关键 CSS：直接同步加载，浏览器自动按出现顺序优先级处理 -->
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       th:href="${source_link+'/assets/css/min/normalize.min.css?v='+theme.spec.version}"
     />
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       th:href="${source_link+'/assets/lib/font-awesome/css/font-awesome.min.css'}"
     />
+    <!-- alicdn 自定义图标库：异步加载，不阻塞首屏渲染 -->
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       href="//at.alicdn.com/t/font_2788564_crkap1ed9j5.css"
+      media="print"
+      onload="this.media = 'all'"
     />
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       href="//at.alicdn.com/t/c/font_4198339_jcoci5bgy7.css"
+      media="print"
+      onload="this.media = 'all'"
     />
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       href="//at.alicdn.com/t/c/font_4012291_6am8fj7tgaw.css"
+      media="print"
+      onload="this.media = 'all'"
     />
     <th:block
       th:if="${theme.config.custom.iconfont != '' and theme.config.custom.iconfont != null}"
@@ -57,8 +63,7 @@
       <link rel="stylesheet" th:href="${theme.config.custom.iconfont}" />
     </th:block>
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       th:href="${source_link+'/assets/css/min/theme.min.css?v='+theme.spec.version}"
     />
     <style th:inline="text">
@@ -82,54 +87,43 @@
       <link rel="stylesheet" th:href="${source_link+'/assets/lib/swiper/swiper-bundle.min.css'}" />
     </th:block>
     <th:block th:if="${htmlType == 'post' or htmlType == 'journals' or htmlType == 'sheet'}">
+      <link rel="stylesheet" th:href="${source_link+'/assets/lib/prism/prism.min.css'}" />
       <link
-        rel="preload stylesheet"
-        as="style"
-        th:href="${source_link+'/assets/lib/prism/prism.min.css'}"
-      />
-      <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/lib/prism/themes'+'/prism-'+theme.config.code_block.code_theme+'.css'}"
       />
     </th:block>
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       th:href="${source_link+'/assets/css/min/global.min.css?v='+theme.spec.version}"
     />
     <th:block th:if="${htmlType == 'index'}">
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/index.min.css?v='+theme.spec.version}"
       />
     </th:block>
     <th:block th:if="${htmlType == 'post'}">
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/post.min.css?v='+theme.spec.version}"
       />
     </th:block>
     <th:block th:if="${htmlType == 'journals'}">
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/journals.min.css?v='+theme.spec.version}"
       />
     </th:block>
     <th:block th:if="${htmlType == 'friends'}">
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/friends.min.css?v='+theme.spec.version}"
       />
     </th:block>
     <th:block th:if="${htmlType == 'archives'}">
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/archives.min.css?v='+theme.spec.version}"
       />
     </th:block>
@@ -139,40 +133,35 @@
         th:href="${source_link+'/assets/lib/justifiedGallery/justifiedGallery.min.css'}"
       />
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/photos.min.css?v='+theme.spec.version}"
       />
     </th:block>
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       th:href="${source_link+'/assets/css/min/responsive.min.css?v='+theme.spec.version}"
     />
+    <!-- fancybox CSS：异步加载（图片放大功能在用户点击时才需要） -->
     <link
       rel="stylesheet"
       href="https://i.czl.net/jsdelivr/npm/fancybox@3.0.1/dist/css/jquery.fancybox.min.css"
+      media="print"
+      onload="this.media = 'all'"
     />
     <link
       th:if="${theme.config.basic.comment_option == 'waline'} and ${#strings.trim(theme.config.basic.waline.waline_serverURL) !=''}"
       rel="stylesheet"
       th:href="${theme.config.basic.waline.waline_css}"
+      media="print"
+      onload="this.media = 'all'"
     />
-    <th:block th:if="${theme.config.theme.cursor_skin != 'off'}">
-      <link
-        rel="stylesheet"
-        th:href="${source_link+'/assets/cursor/style/min/'+theme.config.theme.cursor_skin+'.min.css'}"
-      />
-    </th:block>
     <link
-      rel="preload stylesheet"
-      as="style"
+      rel="stylesheet"
       th:href="${source_link+'/assets/css/min/beauty.min.css?v='+theme.spec.version}"
     />
     <th:block th:if="${theme.config.beauty.enable_big_banner}">
       <link
-        rel="preload stylesheet"
-        as="style"
+        rel="stylesheet"
         th:href="${source_link+'/assets/css/min/big-banner.min.css?v='+theme.spec.version}"
       />
     </th:block>

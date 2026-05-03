@@ -161,19 +161,19 @@ body {
   }
 
   // ==== 代码块样式 start
+  // 内联代码：贴合行内阅读流的细底色样式（GitHub/Notion 风格），不再使用 inline-block
   code:not([class]) {
-    display: inline-block;
-    font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.875em;
     color: var(--code);
-    margin: 2px 5px;
-    padding: 0 8px;
-    white-space: normal;
+    padding: 0.15em 0.4em;
+    margin: 0 0.15em;
+    white-space: break-spaces;
     text-indent: 0;
     user-select: auto;
-    vertical-align: baseline;
     word-break: break-word;
     background: var(--code-background);
-    border-radius: var(--radius-inner);
+    border-radius: 4px;
   }
 
   .code-toolbar {

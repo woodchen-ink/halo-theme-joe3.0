@@ -357,30 +357,6 @@ spec:
       label: 主题相关
       formSchema:
         - $formkit: select
-          name: cursor_skin
-          id: cursor_skin
-          key: cursor_skin
-          label: 鼠标皮肤
-          value: 'off'
-          help: '配置鼠标光标的皮肤（部分皮肤在暗黑模式下可能不明显），更多皮肤请前往 https://zhutix.com/tag/cursors/'
-          options:
-            - value: 'off'
-              label: 无（默认）
-            - value: simple_cursor
-              label: 简洁卡通
-            - value: simple_cursor_blue
-              label: 简洁卡通-蓝
-            - value: simple_sunset_light
-              label: 简单日落(浅色)
-            - value: simple_sunset_dark
-              label: 简单日落(暗黑)
-            - value: crystallize
-              label: 简约水晶
-            - value: emoji_zip
-              label: 魔力表情
-            - value: black_cat
-              label: 小黑猫
-        - $formkit: select
           name: cursor_effect
           id: cursor_effect
           key: cursor_effect

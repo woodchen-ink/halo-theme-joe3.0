@@ -3,75 +3,77 @@
 // 页面层走暖纸色（米白偏黄），文字与强调点保持冷色墨调形成对比
 html {
   --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层） */
-  --paper-base: #F4EFE2;
-  --paper-card: #FAF6EB;
-  --paper-raised: #FDFAF1;
-  --paper-tint: rgba(212, 188, 132, 0.06);
-  --ink: #2A2520;
-  --ink-soft: #4A423A;
-  --ink-muted: #786E60;
+  /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层）
+     冷暖中性奶油白：去黄保留极淡纸感，与冷蓝主题色 #4B669A 协调 */
+  --paper-base: #F3F1EC;
+  --paper-card: #FAF8F4;
+  --paper-raised: #FDFCF9;
+  --paper-tint: rgba(120, 110, 95, 0.04);
+  --ink: #25282C;
+  --ink-soft: #404347;
+  --ink-muted: #6F7378;
   --theme: #4B669A;
   --theme-gradient: linear-gradient(120deg, #1D2088 0%, #2EA7E0 100%);
   --background-reverse: #2A2520;
   --background: var(--paper-base);
-  --background-translucent: rgba(244, 239, 226, 0.72);
+  --background-translucent: rgba(243, 241, 236, 0.72);
   --sub-background: var(--paper-card);
   --sib-background: var(--paper-card);
-  --glass-background: rgba(250, 246, 235, 0.86);
+  --glass-background: rgba(250, 248, 244, 0.86);
   --content-background: var(--paper-base);
   --card-background: var(--paper-card);
-  --secondary-background: #ECE3CB;
+  --secondary-background: #E8E4DA;
   --main: var(--ink);
   --routine: var(--ink-soft);
   --title: var(--ink);
-  --sib: #ECE3CB;
+  --sib: #E8E4DA;
   --minor: var(--ink-muted);
   --seat: #4B669A;
   --classA: var(--paper-card);
-  --classB: #DDD2B5;
-  --classC: #ECE3CB;
-  --classD: #ECE3CB;
-  --classE: #DDD2B5;
+  --classB: #D7D2C5;
+  --classC: #E8E4DA;
+  --classD: #E8E4DA;
+  --classE: #D7D2C5;
   --classF: var(--ink-soft);
-  --classG: #DDD2B5;
-  --classH: #ECE3CB;
+  --classG: #D7D2C5;
+  --classH: #E8E4DA;
   --classI: #1B2152;
-  --classJ: #ECE3CB;
-  --classK: #DDD2B5;
+  --classJ: #E8E4DA;
+  --classK: #D7D2C5;
   --classL: var(--ink-muted);
   --classM: var(--ink);
   --quote: #4B669A;
-  --code: #1B2152;
-  --code-background: #ECE3CB;
+  /* 内联代码：与正文同墨色，仅靠中性灰底与等宽字体区分 */
+  --code: var(--ink);
+  --code-background: #E8E4DA;
   --overdue-border: #9D6877;
-  --overdue-background: #ECE3CB;
+  --overdue-background: #E8E4DA;
   --radius-wrap: 12px;
   --radius-inner: 8px;
   --radius-img: 8px;
   /* 阴影：纸张叠层观感，比纯灰阴影略带暖调（rgba(60,40,20)） */
   --box-shadow: 0 2px 16px -6px rgba(60, 40, 20, 0.10), 0 1px 4px -2px rgba(60, 40, 20, 0.06);
   --container-shadow: 0 2px 16px -6px rgba(60, 40, 20, 0.10), 0 1px 4px -2px rgba(60, 40, 20, 0.06);
-  --shadow-code: #DDD2B5;
-  --block-shadow: 0 2px 16px -6px rgba(60, 40, 20, 0.10), 0 1px 4px -2px rgba(60, 40, 20, 0.06);
-  --box-shadow-journal: rgba(60, 40, 20, 0.08);
-  --box-shadow-friend: rgba(60, 40, 20, 0.08);
-  --box-shadow-toc: inset 20px 0 30px 0 rgba(60, 40, 20, 0.05), 0 2px 16px -6px rgba(60, 40, 20, 0.10);
-  --background-toc: rgba(250, 246, 235, 0.96);
-  --box-shadow-tags: 0 1px 3px 0px rgba(60, 40, 20, 0.08);
-  --background-tags: #ECE3CB;
+  --shadow-code: #D7D2C5;
+  --block-shadow: 0 2px 16px -6px rgba(40, 40, 50, 0.10), 0 1px 4px -2px rgba(40, 40, 50, 0.06);
+  --box-shadow-journal: rgba(40, 40, 50, 0.08);
+  --box-shadow-friend: rgba(40, 40, 50, 0.08);
+  --box-shadow-toc: inset 20px 0 30px 0 rgba(40, 40, 50, 0.05), 0 2px 16px -6px rgba(40, 40, 50, 0.10);
+  --background-toc: rgba(250, 248, 244, 0.96);
+  --box-shadow-tags: 0 1px 3px 0px rgba(40, 40, 50, 0.08);
+  --background-tags: #E8E4DA;
   --background-tag: var(--paper-card);
-  --box-shadow-pager: 0 0 3px 0 rgba(60, 40, 20, 0.10);
+  --box-shadow-pager: 0 0 3px 0 rgba(40, 40, 50, 0.10);
   --notice: #4B669A;
-  --background-notice: #ECE3CB;
+  --background-notice: #E8E4DA;
   --background-journal: var(--paper-base);
   --background-journal-block: var(--paper-card);
   --background-journal-gradient: linear-gradient(0deg,
-      rgba(60, 40, 20, 0.08),
+      rgba(40, 40, 50, 0.08),
       transparent 80%);
   --background-friend: var(--paper-base);
   --background-friend-block: var(--paper-card);
-  --shadow-notice: inset 0 0 15px rgba(60, 40, 20, 0.08);
+  --shadow-notice: inset 0 0 15px rgba(40, 40, 50, 0.08);
   --animation-notice: twinkle 1s ease infinite alternate;
   /* CZL cold neutral theme colors */
   --accent: #1B2152;
@@ -85,49 +87,50 @@ html {
   background: var(--background);
 
   &[data-mode="dark"] {
-    /* 暗色模式：暖向夜读纸（深棕墨底，避开纯黑），延续 Bear/Ulysses 阅读观感 */
-    --paper-base: #1A1714;
-    --paper-card: #221E1A;
-    --paper-raised: #2B2620;
-    --paper-tint: rgba(212, 188, 132, 0.04);
-    --ink: #EFE8DA;
-    --ink-soft: #C9C0AE;
-    --ink-muted: #8E8676;
+    /* 暗色模式：冷暖中性夜读纸（深墨底，避开纯黑），与冷蓝主题色协调 */
+    --paper-base: #16181B;
+    --paper-card: #1E2024;
+    --paper-raised: #26282D;
+    --paper-tint: rgba(120, 130, 145, 0.04);
+    --ink: #E5E7EA;
+    --ink-soft: #BFC2C7;
+    --ink-muted: #8A8E94;
     --theme: #7B90BF;
     --theme-gradient: linear-gradient(120deg, #1D2088 0%, #2EA7E0 100%);
     --background-reverse: var(--ink);
     --background: var(--paper-base);
-    --background-translucent: rgba(26, 23, 20, 0.72);
+    --background-translucent: rgba(22, 24, 27, 0.72);
     --sub-background: var(--paper-card);
     --sib-background: var(--paper-card);
-    --glass-background: rgba(34, 30, 26, 0.86);
+    --glass-background: rgba(30, 32, 36, 0.86);
     --content-background: var(--paper-card);
     --card-background: var(--paper-card);
-    --secondary-background: #2F2A24;
+    --secondary-background: #2C2F35;
     --main: var(--ink);
     --routine: var(--ink-soft);
     --title: var(--ink);
-    --sib: #2F2A24;
+    --sib: #2C2F35;
     --minor: var(--ink-muted);
     --seat: #7B90BF;
-    --classA: #2F2A24;
-    --classB: #3D362E;
-    --classC: #2F2A24;
+    --classA: #2C2F35;
+    --classB: #3A3E45;
+    --classC: #2C2F35;
     --classD: var(--paper-card);
-    --classE: #3D362E;
+    --classE: #3A3E45;
     --classF: var(--ink-soft);
-    --classG: #2F2A24;
-    --classH: #2F2A24;
+    --classG: #2C2F35;
+    --classH: #2C2F35;
     --classI: #2A367A;
-    --classJ: #221E1A;
+    --classJ: #1E2024;
     --classK: var(--ink-soft);
     --classL: var(--ink-muted);
     --classM: var(--ink);
     --quote: #7B90BF;
-    --code: #7B90BF;
-    --code-background: #2F2A24;
+    /* 内联代码：暗色下与正文同近白墨色 */
+    --code: var(--ink);
+    --code-background: #2C2F35;
     --overdue-border: #C08998;
-    --overdue-background: #221E1A;
+    --overdue-background: #1E2024;
     --box-shadow: 0 2px 16px -6px rgba(0, 0, 0, 0.46), 0 1px 4px -2px rgba(0, 0, 0, 0.28);
     --container-shadow: 0 2px 16px -6px rgba(0, 0, 0, 0.46), 0 1px 4px -2px rgba(0, 0, 0, 0.28);
     --shadow-code: #0E0B08;
@@ -136,13 +139,13 @@ html {
     --box-shadow-friend: rgba(0, 0, 0, 0.28);
     --box-shadow-toc: inset 0 0 30px 0 rgba(239, 232, 218, 0.06),
       0 2px 16px -6px rgba(0, 0, 0, 0.46);
-    --background-toc: rgba(34, 30, 26, 0.98);
+    --background-toc: rgba(30, 32, 36, 0.98);
     --box-shadow-tags: 0 1px 3px 0px rgba(0, 0, 0, 0.36);
-    --background-tags: #2F2A24;
+    --background-tags: #2C2F35;
     --background-tag: var(--paper-card);
     --box-shadow-pager: 0 0 3px 0 rgba(0, 0, 0, 0.34);
     --notice: #7B90BF;
-    --background-notice: #221E1A;
+    --background-notice: #1E2024;
     /* Dark mode CZL cold neutral colors */
     --accent: #2A367A;
     --accent-secondary: #2EA7E0;
@@ -150,8 +153,8 @@ html {
     --danger: #C08998;
     --success: #7E9FA1;
     --love: #908095;
-    --selected: #2F2A24;
-    --hover: #221E1A;
+    --selected: #2C2F35;
+    --hover: #1E2024;
     --background-journal: var(--paper-base);
     --background-journal-block: var(--paper-card);
     --background-journal-gradient: linear-gradient(0deg,
