@@ -1,10 +1,10 @@
 // 全局CSS变量
-// 配色基底：CZL 冷墨 + Bear/Ulysses 暖白稿纸（warm paper + cool ink）
-// 页面层走暖纸色（米白偏黄），文字与强调点保持冷色墨调形成对比
+// 配色基底：纸 + 墨 (Paper & Ink), 中性奶油白稿纸 + 中性墨黑文字
+// 不使用任何蓝色, 所有"主题色"统一走墨黑系, 强调靠加粗/底色/下划线
 html {
   --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层）
-     冷暖中性奶油白：去黄保留极淡纸感，与冷蓝主题色 #4B669A 协调 */
+     冷暖中性奶油白：极淡纸感，与墨黑文字形成经典纸墨对比 */
   --paper-base: #F3F1EC;
   --paper-card: #FAF8F4;
   --paper-raised: #FDFCF9;
@@ -12,9 +12,10 @@ html {
   --ink: #25282C;
   --ink-soft: #404347;
   --ink-muted: #6F7378;
-  --theme: #4B669A;
-  --theme-gradient: linear-gradient(120deg, #1D2088 0%, #2EA7E0 100%);
-  --background-reverse: #2A2520;
+  /* 主题色：中性墨黑（不再用任何蓝） */
+  --theme: #25282C;
+  --theme-gradient: linear-gradient(120deg, #25282C 0%, #6F7378 100%);
+  --background-reverse: #25282C;
   --background: var(--paper-base);
   --background-translucent: rgba(243, 241, 236, 0.72);
   --sub-background: var(--paper-card);
@@ -28,7 +29,7 @@ html {
   --title: var(--ink);
   --sib: #E8E4DA;
   --minor: var(--ink-muted);
-  --seat: #4B669A;
+  --seat: var(--ink);
   --classA: var(--paper-card);
   --classB: #D7D2C5;
   --classC: #E8E4DA;
@@ -37,12 +38,12 @@ html {
   --classF: var(--ink-soft);
   --classG: #D7D2C5;
   --classH: #E8E4DA;
-  --classI: #1B2152;
+  --classI: var(--ink);
   --classJ: #E8E4DA;
   --classK: #D7D2C5;
   --classL: var(--ink-muted);
   --classM: var(--ink);
-  --quote: #4B669A;
+  --quote: var(--ink-soft);
   /* 内联代码：与正文同墨色，仅靠中性灰底与等宽字体区分 */
   --code: var(--ink);
   --code-background: #E8E4DA;
@@ -64,7 +65,7 @@ html {
   --background-tags: #E8E4DA;
   --background-tag: var(--paper-card);
   --box-shadow-pager: 0 0 3px 0 rgba(40, 40, 50, 0.10);
-  --notice: #4B669A;
+  --notice: var(--ink);
   --background-notice: #E8E4DA;
   --background-journal: var(--paper-base);
   --background-journal-block: var(--paper-card);
@@ -75,10 +76,10 @@ html {
   --background-friend-block: var(--paper-card);
   --shadow-notice: inset 0 0 15px rgba(40, 40, 50, 0.08);
   --animation-notice: twinkle 1s ease infinite alternate;
-  /* CZL cold neutral theme colors */
-  --accent: #1B2152;
-  --accent-secondary: #2EA7E0;
-  --highlight: #D9E6F5;
+  /* 中性墨色语义令牌：去除蓝色，强调走墨黑/暖灰 */
+  --accent: var(--ink);
+  --accent-secondary: var(--ink-soft);
+  --highlight: #E8E4DA;
   --danger: #9D6877;
   --success: #5E7E80;
   --love: #756B80;
@@ -87,7 +88,7 @@ html {
   background: var(--background);
 
   &[data-mode="dark"] {
-    /* 暗色模式：冷暖中性夜读纸（深墨底，避开纯黑），与冷蓝主题色协调 */
+    /* 暗色模式：中性夜读纸（深墨底，避开纯黑），墨黑文字反相为近白 */
     --paper-base: #16181B;
     --paper-card: #1E2024;
     --paper-raised: #26282D;
@@ -95,8 +96,9 @@ html {
     --ink: #E5E7EA;
     --ink-soft: #BFC2C7;
     --ink-muted: #8A8E94;
-    --theme: #7B90BF;
-    --theme-gradient: linear-gradient(120deg, #1D2088 0%, #2EA7E0 100%);
+    /* 主题色：暗色下反相为近白墨 */
+    --theme: var(--ink);
+    --theme-gradient: linear-gradient(120deg, #E5E7EA 0%, #8A8E94 100%);
     --background-reverse: var(--ink);
     --background: var(--paper-base);
     --background-translucent: rgba(22, 24, 27, 0.72);
@@ -111,7 +113,7 @@ html {
     --title: var(--ink);
     --sib: #2C2F35;
     --minor: var(--ink-muted);
-    --seat: #7B90BF;
+    --seat: var(--ink);
     --classA: #2C2F35;
     --classB: #3A3E45;
     --classC: #2C2F35;
@@ -120,12 +122,12 @@ html {
     --classF: var(--ink-soft);
     --classG: #2C2F35;
     --classH: #2C2F35;
-    --classI: #2A367A;
+    --classI: var(--ink);
     --classJ: #1E2024;
     --classK: var(--ink-soft);
     --classL: var(--ink-muted);
     --classM: var(--ink);
-    --quote: #7B90BF;
+    --quote: var(--ink-soft);
     /* 内联代码：暗色下与正文同近白墨色 */
     --code: var(--ink);
     --code-background: #2C2F35;
@@ -144,12 +146,12 @@ html {
     --background-tags: #2C2F35;
     --background-tag: var(--paper-card);
     --box-shadow-pager: 0 0 3px 0 rgba(0, 0, 0, 0.34);
-    --notice: #7B90BF;
+    --notice: var(--ink);
     --background-notice: #1E2024;
-    /* Dark mode CZL cold neutral colors */
-    --accent: #2A367A;
-    --accent-secondary: #2EA7E0;
-    --highlight: #2B3B57;
+    /* Dark mode 中性墨色语义令牌 */
+    --accent: var(--ink);
+    --accent-secondary: var(--ink-soft);
+    --highlight: #2C2F35;
     --danger: #C08998;
     --success: #7E9FA1;
     --love: #908095;

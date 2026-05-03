@@ -1,12 +1,12 @@
-// CZL 自定义 Prism 主题：与项目主色板保持一致，不依赖 prism-themes 第三方主题
+// CZL 自定义 Prism 主题：纸 + 墨配色，零蓝色
 // 浅色/暗色通过 var(--xxx) 自动跟随 theme.less，无需双套样式表
 //
-// token 配色策略：
-// - keyword / selector / 控制流 → 主题色（冷蓝）
-// - string / value → 偏暖中性色，与主题色拉开
-// - comment → ink-muted 灰
-// - function / class-name → 略深的墨色，加重
-// - number / boolean / constant → 第二强调色 #2EA7E0
+// token 配色策略（全部走中性墨阶 + 暖橙作为唯一彩色 accent）：
+// - keyword → ink，加粗
+// - string → 偏暖橙（唯一彩色，与墨黑拉开）
+// - comment → ink-muted 灰，斜体
+// - function / class-name → ink，加粗
+// - number / boolean / constant → ink，加粗
 // - operator / punctuation → ink-soft
 
 code[class*="language-"],
@@ -72,11 +72,12 @@ code[class*="language-"] ::selection {
   &.constant,
   &.number,
   &.atrule {
-    color: var(--accent-secondary); // #2EA7E0 第二强调色
+    color: var(--ink);
+    font-weight: 600;
   }
 
   &.keyword {
-    color: var(--theme); // 冷蓝主题色
+    color: var(--ink);
     font-weight: 600;
   }
 
@@ -85,7 +86,8 @@ code[class*="language-"] ::selection {
   &.symbol,
   &.deleted,
   &.important {
-    color: var(--theme);
+    color: var(--ink);
+    font-weight: 500;
   }
 
   &.selector,
@@ -95,7 +97,7 @@ code[class*="language-"] ::selection {
   &.inserted,
   &.regex,
   &.attr-value {
-    color: #7A6A45; // 偏暖中性色（仅 string 类，与冷蓝 keyword 拉开）
+    color: #8A6A40; // 暖橙：唯一彩色 accent，仅 string 类用，与墨黑拉开
 
     .punctuation {
       color: var(--ink-soft);
@@ -103,15 +105,20 @@ code[class*="language-"] ::selection {
   }
 
   &.variable,
-  &.operator,
   &.function {
     color: var(--ink);
     font-weight: 500;
   }
 
+  &.operator {
+    color: var(--ink-soft);
+  }
+
   &.url {
-    color: var(--theme);
+    color: var(--ink);
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
   }
 
   &.bold {
@@ -127,7 +134,7 @@ code[class*="language-"] ::selection {
   }
 }
 
-// 暗色模式下 string 颜色调整：原色在深底上对比度不足
+// 暗色模式下 string 颜色调整：原暖橙在深底上偏闷，提亮为浅金
 html[data-mode="dark"] {
   .token {
     &.selector,
@@ -137,7 +144,7 @@ html[data-mode="dark"] {
     &.inserted,
     &.regex,
     &.attr-value {
-      color: #C9B581; // 浅金色，在深底上清晰可读
+      color: #D9B777;
     }
   }
 }
@@ -161,7 +168,7 @@ html[data-mode="dark"] {
 
   &:before,
   &[data-end]:after {
-    background: var(--theme);
+    background: var(--ink);
     color: var(--paper-card);
     box-shadow: 0 1px 4px var(--shadow-code);
   }
