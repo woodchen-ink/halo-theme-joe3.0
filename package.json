@@ -1,6 +1,6 @@
 {
   "name": "halo-theme-joe3.0",
-  "version": "2026.05.03-1312",
+  "version": "2026.05.03-1357",
   "description": "Theme of Halo2",
   "scripts": {
     "build": "rollup -c",
