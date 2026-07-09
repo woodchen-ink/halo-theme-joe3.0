@@ -1,6 +1,6 @@
 <!doctype html>
 <html
-  lang="en"
+  lang="zh-CN"
   th:fragment="html (title,header,content,head,footer,leftSidebar,htmlType)"
   xmlns:th="http://www.thymeleaf.org"
 >
@@ -8,26 +8,18 @@
     <title th:text="${title}"></title>
 
     <meta charset="utf-8" />
-    <meta name="renderer" content="webkit" />
     <meta name="format-detection" content="email=no" />
     <meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta
       name="author"
       th:content="${theme.config.blogger.nickname}"
       th:if="${#strings.trim(theme.config.blogger.nickname)} !=''"
     />
-    <meta http-equiv="x-dns-prefetch-control" content="on" />
     <meta name="site" th:content="${site.url}" />
     <!-- OG -->
     <meta property="og:image" th:content="${site.favicon}" />
-    <meta property="og:description" th:content="site.seo.description" />
+    <meta property="og:description" th:content="${site.seo.description}" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="zh_CN" />
     <meta property="og:site_name" th:content="${site.title}+'-'+${site.subtitle}" />
@@ -38,7 +30,6 @@
 
     <th:block th:replace="~{modules/config :: config}" />
     <th:block th:replace="~{modules/link :: links}" />
-    <script src="https://i.czl.net/jsdelivr/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <th:block
       th:if="${theme.config.custom.custom_js_head != null} and ${#strings.trim(theme.config.custom.custom_js_head) != ''}"
     >

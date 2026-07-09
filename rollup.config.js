@@ -1,11 +1,13 @@
 import resolve from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
 import { readdirSync } from "fs";
-import { join as joinPath, resolve as resolvePath } from "path";
+import { dirname, join as joinPath, resolve as resolvePath } from "path";
+import { fileURLToPath } from "url";
 import postcss from "rollup-plugin-postcss";
-import { terser } from "rollup-plugin-terser";
 
-const jsRootDir = resolvePath(__dirname, "templates", "assets", "js");
-const lessRootDir = resolvePath(__dirname, "templates", "assets", "css");
+const rootDir = dirname(fileURLToPath(import.meta.url));
+const jsRootDir = resolvePath(rootDir, "templates", "assets", "js");
+const lessRootDir = resolvePath(rootDir, "templates", "assets", "css");
 const jsFiles = readdirSync(jsRootDir).filter((file) => file.endsWith(".js"));
 const lessFiles = readdirSync(lessRootDir).filter((file) =>
   file.endsWith(".less")

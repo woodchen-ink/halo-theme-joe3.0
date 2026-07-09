@@ -422,7 +422,7 @@ spec:
           id: loading_bar_color
           key: loading_bar_color
           label: 加载条颜色
-          value: '#4B669A'
+          value: '#25282C'
         - $formkit: checkbox
           name: enable_offscreen_tip
           id: enable_offscreen_tip
@@ -1701,7 +1701,7 @@ spec:
           key: progress_bar_bgc
           if: '$get(enable_progress_bar).value === true'
           label: 进度条背景色
-          value: '#4B669A'
+          value: '#25282C'
           help: '浏览进度条的背景色'
         - $formkit: checkbox
           name: enable_toc

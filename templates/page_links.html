@@ -19,12 +19,12 @@
           <div class="joe_main">
             <div
               class="joe_detail"
-              th:with="bgColorArray=${#strings.arraySplit('linear-gradient(-90deg, #1D2088 0%, #2EA7E0 100%)@ linear-gradient(to right, #1B2152 0%, #4B669A 100%)@ linear-gradient(to right, #4B669A 0%, #8DA1CC 100%)@ linear-gradient(to right, #31408D 0%, #58B8E6 100%)@ linear-gradient(to right, #59766F 0%, #87A79B 100%)@ linear-gradient(to right, #756B80 0%, #A090A3 100%)@ linear-gradient(to right, #955F6D 0%, #C28A98 100%)@ linear-gradient(to right, #5E5851 0%, #A79E92 100%)@ linear-gradient(to right, #1F1D1A 0%, #3A3530 100%)@ linear-gradient(to right, #2A2724 0%, #4B453F 100%)@ linear-gradient(to top, #1B2152 0%, #8DA1CC 100%)@ linear-gradient(to right, #171614 0%, #4B669A 100%)','@')}"
+              th:with="bgColorArray=${#strings.arraySplit('linear-gradient(-90deg, #25282C 0%, #6F7378 100%)@ linear-gradient(to right, #1F1D1A 0%, #5E5851 100%)@ linear-gradient(to right, #404347 0%, #8A8E94 100%)@ linear-gradient(to right, #59766F 0%, #9DBBAD 100%)@ linear-gradient(to right, #59766F 0%, #87A79B 100%)@ linear-gradient(to right, #756B80 0%, #A090A3 100%)@ linear-gradient(to right, #955F6D 0%, #C28A98 100%)@ linear-gradient(to right, #5E5851 0%, #A79E92 100%)@ linear-gradient(to right, #1F1D1A 0%, #3A3530 100%)@ linear-gradient(to right, #2A2724 0%, #4B453F 100%)@ linear-gradient(to top, #25282C 0%, #8C8478 100%)@ linear-gradient(to right, #171614 0%, #6F7378 100%)','@')}"
             >
               <h1 class="joe_detail__title">[[${singlePage.spec.title}]]</h1>
               <article
                 class="joe_detail__article animated fadeIn"
-                th:with="colorArray=${#strings.arraySplit('#1B2152,#2EA7E0,#4B669A,#59766F,#756B80,#955F6D,#1D2088,#171614,#5E5851,#D6CFC4,#31408D,#8DA1CC,#87A79B,#A090A3,#C28A98,#58B8E6',',')}"
+                th:with="colorArray=${#strings.arraySplit('#25282C,#5E7E80,#6F7378,#59766F,#756B80,#955F6D,#404347,#171614,#5E5851,#D6CFC4,#7A6E5F,#8A8E94,#87A79B,#A090A3,#C28A98,#9DBBAD',',')}"
               >
                 <h3>友链列表<span class="totals"> </span></h3>
                 <th:block
@@ -95,7 +95,7 @@
                                     ></path>
                                     <path
                                       d="M989.866667 512c0 263.918933-213.947733 477.866667-477.866667 477.866667S34.133333 775.918933 34.133333 512 248.081067 34.133333 512 34.133333s477.866667 213.947733 477.866667 477.866667z"
-                                      fill="#4B669A"
+                                      fill="var(--theme)"
                                       p-id="25922"
                                     ></path>
                                     <path
@@ -121,7 +121,8 @@
 
                 <script>
                   // TODO qiushaocloud 最好的办法就是在上面直接排序，我对 thymeleaf 语法不熟悉，尝试使用了 #lists.sort，但一直报错，因此改成了 js 排序，希望有能力的大佬帮忙优化一下
-                  (() => {
+                  // jQuery 在 body 尾部加载，此处须等 DOMContentLoaded
+                  document.addEventListener('DOMContentLoaded', () => {
                     // links-group 排序, link-group-sort-seq 数字越大越靠前
                     const linksGroupDefaultSort =
                       '[[${theme.config.links.links_group_default_sort}]]';
@@ -208,7 +209,7 @@
                       // linksLiEles.remove();
                       linksUlEle.append(linksLiEles);
                     });
-                  })();
+                  });
                 </script>
               </article>
               <article class="joe_detail__article animated fadeIn">

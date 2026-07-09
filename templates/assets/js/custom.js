@@ -23,31 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	);
 
-	// customElements.define(
-	// 	"joe-pdf",
-	// 	class JoePdf extends HTMLElement {
-	// 		constructor() {
-	// 			super();
-	// 			this.options = {
-	// 				src: this.getAttribute("src") || "",
-	// 				width: this.getAttribute("width") || "100%",
-	// 				height: this.getAttribute("height") || "500px",
-	// 			};
-	// 			this.render();
-	// 		}
-	// 		render() {
-	// 			if (!this.options.src) return (this.innerHTML = "pdf地址未填写！");
-	// 			this.innerHTML = `
-	// 			<div class="joe_pdf">
-	//         <iframe src="${ThemeConfig.BASE_RES_URL}/source/lib/pdfjs/web/viewer.html?file=${this.options.src}" style="width:${this.options.width};height:${this.options.height}"></iframe>
-	//       </div>`;
-	// 		}
-	// 	}
-	// );
-
-
-
-
 	customElements.define(
 		"joe-abtn",
 		class JoeAbtn extends HTMLElement {
@@ -743,6 +718,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	);
 
 
+	// dplayer 库已移除，直链视频改用浏览器原生播放器渲染
 	customElements.define(
 		"joe-dplayer",
 		class JoeDplayer extends HTMLElement {
@@ -750,21 +726,14 @@ document.addEventListener("DOMContentLoaded", () => {
 				super();
 				this.options = {
 					src: this.getAttribute("src") || "",
-					player:
-            this.getAttribute("player") ||
-            `${ThemeConfig.BASE_RES_URL}/assets/lib/dplayer/web/${ThemeConfig.BASE_RES_URL==='/themes/theme-Joe3'?'dplayer':'dplayer-source'}.html?url=`,
 					width: this.getAttribute("width") || "100%",
-					height: this.getAttribute("height") || "500px",
+					height: this.getAttribute("height") || "auto",
 				};
 				this.render();
 			}
 			render() {
 				if (this.options.src)
-					this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${
-						this.options.player + this.options.src
-					}" style="width:${this.options.width};height:${
-						this.options.height
-					}"></iframe>`;
+					this.innerHTML = `<video class="joe_vplayer" controls preload="metadata" playsinline src="${this.options.src}" style="width:${this.options.width};height:${this.options.height};max-width:100%;border-radius:var(--radius-inner);background:#000;"></video>`;
 				else this.innerHTML = "视频地址未填写！";
 			}
 		}

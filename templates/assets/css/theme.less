@@ -1,14 +1,14 @@
 // 全局CSS变量
-// 配色基底：纸 + 墨 (Paper & Ink), 中性奶油白稿纸 + 中性墨黑文字
+// 配色基底：纸 + 墨 (Paper & Ink), 中性暖灰稿纸 + 中性墨黑文字
+// 纸色刻意压低黄相（石灰/stone 调而非奶油黄调），保留纸感但不显"发黄"
 // 不使用任何蓝色, 所有"主题色"统一走墨黑系, 强调靠加粗/底色/下划线
 html {
   --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层）
-     冷暖中性奶油白：极淡纸感，与墨黑文字形成经典纸墨对比 */
-  --paper-base: #F3F1EC;
-  --paper-card: #FAF8F4;
-  --paper-raised: #FDFCF9;
-  --paper-tint: rgba(120, 110, 95, 0.04);
+  /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层） */
+  --paper-base: #F2F1EE;
+  --paper-card: #F9F8F5;
+  --paper-raised: #FCFBF9;
+  --paper-tint: rgba(110, 108, 100, 0.04);
   --ink: #25282C;
   --ink-soft: #404347;
   --ink-muted: #6F7378;
@@ -17,56 +17,56 @@ html {
   --theme-gradient: linear-gradient(120deg, #25282C 0%, #6F7378 100%);
   --background-reverse: #25282C;
   --background: var(--paper-base);
-  --background-translucent: rgba(243, 241, 236, 0.72);
+  --background-translucent: rgba(242, 241, 238, 0.72);
   --sub-background: var(--paper-card);
   --sib-background: var(--paper-card);
-  --glass-background: rgba(250, 248, 244, 0.86);
+  --glass-background: rgba(249, 248, 245, 0.86);
   --content-background: var(--paper-base);
   --card-background: var(--paper-card);
-  --secondary-background: #E8E4DA;
+  --secondary-background: #E9E7E1;
   --main: var(--ink);
   --routine: var(--ink-soft);
   --title: var(--ink);
-  --sib: #E8E4DA;
+  --sib: #E9E7E1;
   --minor: var(--ink-muted);
   --seat: var(--ink);
   --classA: var(--paper-card);
-  --classB: #D7D2C5;
-  --classC: #E8E4DA;
-  --classD: #E8E4DA;
-  --classE: #D7D2C5;
+  --classB: #D5D2CB;
+  --classC: #E9E7E1;
+  --classD: #E9E7E1;
+  --classE: #D5D2CB;
   --classF: var(--ink-soft);
-  --classG: #D7D2C5;
-  --classH: #E8E4DA;
+  --classG: #D5D2CB;
+  --classH: #E9E7E1;
   --classI: var(--ink);
-  --classJ: #E8E4DA;
-  --classK: #D7D2C5;
+  --classJ: #E9E7E1;
+  --classK: #D5D2CB;
   --classL: var(--ink-muted);
   --classM: var(--ink);
   --quote: var(--ink-soft);
   /* 内联代码：与正文同墨色，仅靠中性灰底与等宽字体区分 */
   --code: var(--ink);
-  --code-background: #E8E4DA;
+  --code-background: #E9E7E1;
   --overdue-border: #9D6877;
-  --overdue-background: #E8E4DA;
+  --overdue-background: #E9E7E1;
   --radius-wrap: 12px;
   --radius-inner: 8px;
   --radius-img: 8px;
   /* 阴影：纸张叠层观感，比纯灰阴影略带暖调（rgba(60,40,20)） */
-  --box-shadow: 0 2px 16px -6px rgba(60, 40, 20, 0.10), 0 1px 4px -2px rgba(60, 40, 20, 0.06);
-  --container-shadow: 0 2px 16px -6px rgba(60, 40, 20, 0.10), 0 1px 4px -2px rgba(60, 40, 20, 0.06);
-  --shadow-code: #D7D2C5;
+  --box-shadow: 0 2px 16px -6px rgba(45, 42, 38, 0.10), 0 1px 4px -2px rgba(45, 42, 38, 0.06);
+  --container-shadow: 0 2px 16px -6px rgba(45, 42, 38, 0.10), 0 1px 4px -2px rgba(45, 42, 38, 0.06);
+  --shadow-code: #D5D2CB;
   --block-shadow: 0 2px 16px -6px rgba(40, 40, 50, 0.10), 0 1px 4px -2px rgba(40, 40, 50, 0.06);
   --box-shadow-journal: rgba(40, 40, 50, 0.08);
   --box-shadow-friend: rgba(40, 40, 50, 0.08);
   --box-shadow-toc: inset 20px 0 30px 0 rgba(40, 40, 50, 0.05), 0 2px 16px -6px rgba(40, 40, 50, 0.10);
-  --background-toc: rgba(250, 248, 244, 0.96);
+  --background-toc: rgba(249, 248, 245, 0.96);
   --box-shadow-tags: 0 1px 3px 0px rgba(40, 40, 50, 0.08);
-  --background-tags: #E8E4DA;
+  --background-tags: #E9E7E1;
   --background-tag: var(--paper-card);
   --box-shadow-pager: 0 0 3px 0 rgba(40, 40, 50, 0.10);
   --notice: var(--ink);
-  --background-notice: #E8E4DA;
+  --background-notice: #E9E7E1;
   --background-journal: var(--paper-base);
   --background-journal-block: var(--paper-card);
   --background-journal-gradient: linear-gradient(0deg,
@@ -79,12 +79,12 @@ html {
   /* 中性墨色语义令牌：去除蓝色，强调走墨黑/暖灰 */
   --accent: var(--ink);
   --accent-secondary: var(--ink-soft);
-  --highlight: #E8E4DA;
+  --highlight: #E9E7E1;
   --danger: #9D6877;
   --success: #5E7E80;
   --love: #756B80;
-  --selected: #ECE3CB;
-  --hover: #F0E8D2;
+  --selected: #EAE7DE;
+  --hover: #EFEDE6;
   background: var(--background);
 
   &[data-mode="dark"] {
