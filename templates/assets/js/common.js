@@ -437,76 +437,6 @@ const commonContext = {
 			});
 		}
 	},
-	/* 初始化3D标签云和分类云的通用函数 */
-	init3dCloud(type) {
-		const isTagCloud = type === 'tag';
-		const cloudElementId = isTagCloud ? 'tags-3d' : 'categories-3d';
-		const listClass = isTagCloud ? '.tags-cloud-list' : '.categories-cloud-list';
-		const entries = [];
-		const colors = [
-			"#25282C", "#5E7E80", "#6F7378", "#59766F",
-			"#756B80", "#955F6D", "#404347", "#171614",
-			"#5E5851", "#D6CFC4", "#7A6E5F", "#8A8E94",
-			"#87A79B", "#A090A3", "#C28A98", "#9DBBAD",
-		];
-
-		const random = (min, max) => {
-			min = Math.ceil(min);
-			max = Math.floor(max);
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		};
-
-		ThemeConfig[`${type}_cloud_type`] = document.getElementById(cloudElementId) ? '3d' : 'list';
-		ThemeConfig[`enable_${type}_cloud`] = document.querySelector('.joe_aside__item.tags-cloud') !== null;
-
-		if (
-			Joe.isMobile ||
-			!ThemeConfig[`enable_${type}_cloud`] ||
-			ThemeConfig[`${type}_cloud_type`] !== "3d" ||
-			!$(listClass).length
-		) return;
-
-		$.getScript(
-			`${ThemeConfig.BASE_RES_URL}/assets/lib/3dtag/3dtag.min.js`,
-			(_res) => {
-				$(listClass + ' a').each((i, item) => {
-					entries.push({
-						label: $(item).attr("data-label"),
-						url: $(item).attr("data-url"),
-						target: "_blank",
-						fontColor: colors[random(0, colors.length - 1)],
-						fontSize: 16,
-					});
-				});
-
-				$(`#${cloudElementId}`).svg3DTagCloud({
-					entries,
-					width: 250,
-					height: 250,
-					radius: "65%",
-					radiusMin: 75,
-					bgDraw: false,
-					fov: 800,
-					speed: 0.5,
-					fontWeight: 500,
-				});
-
-				$(listClass).remove();
-				$(`#${cloudElementId} .empty`).remove();
-			}
-		);
-	},
-
-	/* 初始化3D标签云 */
-	init3dTag() {
-		this.init3dCloud('tag');
-	},
-
-	/* 初始化3D分类云 */
-	init3dCategory() {
-		this.init3dCloud('category');
-	},
-
 	/* 搜索框弹窗 */
 	// searchDialog() {
 	// 	const $result = $(".joe_header__above-search .result");
@@ -956,8 +886,6 @@ const commonContext = {
 !(function () {
 	const omits = [
 		"loadingBar",
-		"init3dTag",
-		"init3dCategory",
 		"foldCode",
 		"loadMouseEffect",
 		"loadBackdropEffect",

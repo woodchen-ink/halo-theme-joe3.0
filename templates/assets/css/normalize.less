@@ -7,9 +7,6 @@
 }
 
 html {
-
-  // font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
-  //   "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   &.disable-scroll {
     height: 100vh;
     overflow: hidden;
@@ -23,6 +20,8 @@ html {
 }
 
 body {
+  // 全站字体唯一入口：CZL 默认字体栈（theme.less --font-default），禁止在组件层重复声明
+  font-family: var(--font-default);
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,7 +31,7 @@ body {
 }
 
 ::selection {
-  color: #fff;
+  color: var(--theme-foreground);
   background: var(--theme);
 }
 

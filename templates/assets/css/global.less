@@ -1123,7 +1123,7 @@ body {
           height: 36px;
           border: none;
           background: var(--theme);
-          color: #fff;
+          color: var(--theme-foreground);
           border-radius: 0 2px 2px 0;
         }
       }
@@ -1519,6 +1519,12 @@ body {
 }
 
 .joe_index {
+  // 主列表卡片化：卡面 + 阴影浮起（Joe 原版结构，纸质化重构时误删，现恢复）
+  background: var(--background);
+  border-radius: var(--radius-wrap);
+  box-shadow: var(--container-shadow);
+  padding: 0 20px 10px;
+
   &__title {
     display: flex;
     align-items: center;
@@ -1981,12 +1987,7 @@ body {
           padding: 5px;
           object-fit: cover;
           background: var(--classC);
-          transition: transform 0.75s;
           border-radius: 50%;
-
-          &:hover {
-            transform: rotate(360deg);
-          }
         }
 
         .avatar_frame {
@@ -3300,7 +3301,7 @@ body {
           height: 20px;
           line-height: 20px;
           padding: 0 8px;
-          color: #fff;
+          color: var(--theme-foreground);
           font-size: 12px;
           border-radius: 10px;
           transition: transform 0.35s;
@@ -3367,7 +3368,7 @@ body {
           height: 20px;
           line-height: 20px;
           padding: 0 8px;
-          color: #fff;
+          color: var(--theme-foreground);
           font-size: 12px;
           border-radius: 10px;
           transition: transform 0.35s;
@@ -4309,7 +4310,7 @@ body {
     flex-shrink: 0;
     margin-left: auto;
     background: var(--theme);
-    color: #fff;
+    color: var(--theme-foreground);
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -4322,6 +4323,10 @@ body {
   position: relative;
   margin-bottom: 15px;
   padding: 20px;
+  // 正文/独立页卡片化：卡面 + 阴影浮起（Joe 原版结构，纸质化重构时误删，现恢复）
+  background: var(--background);
+  border-radius: var(--radius-wrap);
+  box-shadow: var(--container-shadow);
 
   .post-status {
     position: absolute;
@@ -4939,7 +4944,7 @@ body {
           top: 15px;
           left: -10px;
           background: var(--theme);
-          color: #fff;
+          color: var(--theme-foreground);
           font-weight: 500;
           box-shadow: 2px 5px 10px rgba(49, 58, 70, 0.15);
           height: 30px;
@@ -5293,7 +5298,7 @@ body {
       display: flex;
       padding: 12px;
       border-radius: 5px;
-      background: var(--sub-background);
+      background: var(--paper-raised);
       box-shadow: var(--block-shadow);
       transition: all 0.25s;
 
@@ -5745,59 +5750,6 @@ body {
       }
     }
 
-    .busuanzi-statistic {
-      opacity: 0.8;
-      margin-top: 10px;
-      user-select: none;
-      text-align: center;
-
-      span {
-        position: relative;
-        display: inline-block;
-        margin: 0 0 4px 6px;
-        padding-left: 26px;
-        height: 24px;
-        line-height: 24px;
-        overflow: hidden;
-        font-size: 12px;
-        font-weight: bold;
-        color: var(--classB);
-        background: var(--background-reverse);
-        border-radius: 5px;
-
-        .joe-font {
-          position: absolute;
-          left: 9px;
-          margin-right: 3px;
-          font-size: 14px;
-        }
-
-        em {
-          display: inline-block;
-          margin-left: 6px;
-          padding: 0 10px;
-          height: 24px;
-          line-height: 24px;
-          font-style: normal;
-          font-weight: normal;
-          color: #fff;
-          background: var(--accent-secondary);
-        }
-
-        &.site-pv em {
-          background: linear-gradient(0deg, #404347, #25282C);
-        }
-
-        &.site-uv em {
-          background: linear-gradient(0deg, #87A79B, #59766F);
-        }
-
-        &.site-page-pv em {
-          background: linear-gradient(0deg, #8A8E94, #6F7378);
-        }
-      }
-    }
-
     .rss {
       i {
         font-size: 14px;
@@ -5869,7 +5821,7 @@ body {
       box-shadow: 0 3px 20px -2px var(--theme);
 
       a {
-        color: #fff;
+        color: var(--theme-foreground);
       }
     }
 
@@ -6235,7 +6187,7 @@ body {
             padding: 0 15px;
             border: none;
             background: var(--theme);
-            color: #fff;
+            color: var(--theme-foreground);
             font-size: 14px;
 
             &:hover {
@@ -6293,7 +6245,7 @@ body {
               .owner {
                 flex-shrink: 0;
                 background: var(--theme);
-                color: #fff;
+                color: var(--theme-foreground);
                 padding: 0 5px;
                 border-radius: 2px;
                 font-style: normal;

@@ -4,23 +4,26 @@
 // 不使用任何蓝色, 所有"主题色"统一走墨黑系, 强调靠加粗/底色/下划线
 html {
   --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层） */
-  --paper-base: #F2F1EE;
-  --paper-card: #F9F8F5;
-  --paper-raised: #FCFBF9;
+  /* 纸质 token：底色 / 卡面 / 浮层（依次更亮，模拟纸张叠层）
+     注意语义：--background 是"卡面"（沿用 Joe 原版语义，历史上是 #fff），
+     页面画布固定用 --paper-base，二者必须拉开明度差，卡片才有浮起感 */
+  --paper-base: #EFEDE9;
+  --paper-card: #FBFAF8;
+  --paper-raised: #FEFDFB;
   --paper-tint: rgba(110, 108, 100, 0.04);
   --ink: #25282C;
   --ink-soft: #404347;
   --ink-muted: #6F7378;
-  /* 主题色：中性墨黑（不再用任何蓝） */
+  /* 主题色：中性墨黑（不再用任何蓝）；--theme-foreground 是"落在 theme 底上的文字色" */
   --theme: #25282C;
+  --theme-foreground: #FFFFFF;
   --theme-gradient: linear-gradient(120deg, #25282C 0%, #6F7378 100%);
   --background-reverse: #25282C;
-  --background: var(--paper-base);
-  --background-translucent: rgba(242, 241, 238, 0.72);
-  --sub-background: var(--paper-card);
+  --background: var(--paper-card);
+  --background-translucent: rgba(239, 237, 233, 0.72);
+  --sub-background: var(--paper-base);
   --sib-background: var(--paper-card);
-  --glass-background: rgba(249, 248, 245, 0.86);
+  --glass-background: rgba(251, 250, 248, 0.86);
   --content-background: var(--paper-base);
   --card-background: var(--paper-card);
   --secondary-background: #E9E7E1;
@@ -52,9 +55,9 @@ html {
   --radius-wrap: 12px;
   --radius-inner: 8px;
   --radius-img: 8px;
-  /* 阴影：纸张叠层观感，比纯灰阴影略带暖调（rgba(60,40,20)） */
-  --box-shadow: 0 2px 16px -6px rgba(45, 42, 38, 0.10), 0 1px 4px -2px rgba(45, 42, 38, 0.06);
-  --container-shadow: 0 2px 16px -6px rgba(45, 42, 38, 0.10), 0 1px 4px -2px rgba(45, 42, 38, 0.06);
+  /* 阴影：纸张叠层观感，微暖中性；配合卡面/画布明度差承担浮起表达 */
+  --box-shadow: 0 2px 14px -4px rgba(45, 42, 38, 0.14), 0 1px 4px -2px rgba(45, 42, 38, 0.08);
+  --container-shadow: 0 2px 14px -4px rgba(45, 42, 38, 0.14), 0 1px 4px -2px rgba(45, 42, 38, 0.08);
   --shadow-code: #D5D2CB;
   --block-shadow: 0 2px 16px -6px rgba(40, 40, 50, 0.10), 0 1px 4px -2px rgba(40, 40, 50, 0.06);
   --box-shadow-journal: rgba(40, 40, 50, 0.08);
@@ -85,7 +88,7 @@ html {
   --love: #756B80;
   --selected: #EAE7DE;
   --hover: #EFEDE6;
-  background: var(--background);
+  background: var(--paper-base);
 
   &[data-mode="dark"] {
     /* 暗色模式：中性夜读纸（深墨底，避开纯黑），墨黑文字反相为近白 */
@@ -96,13 +99,14 @@ html {
     --ink: #E5E7EA;
     --ink-soft: #BFC2C7;
     --ink-muted: #8A8E94;
-    /* 主题色：暗色下反相为近白墨 */
+    /* 主题色：暗色下反相为近白墨；theme 底上的文字用深墨 */
     --theme: var(--ink);
+    --theme-foreground: #16181B;
     --theme-gradient: linear-gradient(120deg, #E5E7EA 0%, #8A8E94 100%);
     --background-reverse: var(--ink);
-    --background: var(--paper-base);
+    --background: var(--paper-card);
     --background-translucent: rgba(22, 24, 27, 0.72);
-    --sub-background: var(--paper-card);
+    --sub-background: #2C2F35;
     --sib-background: var(--paper-card);
     --glass-background: rgba(30, 32, 36, 0.86);
     --content-background: var(--paper-card);
@@ -166,7 +170,7 @@ html {
     --background-friend-block: var(--paper-card);
     --shadow-notice: inset 0 0 15px rgba(0, 0, 0, 0.22);
     --animation-notice: twinkle-night 1s ease infinite alternate;
-    background: var(--background);
+    background: var(--paper-base);
 
     // 暗黑模式下需要修改的样式
     body:after {

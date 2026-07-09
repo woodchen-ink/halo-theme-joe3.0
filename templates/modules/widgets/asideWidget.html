@@ -232,7 +232,6 @@
       <div class="joe_aside__item-contain">
         <div
           th:class="'tags-cloud-list '+${tag_cloud_data.tag_cloud_width =='responsive' ? 'responsive':'static'}"
-          th:style="${tag_cloud_data.tag_cloud_type == '3d' ? 'display:none':''}"
         >
           <th:block th:if="${tag_cloud_data.tag_cloud_num_type} == num">
             <th:block th:with="tags = ${tagFinder.list(1,tag_cloud_num)}">
@@ -259,11 +258,6 @@
             </th:block>
           </th:block>
         </div>
-        <th:block th:if="${tag_cloud_data.tag_cloud_type == '3d'}">
-          <div id="tags-3d">
-            <div class="empty">加载中…</div>
-          </div>
-        </th:block>
       </div>
     </section>
   </th:block>
@@ -282,7 +276,6 @@
       <div class="joe_aside__item-contain">
         <div
           th:class="'categories-cloud-list '+${category_cloud_data.category_cloud_width =='responsive' ? 'responsive':'static'}"
-          th:style="${category_cloud_data.category_cloud_type == '3d' ? 'display:none':''}"
         >
           <th:block th:if="${category_cloud_data.category_cloud_num_type} == num">
             <th:block th:with="categories = ${categoryFinder.list(1,category_cloud_num)}">
@@ -309,11 +302,6 @@
             </th:block>
           </th:block>
         </div>
-        <th:block th:if="${category_cloud_data.category_cloud_type == '3d'}">
-          <div id="categories-3d">
-            <div class="empty">加载中…</div>
-          </div>
-        </th:block>
       </div>
     </section>
   </th:block>

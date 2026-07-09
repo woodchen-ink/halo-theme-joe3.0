@@ -11,7 +11,8 @@
       >
         <div class="item">
           <p>
-            © [[${#strings.substring(theme.config.footer.custom_birthday, 0, 4)}]] - [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]<a
+            © [[${#strings.substring(theme.config.footer.custom_birthday, 0, 4)}]] -
+            [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]<a
               th:href="${site.url}"
               target="_blank"
               rel="noopener noreferrer"
@@ -224,28 +225,9 @@
               </th:block>
             </div>
           </th:block>
-          <th:block th:if="${theme.config.footer.enable_busuanzi}">
-            <div class="item busuanzi-statistic">
-              <span class="site-pv">
-                <i class="joe-font joe-icon-zhexiantu"></i>访问量<em id="busuanzi_value_site_pv">
-                  0
-                </em>
-              </span>
-              <span class="site-uv">
-                <i class="joe-font joe-icon-monitor"></i>访客量<em id="busuanzi_value_site_uv">
-                  0
-                </em>
-              </span>
-              <span class="site-page-pv">
-                <i class="joe-font joe-icon-dianji"></i>本页访客<em id="busuanzi_value_page_pv">
-                  0
-                </em>
-              </span>
-            </div>
-          </th:block>
         </div>
       </div>
-        <halo:footer />
+      <halo:footer />
     </footer>
   </th:block>
 </html>

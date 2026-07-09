@@ -416,13 +416,6 @@ spec:
           label: 加载条高度
           value: '3px'
           help: '设置全局加载条的高度，默认为 3px，填 0 相当于不显示'
-        - $formkit: color
-          if: '$get(enable_loading_bar).value'
-          name: loading_bar_color
-          id: loading_bar_color
-          key: loading_bar_color
-          label: 加载条颜色
-          value: '#25282C'
         - $formkit: checkbox
           name: enable_offscreen_tip
           id: enable_offscreen_tip
@@ -1453,18 +1446,6 @@ spec:
               help: '数据不同，不能在这里选择分类云'
               children:
                 - $formkit: select
-                  name: tag_cloud_type
-                  id: tag_cloud_type
-                  key: tag_cloud_type
-                  label: 标签云类型
-                  value: '3d'
-                  help: '设置标签云的展示形式，默认为 “3D标签云”，标签太多或卡顿时建议限制展示的标签数量'
-                  options:
-                    - value: 3d
-                      label: 3D标签云
-                    - value: list
-                      label: 标签列表
-                - $formkit: select
                   name: tag_cloud_num_type
                   id: tag_cloud_num_type
                   key: tag_cloud_num_type
@@ -1505,18 +1486,6 @@ spec:
               value: []
               help: '数据不同，不能在这里选择标签云'
               children:
-                - $formkit: select
-                  name: category_cloud_type
-                  id: category_cloud_type
-                  key: category_cloud_type
-                  label: 分类云类型
-                  value: '3d'
-                  help: '设置标签云的展示形式，默认为 “3D分类云”，标签太多或卡顿时建议限制展示的数量'
-                  options:
-                    - value: 3d
-                      label: 3D分类云
-                    - value: list
-                      label: 分类列表
                 - $formkit: select
                   name: category_cloud_num_type
                   id: category_cloud_num_type
@@ -1695,14 +1664,6 @@ spec:
           label: 启用文章浏览进度条
           help: '文章页底部是否展示浏览进度条'
 
-        - $formkit: color
-          name: progress_bar_bgc
-          id: progress_bar_bgc
-          key: progress_bar_bgc
-          if: '$get(enable_progress_bar).value === true'
-          label: 进度条背景色
-          value: '#25282C'
-          help: '浏览进度条的背景色'
         - $formkit: checkbox
           name: enable_toc
           id: enable_toc
@@ -2376,12 +2337,6 @@ spec:
           id: enable_sitemap
           key: enable_sitemap
           label: 展示站点地图
-        - $formkit: checkbox
-          if: '$get(enable_footer).value == true'
-          name: enable_busuanzi
-          id: enable_busuanzi
-          key: enable_busuanzi
-          label: 展示访问量数据
 
     - group: custom
       label: 自定义
