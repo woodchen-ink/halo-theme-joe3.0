@@ -13,10 +13,20 @@
           --loading-bar: var(--theme);
           --img-max-width: 100%;
           /* 字体统一走 theme.less 的 --font-default（body 上生效），此处只同步给评论/搜索挂件 */
-          --halo-comment-widget-base-font-family: var(--font-default);
           --halo-search-widget-base-font-family: var(--font-default);
-          --halo-comment-widget-base-color: var(--main);
-          --halo-comment-widget-base-info-color:var(--routine);
+          /* 评论挂件 3.x 变量（旧 --halo-comment-widget-* 已全部废弃）
+             text/muted 引用 token，暗色作用域自动切换；primary 见暗色块说明 */
+          --halo-cw-base-font-family: var(--font-default);
+          --halo-cw-base-rounded: var(--radius-inner);
+          --halo-cw-primary-1-color: var(--theme);
+          --halo-cw-primary-2-color: var(--ink-soft);
+          --halo-cw-primary-3-color: var(--classC);
+          --halo-cw-text-1-color: var(--main);
+          --halo-cw-text-2-color: var(--routine);
+          --halo-cw-text-3-color: var(--minor);
+          --halo-cw-muted-1-color: var(--classB);
+          --halo-cw-muted-2-color: var(--classC);
+          --halo-cw-muted-3-color: var(--sub-background);
       }
       html[data-mode='dark'] body {
           /* 暗色主题色与 waline 同步，色值来自 theme.less .dark 块 */
@@ -24,7 +34,7 @@
           --waline-active-color: var(--theme);
           --wave-color: [[${theme.config.beauty.dark_color}?:'#fff']];
           --loading-bar: var(--theme);
-          /* 挂件颜色全部引用 theme.less 暗色 token，不散写 hex（emoji-picker 的 rgb 三元组格式除外） */
+          /* 搜索挂件颜色引用 theme.less 暗色 token，不散写 hex */
           --halo-search-widget-color-modal-layer: rgba(0, 0, 0, 0.8);
           --halo-search-widget-color-modal-content-bg: var(--paper-card);
           --halo-search-widget-color-form-input: var(--ink);
@@ -38,32 +48,11 @@
           --halo-search-widget-color-command-kbd-item: var(--ink-muted);
           --halo-search-widget-color-command-kbd-border: var(--classB);
           --halo-search-widget-color-result-empty: var(--ink-muted);
-          --halo-comment-widget-component-form-input-bg-color: var(--paper-card);
-          --halo-comment-widget-component-form-input-color: var(--ink);
-          --halo-comment-widget-component-form-input-border-color: var(--classB);
-          --halo-comment-widget-component-form-input-border-color-focus: var(--ink-muted);
-          --halo-comment-widget-component-form-input-box-shadow-focus: 0 0 0 0.15em var(--classB);
-          --halo-comment-widget-component-form-button-login-bg-color: var(--secondary-background);
-          --halo-comment-widget-component-form-button-login-bg-color-hover: var(--paper-raised);
-          --halo-comment-widget-component-form-button-login-border-color: var(--classB);
-          --halo-comment-widget-component-form-button-submit-border-color: var(--classB);
-          --halo-comment-widget-component-form-button-submit-border-color-hover: var(--ink-muted);
-          --halo-comment-widget-component-form-button-emoji-color: var(--ink-soft);
-
-          --halo-comment-widget-component-comment-item-action-bg-color-hover: var(--secondary-background);
-          --halo-comment-widget-component-comment-item-action-color: var(--ink-muted);
-          --halo-comment-widget-component-comment-item-action-color-hover: var(--ink-soft);
-
-          --halo-comment-widget-component-pagination-button-bg-color-hover: var(--secondary-background);
-          --halo-comment-widget-component-pagination-button-bg-color-active: var(--secondary-background);
-          --halo-comment-widget-component-pagination-button-border-color-active: var(--classB);
-
-          --halo-comment-widget-component-emoji-picker-rgb-color: 229, 231, 234;
-          --halo-comment-widget-component-emoji-picker-rgb-accent: 138, 142, 148;
-          --halo-comment-widget-component-emoji-picker-rgb-background: 0, 0, 0;
-          --halo-comment-widget-component-emoji-picker-rgb-input: 30, 32, 36;
-          --halo-comment-widget-component-emoji-picker-color-border: rgba(255, 255, 255, 0.1);
-          --halo-comment-widget-component-emoji-picker-color-border-over: rgba(255, 255, 255, 0.2);
+          /* 评论挂件按钮文字固定白色（bg-primary-1 text-white），
+             暗色下 primary 不能取近白的 --theme，改用灰墨阶保证白字可读 */
+          --halo-cw-primary-1-color: var(--classB);
+          --halo-cw-primary-2-color: var(--ink-muted);
+          --halo-cw-primary-3-color: var(--secondary-background);
       }
       [# th:if="${theme.config.basic.enable_background_light} and ${theme.config.basic.background_light_mode != ''}"]
       html[data-mode="light"] body {
