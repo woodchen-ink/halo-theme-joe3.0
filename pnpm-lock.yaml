@@ -29,6 +29,9 @@ devDependencies:
   rollup-plugin-postcss:
     specifier: ^4.0.2
     version: 4.0.2(postcss@8.4.39)
+  swiper:
+    specifier: 8.4.7
+    version: 8.4.7
 
 packages:
   /@jridgewell/gen-mapping@0.3.5:
@@ -833,6 +836,15 @@ packages:
       domelementtype: 2.3.0
       domhandler: 4.3.1
       entities: 2.2.0
+    dev: true
+
+  /dom7@4.0.6:
+    resolution:
+      {
+        integrity: sha512-emjdpPLhpNubapLFdjNL9tP06Sr+GZkrIHEXLWvOGsytACUrkbeIdjO5g77m00BrHTznnlcNqgmn7pCN192TBA==,
+      }
+    dependencies:
+      ssr-window: 4.0.2
     dev: true
 
   /domelementtype@2.3.0:
@@ -2314,6 +2326,13 @@ packages:
     engines: { node: '>=0.10.0' }
     dev: true
 
+  /ssr-window@4.0.2:
+    resolution:
+      {
+        integrity: sha512-ISv/Ch+ig7SOtw7G2+qkwfVASzazUnvlDTwypdLoPoySv+6MqlOV10VwPSE6EWkGjhW50lUmghPmpYZXMu/+AQ==,
+      }
+    dev: true
+
   /stable@0.1.8:
     resolution:
       {
@@ -2421,6 +2440,18 @@ packages:
       csso: 4.2.0
       picocolors: 1.0.1
       stable: 0.1.8
+    dev: true
+
+  /swiper@8.4.7:
+    resolution:
+      {
+        integrity: sha512-VwO/KU3i9IV2Sf+W2NqyzwWob4yX9Qdedq6vBtS0rFqJ6Fa5iLUJwxQkuD4I38w0WDJwmFl8ojkdcRFPHWD+2g==,
+      }
+    engines: { node: '>= 4.7.0' }
+    requiresBuild: true
+    dependencies:
+      dom7: 4.0.6
+      ssr-window: 4.0.2
     dev: true
 
   /terser@5.31.3:

@@ -55,6 +55,14 @@ html {
   --radius-wrap: 12px;
   --radius-inner: 8px;
   --radius-img: 8px;
+  /* 纸张排版令牌：装订线、页边、栏宽与阅读节奏
+     rule 用于分隔线（比 classC 更淡，模拟印刷细线而非 UI 描边） */
+  --paper-rule: rgba(45, 42, 38, 0.10);
+  --paper-rule-strong: rgba(45, 42, 38, 0.18);
+  --paper-edge: rgba(45, 42, 38, 0.06);
+  --measure: 72ch;
+  --leading-prose: 1.85;
+  --leading-tight: 1.35;
   /* 阴影：纸张叠层观感，微暖中性；配合卡面/画布明度差承担浮起表达 */
   --box-shadow: 0 2px 14px -4px rgba(45, 42, 38, 0.14), 0 1px 4px -2px rgba(45, 42, 38, 0.08);
   --container-shadow: 0 2px 14px -4px rgba(45, 42, 38, 0.14), 0 1px 4px -2px rgba(45, 42, 38, 0.08);
@@ -137,6 +145,10 @@ html {
     --code-background: #2C2F35;
     --overdue-border: #C08998;
     --overdue-background: #1E2024;
+    /* 暗色纸张令牌：分隔线转为微亮，模拟深色纸上的压痕 */
+    --paper-rule: rgba(229, 231, 234, 0.12);
+    --paper-rule-strong: rgba(229, 231, 234, 0.20);
+    --paper-edge: rgba(229, 231, 234, 0.07);
     --box-shadow: 0 2px 16px -6px rgba(0, 0, 0, 0.46), 0 1px 4px -2px rgba(0, 0, 0, 0.28);
     --container-shadow: 0 2px 16px -6px rgba(0, 0, 0, 0.46), 0 1px 4px -2px rgba(0, 0, 0, 0.28);
     --shadow-code: #0E0B08;

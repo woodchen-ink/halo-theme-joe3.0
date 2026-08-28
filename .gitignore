@@ -28,3 +28,6 @@ CLAUDE.md
 templates/assets/css/min
 templates/assets/js/min
 PERFORMANCE_OPTIMIZATION.md
+
+# 本项目使用 pnpm，禁止生成/提交 npm 锁文件
+package-lock.json

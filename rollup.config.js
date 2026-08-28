@@ -13,6 +13,27 @@ const lessFiles = readdirSync(lessRootDir).filter((file) =>
   file.endsWith(".less")
 );
 
+// 第三方精简产物：从 npm 包按需 tree-shake 打包，替代体积臃肿的官方 bundle。
+// 入口放在 js/vendor/ 下（不参与上面的 js/*.js 目录扫描），产物直接覆盖 lib/ 内对应文件。
+const vendorConfig = [
+  {
+    input: resolvePath(jsRootDir, "vendor", "swiper-entry.js"),
+    output: {
+      file: resolvePath(
+        rootDir,
+        "templates",
+        "assets",
+        "lib",
+        "swiper",
+        "swiper-bundle.min.js"
+      ),
+      format: "iife",
+    },
+    plugins: [resolve(), terser()],
+    treeshake: true,
+  },
+];
+
 const jsConfig = jsFiles.map((file) => ({
   input: joinPath(jsRootDir, file),
   output: {
@@ -38,4 +59,4 @@ const lessConfig = lessFiles.map((file) => ({
   ],
 }));
 
-export default [...jsConfig, ...lessConfig];
+export default [...vendorConfig, ...jsConfig, ...lessConfig];

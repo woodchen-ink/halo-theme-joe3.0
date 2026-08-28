@@ -115,6 +115,12 @@
         th:href="${source_link+'/assets/css/min/photos.min.css?v='+theme.spec.version}"
       />
     </th:block>
+    <!-- 纸质版式层：刻意放在 global 与页面级样式之后、responsive 之前，
+         既能覆写 Joe 原版排版默认值，又不夺走响应式断点的最终裁定权 -->
+    <link
+      rel="stylesheet"
+      th:href="${source_link+'/assets/css/min/paper.min.css?v='+theme.spec.version}"
+    />
     <link
       rel="stylesheet"
       th:href="${source_link+'/assets/css/min/responsive.min.css?v='+theme.spec.version}"

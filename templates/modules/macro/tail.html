@@ -13,6 +13,8 @@
     </th:block>
     <script th:src="${source_link+'/assets/js/min/utils.min.js?v='+theme.spec.version}"></script>
 
+    <!-- 不可加 defer：index.js / post.js 是阻塞脚本，其 DOMContentLoaded 监听会先于
+         defer 脚本注册并执行，届时 Swiper / tocbot 全局尚未定义 -->
     <th:block th:if="${htmlType == 'index' && theme.config.carousel.enable_banner}">
       <script th:src="${source_link+'/assets/lib/swiper/swiper-bundle.min.js'}"></script>
     </th:block>
@@ -56,6 +58,9 @@
     <!--===== 引入页面级js start =====-->
     <script th:src="${source_link+'/assets/js/min/common.min.js?v='+theme.spec.version}"></script>
     <th:block th:if="${htmlType == 'post'} or ${htmlType == 'journals'} or ${htmlType == 'sheet'}">
+      <!-- 不可加 defer：common.js 的 initCode / foldCode 依赖 Prism 生成的 .toolbar
+           与 language-* 类名，且 common.js 是阻塞脚本，其 DOMContentLoaded 监听会先于
+           defer 脚本注册，导致高亮晚于代码块增强逻辑执行 -->
       <script th:src="${source_link+'/assets/lib/prism/prism.min.js'}"></script>
     </th:block>
     <th:block th:if="${htmlType == 'index'}">

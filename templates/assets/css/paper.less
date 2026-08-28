@@ -1,0 +1,241 @@
+/**
+ * 纸质版式层 (Paper)
+ *
+ * 职责边界：只做「版面与阅读节奏」，不定义颜色值。
+ * 所有颜色一律引用 theme.less 的 token，本文件不出现任何 hex。
+ *
+ * 加载顺序必须在 global.less 之后（见 modules/link.html），
+ * 因为这里刻意覆写 Joe 原版的若干排版默认值。
+ *
+ * 设计意图：纸墨体系已有「卡面 + 噪点」，本层补的是印刷品的三件事——
+ *   1. 栏宽与行距形成的阅读节奏（measure / leading）
+ *   2. 印刷细线（rule）取代 UI 描边，分隔靠淡线而非色块
+ *   3. 标题的活字层级：靠字重与字距拉开，不靠字号暴涨
+ */
+
+/* ============================================================
+   1. 正文版心：栏宽、行距、段距
+   ============================================================ */
+
+.joe_detail__article {
+  /* 栏宽：限制每行字数到易读区间，超宽屏不再拉成一条长带 */
+  max-width: var(--measure);
+  margin-inline: auto;
+  line-height: var(--leading-prose);
+  color: var(--ink-soft);
+  /* 中西文混排时给标点与西文一点呼吸 */
+  text-spacing-trim: trim-start;
+
+  p {
+    margin: 0 0 1.35em;
+    /* 断行更像排版而非等宽填充 */
+    text-wrap: pretty;
+  }
+
+  /* 标题：活字层级——字重与字距承担层次，字号级差克制 */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2em 0 0.75em;
+    line-height: var(--leading-tight);
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: -0.011em;
+    text-wrap: balance;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1 { font-size: 1.7em; }
+  h2 { font-size: 1.42em; }
+  h3 { font-size: 1.22em; }
+  h4 { font-size: 1.08em; }
+  h5,
+  h6 {
+    font-size: 1em;
+    color: var(--ink-soft);
+  }
+
+  /* h2 作为章节起点，压一条印刷细线 */
+  h2 {
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid var(--paper-rule);
+  }
+
+  /* 列表：悬挂缩进，项目符号落在版心外，正文左缘保持齐整 */
+  ul,
+  ol {
+    margin: 0 0 1.35em;
+    padding-left: 1.4em;
+
+    li {
+      margin-bottom: 0.4em;
+      list-style: inherit;
+    }
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  li::marker {
+    color: var(--ink-muted);
+  }
+
+  /* 引用：手写批注感——左侧细标尺 + 微缩排，不用底色块
+     （global.less 原本给了 classD 底色 + 5px 粗边，这里整体改写） */
+  blockquote {
+    margin: 1.6em 0;
+    padding: 0.1em 0 0.1em 1.15em;
+    background: none;
+    border-left: 2px solid var(--paper-rule-strong);
+    border-radius: 0;
+    color: var(--quote);
+    font-style: normal;
+    line-height: var(--leading-prose);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* 分隔：印刷品的章节间隔用留白 + 居中小记号，不用整条粗线 */
+  hr {
+    height: 0;
+    margin: 2.6em auto;
+    border: 0;
+    border-top: 1px solid var(--paper-rule);
+    max-width: 42%;
+  }
+
+  /* 链接：正文内靠下划线区分，不靠颜色（全站无彩色链接） */
+  a:not(.joe-font) {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--paper-rule-strong);
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.12s ease-out;
+
+    &:hover {
+      text-decoration-color: var(--ink);
+    }
+  }
+
+  /* 图片：纸上贴片——极淡描边压住白底图与纸面的边界 */
+  img {
+    border-radius: var(--radius-img);
+    box-shadow: 0 0 0 1px var(--paper-edge);
+  }
+
+  /* 表格：印刷表样式——只留横线，去掉 global.less 的格子边框与底色 */
+  table {
+    width: 100%;
+    max-width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: 1.6em 0;
+    font-size: 0.95em;
+    color: var(--ink-soft);
+    background: none;
+    border: 0;
+    border-radius: 0;
+
+    th,
+    td {
+      padding: 0.6em 0.8em;
+      border: 0;
+      border-bottom: 1px solid var(--paper-rule);
+      text-align: left;
+    }
+
+    thead th {
+      color: var(--ink);
+      font-weight: 600;
+      background: none;
+      border-bottom: 1px solid var(--paper-rule-strong);
+    }
+
+    /* 数字列对齐：等宽数字，扫读时纵向对齐 */
+    td {
+      font-variant-numeric: tabular-nums;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: var(--paper-tint);
+    }
+  }
+}
+
+/* 宽屏下正文才收窄；窄屏交给既有响应式规则，避免二次挤压 */
+@media (max-width: 768px) {
+  .joe_detail__article {
+    max-width: none;
+    line-height: 1.75;
+  }
+}
+
+/* ============================================================
+   2. 首页卡片：书页条目节奏
+   ============================================================ */
+
+.joe_list__item {
+  /* 用印刷细线取代 UI 描边分隔 */
+  border-bottom-color: var(--paper-rule);
+  transition: background-color 0.12s ease-out;
+
+  .information .title {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .information .abstract {
+    line-height: 1.7;
+    opacity: 1;
+    color: var(--ink-muted);
+  }
+
+  /* 元信息用等宽数字，多条目纵向扫读时数字位对齐 */
+  .meta {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ============================================================
+   3. 侧栏与卡片：统一纸面细节
+   ============================================================ */
+
+.joe_aside__item {
+  &-title {
+    letter-spacing: -0.005em;
+    border-bottom-color: var(--paper-rule);
+  }
+}
+
+/* 正文卡片与首页卡片共用的纸面细边：
+   卡面本身已比画布亮一档，这里补一圈极淡描边收住边缘 */
+.joe_detail,
+.joe_aside__item {
+  box-shadow: var(--container-shadow), 0 0 0 1px var(--paper-edge);
+}
+
+/* ============================================================
+   4. 减弱动效偏好
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .joe_list__item,
+  .joe_detail__article a:not(.joe-font) {
+    transition: none;
+  }
+}
