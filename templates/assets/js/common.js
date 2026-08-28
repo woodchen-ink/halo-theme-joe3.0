@@ -155,14 +155,6 @@ const commonContext = {
 						});
 					return;
 				}
-				// 添加默认代码类型为纯文本（已在prism源码中处理）
-				// const $curCode = $codes.eq(0);
-				// if (
-				// 	!$curCode.attr("class") ||
-				//   $curCode.attr("class").indexOf("language-") === -1
-				// ) {
-				// 	$($curCode[0]).addClass("language-text");
-				// }
 				ThemeConfig.enable_code_title ? $item.addClass("c_title") : null;
 				ThemeConfig.enable_code_hr ? $item.addClass("c_hr") : null;
 				ThemeConfig.enable_code_macdot ? $item.addClass("c_macdot") : null;
@@ -438,16 +430,6 @@ const commonContext = {
 		}
 	},
 	/* 搜索框弹窗 */
-	// searchDialog() {
-	// 	const $result = $(".joe_header__above-search .result");
-	// 	$(".joe_header__above-search .input").on("click", function (e) {
-	// 		e.stopPropagation();
-	// 		$result.addClass("active");
-	// 	});
-	// 	$(document).on("click", function () {
-	// 		$result.removeClass("active");
-	// 	});
-	// },
 	/* 激活全局下拉框 */
 	initDropMenu() {
 		$(".joe_dropdown").each(function (index, item) {
@@ -495,35 +477,6 @@ const commonContext = {
 		});
 	},
 	/* 小屏幕搜索框 */
-	// searchMobile() {
-	// 	$(".joe_header__above-searchicon").on("click", function (e) {
-	// 		e.stopPropagation();
-	// 		SearchWidget.open();
-	//
-	// 		/* 关闭侧边栏 */
-	// 		$(".joe_header__slideout").removeClass("active");
-	// 		/* 处理开启关闭状态 */
-	// 		const $html = $("html");
-	// 		const $mask = $(".joe_header__mask");
-	// 		const $header_above = $(".joe_header__above");
-	// 		const $search_out = $(".joe_header__searchout");
-	// 		console.log($search_out)
-	// 		console.log($search_out.hasClass("active"));
-	// 		if ($search_out.hasClass("active")) {
-	// 			$html.removeClass("disable-scroll");
-	// 			$mask.removeClass("active slideout");
-	// 			$search_out.removeClass("active");
-	// 			$header_above.removeClass("solid");
-	// 		} else {
-	// 			// 保存滚动位置
-	// 			window.sessionStorage.setItem("lastScroll", $html.scrollTop());
-	// 			$html.addClass("disable-scroll");
-	// 			$mask.addClass("active");
-	// 			$header_above.addClass("solid");
-	// 			$search_out.addClass("active");
-	// 		}
-	// 	});
-	// },
 	/* 点击遮罩层关闭 */
 	maskClose() {
 		$(".joe_header__mask")
@@ -600,22 +553,6 @@ const commonContext = {
 		$(document).on("scroll.joe", Utils.throttle(handleHeader, 100));
 	},
 	/* 渲染最新评论中的 emoji */
-	// renderReplyEmoji() {
-	// 	const $replys = $(".aside-reply-content");
-	// 	$replys.each((_index, item) => {
-	// 		// 获取转换后的marked
-	// 		const markedHtml = marked(item.innerHTML)
-	// 			.replace(
-	// 				/<img\ssrc[^>]*>/gm,
-	// 				"<i class=\"joe-font joe-icon-tupian\"></i>"
-	// 			)
-	// 			.replace(/bili\//g, "bili/hd/ic_emoji_");
-	// 		// 处理其中的表情包
-	// 		const emoji = Utils.renderedEmojiHtml(markedHtml);
-	// 		// 将回车转换为br
-	// 		item.innerHTML = Utils.return2Br(emoji);
-	// 	});
-	// },
 	/* 禁用浏览器空格滚动页面 */
 	cancelSpaceScroll() {
 		document.body.onkeydown = function (e) {
@@ -720,14 +657,6 @@ const commonContext = {
 		document.addEventListener("visibilitychange", this._offscreenHandler);
 	},
 	/* 总访问量 */
-	// initUV() {
-	// 	if (!ThemeConfig.enable_visit_number) return;
-	// 	Utils.request({
-	// 		url: "/api/content/statistics/user",
-	// 	}).then((res) => {
-	// 		res && $("#site-uv").text(res.visitCount || 0);
-	// 	});
-	// },
 	/* 初始化网站运行时间 */
 	initBirthday() {
 		if (!ThemeConfig.enable_birthday) return;

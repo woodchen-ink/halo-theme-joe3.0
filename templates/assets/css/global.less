@@ -3504,32 +3504,6 @@ body {
   }
 }
 
-.joe_empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 50px 0;
-  user-select: none;
-  font-style: italic;
-  color: var(--routine);
-
-  &-icon {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 20px;
-    fill: var(--routine);
-  }
-
-  &.mini {
-    padding: 20px 0;
-  }
-
-  &.hide {
-    display: none;
-  }
-}
-
 .joe_raw {
   display: inline-block;
   width: 22px;
@@ -3570,38 +3544,6 @@ body {
   &__item {
     *:last-child {
       margin-bottom: 0 !important;
-    }
-  }
-}
-
-.joe_checkbox {
-  -webkit-appearance: none;
-  position: relative;
-  border-radius: 2px;
-  width: 15px;
-  height: 15px;
-  border: 2px solid var(--theme);
-  vertical-align: -2px;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  &:checked {
-    border: none;
-    background: var(--theme);
-
-    &::after {
-      content: "";
-      width: 3px;
-      height: 7px;
-      position: absolute;
-      top: 2px;
-      left: 5px;
-      border: 2px solid #fff;
-      border-top: 0;
-      border-left: 0;
-      transform: rotate(45deg);
     }
   }
 }
@@ -4095,19 +4037,6 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-.joe_pdf {
-  iframe {
-    display: block;
-    width: 100%;
-    height: 500px;
-    margin: 0 auto;
-    overflow: hidden;
-    border: none;
-    border-radius: var(--radius-img);
-    box-shadow: var(--box-shadow);
-  }
-}
-
 .joe_card__describe {
   position: relative;
   border: 1px dashed var(--classA);
@@ -4135,37 +4064,6 @@ body {
     *:last-child {
       margin-bottom: 0 !important;
     }
-  }
-}
-
-.joe_lamp {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 3px;
-  border-radius: 1.5px;
-  overflow: hidden;
-  animation: lamp-background linear 4s infinite;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    z-index: 1;
-    animation: lamp-front linear 4s infinite;
-  }
-
-  &::before {
-    right: 50%;
-    transform-origin: right;
-  }
-
-  &::after {
-    left: 50%;
-    transform-origin: left;
   }
 }
 
@@ -6277,119 +6175,7 @@ body {
   }
 }
 
-.joe_owo {
-  &__contain {
-    position: relative;
-
-    .seat {
-      user-select: none;
-      cursor: pointer;
-    }
-
-    .box {
-      width: 100%;
-      display: none;
-      background: var(--background);
-      border-radius: var(--radius-inner);
-      overflow: hidden;
-      margin-top: 15px;
-
-      .scroll {
-        display: none;
-        max-height: 200px;
-        overflow-y: auto;
-        overscroll-behavior: none;
-        padding: 5px;
-
-        .item {
-          text-align: center;
-          width: calc(100% / 18);
-          display: inline-block;
-          padding: 5px;
-          cursor: pointer;
-          border-radius: var(--radius-inner);
-          transition: background 0.25s;
-
-          img {
-            max-width: 100%;
-            max-height: 100%;
-          }
-
-          &:hover {
-            background: var(--classD);
-          }
-        }
-
-        &:nth-child(3) {
-          .item {
-            color: var(--routine);
-            width: calc(100% / 5);
-          }
-        }
-      }
-
-      .bar {
-        display: flex;
-        align-items: center;
-        border-top: 1px solid var(--classC);
-
-        .item {
-          line-height: 30px;
-          padding: 0 10px;
-          cursor: pointer;
-          color: var(--routine);
-          transition: background 0.25s, color 0.25s;
-
-          &.active {
-            color: var(--theme-foreground);
-            background: var(--theme);
-          }
-        }
-      }
-    }
-  }
-}
-
-.joe_nodata {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  user-select: none;
-  font-style: italic;
-  color: var(--minor);
-
-  i {
-    margin-right: 4px;
-    vertical-align: middle;
-  }
-}
-
 .joe_advert-large,
-.joe_advert-small {
-  position: relative;
-  min-height: 32px;
-  background: var(--sib-background);
-
-  img {
-    display: block;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .icon {
-    position: absolute;
-    z-index: 1;
-    top: 6px;
-    right: 6px;
-    font-size: 12px;
-    background: rgba(0, 0, 0, 0.25);
-    padding: 2px 5px;
-    border-radius: 2px;
-    color: #ebebeb;
-    pointer-events: none;
-  }
-}
-
 .joe_advert-large {
   margin-top: 10px;
   overflow: hidden;
@@ -6477,8 +6263,6 @@ body {
   }
 }
 
-
-/* lazysizes blur-up removed - using native lazy loading */
 
 // 动画
 .showInUp {

@@ -96,11 +96,6 @@ const journalContext = {
 			e.stopPropagation();
 			const $this = $(this);
 			const $parent = $this.parents(".footer-wrap");
-			// const compComment = $parent.find("halo-comment")[0]._wrapper.$refs.inner;
-			// 展开加载评论
-			// if (!$parent.hasClass("open")) {
-			// 	return;
-			// }
 			$parent.toggleClass("open");
 			$parent
 				.find(".journal_comment_expander_txt")

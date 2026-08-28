@@ -521,11 +521,6 @@ var Utils = {
 			return hours + " 小时前";
 		}
 		if (days < 0) return "刚刚";
-		// if (days < 1) {
-		//   return days + " 天前";
-		// } else {
-		//   return Utils.formatDate(time, "yyyy年MM月dd日 hh:mm");
-		// }
 		if (days === 1) {
 			return "昨天";
 		} else {
@@ -891,23 +886,6 @@ var Utils = {
 	renderedEmojiHtml(html) {
 		const parser = new DOMParser();
 		const doc = Utils.removeNotEmoji(parser.parseFromString(html, "text/html"));
-		// const emotions = doc.getElementsByClassName("emoji-animate");
-		// for (let i = 0; i < emotions.length; i++) {
-		// 	const emojiName = emotions[i].getAttribute("data-icon");
-		// 	for (let j = 0; j < emojiData.length; j++) {
-		// 		const emoji = emojiData[j];
-		// 		if (emoji.style && emoji.name === emojiName) {
-		// 			const emoji = emojiData[j];
-		// 			const img = emotions[i].getElementsByClassName("img")[0];
-		// 			let dataStyle = "";
-		// 			Object.keys(emoji.style).forEach(function (item) {
-		// 				dataStyle += item + ":" + emoji.style[item] + ";";
-		// 			});
-		// 			img.style.cssText = dataStyle;
-		// 			break;
-		// 		}
-		// 	}
-		// }
 		return doc.body.innerHTML;
 	},
 	trimTailBr(str) {

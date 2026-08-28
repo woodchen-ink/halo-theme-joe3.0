@@ -470,20 +470,6 @@ spec:
           key: enable_back2top_smooth
           label: 平滑返回顶部
           help: '点击返回顶部按钮后，是否平滑的返回顶部，关闭后则没有任何过渡效果'
-        - $formkit: select
-          name: web_font
-          id: web_font
-          key: web_font
-          label: 网站字体
-          value: 'off'
-          help: '优先使用自定义字体'
-          options:
-            - value: 'off'
-              label: 默认
-            - value: 'joe_slate.woff2'
-              label: 'Joe Slate'
-            - value: 'joe_future.woff2'
-              label: 'Joe Future'
     - group: carousel
       label: 轮播图
       formSchema:
@@ -826,13 +812,6 @@ spec:
           label: 头像生成配置项
           value: "{bgColor:'',textColor:'',useTextGradient:false}"
           help: "头像随机生成配置项，格式：{bgColor: '', textColor: 'var(--theme)', useTextGradient: false}，默认情况使用随机渐变色背景和文字，如需自定义请修改此处【useTextGradient:当textColor为空时是否使用文字渐变色，默认为false】"
-        - $formkit: attachment
-          name: author_bg
-          id: author_bg
-          key: author_bg
-          label: 博主栏背景图
-          value: ''
-          help: '用于博主信息的背景图'
         - $formkit: select
           name: avatar_type
           id: avatar_type
@@ -979,14 +958,6 @@ spec:
           key: enable_weather
           label: 展示天气信息
           help: '是否展示简约版天气信息，必须配置正确的token后才可生效'
-        - $formkit: text
-          name: weather_token
-          id: weather_token
-          key: weather_token
-          if: '$get(enable_weather).value === true'
-          label: 天气插件token
-          value: ''
-          help: '用于初始化天气插件，请通过 https://www.seniverse.com/widgetv3 生成自己的插件，然后复制其中的token值填到这里'
         - $formkit: select
           name: avatar_frame
           id: avatar_frame
@@ -1244,12 +1215,6 @@ spec:
           label: 相册页侧边栏
           help: '相册页右侧是否展示侧边栏'
         - $formkit: checkbox
-          name: enable_links_aside
-          id: enable_links_aside
-          key: enable_links_aside
-          label: 友链页侧边栏
-          help: '友链页右侧是否展示侧边栏'
-        - $formkit: checkbox
           name: enable_friends_aside
           id: enable_friends_aside
           key: enable_friends_aside
@@ -1405,21 +1370,6 @@ spec:
                   id: qrcode_description
                   key: qrcode_description
                   label: 图片描述
-                  value: ''
-            - $formkit: group
-              name: aside_music_player
-              id: aside_music_player
-              key: aside_music_player
-              if: $value.template_aside === 'enable_music_player'
-              label: 音乐播放器
-              value: []
-              children:
-                - $formkit: text
-                  name: music_id
-                  id: music_id
-                  key: music_id
-                  label: 歌单ID
-                  help: '为音乐播放器配置歌单ID，大家在网页歌单页直接复制地址栏id参数后面那串数字即可，不填或填错将不会展示播放器（注意：仅支持网易云歌单ID，且不支持私密歌单）'
                   value: ''
             - $formkit: group
               name: aside_newreply
@@ -1581,12 +1531,6 @@ spec:
     - group: post
       label: 文章页
       formSchema:
-        - $formkit: checkbox
-          name: enable_title_shadow
-          id: enable_title_shadow
-          key: enable_title_shadow
-          label: 标题阴影
-          help: '是否为文章页标题应用文字阴影'
         - $formkit: text
           name: post_author_link
           id: post_author_link
@@ -1635,21 +1579,6 @@ spec:
           label: 温馨提示文案
           value: ''
           help: '自定义温馨提示的文案，为空则使用默认文案，一般不用设置'
-        - $formkit: select
-          name: post_img_align
-          id: post_img_align
-          key: post_img_align
-          label: 图片对齐方式
-          value: center
-          help: '设置文章内容区域图片的对齐方式（默认为 “居中”，也可通过页面元数据 img_align 配置）'
-          options:
-            - value: left
-              label: 左对齐
-            - value: center
-              label: 居中
-            - value: right
-              label: 右对齐
-
         - $formkit: text
           name: img_max_width
           id: img_max_width
@@ -1881,13 +1810,6 @@ spec:
           label: 归档页标题
           value: '文章归档'
           help: '修改归档页顶部展示的标题'
-        - $formkit: text
-          name: archives_empty_text
-          id: archives_empty_text
-          key: archives_empty_text
-          label: 空白状态文案
-          value: '暂无文章数据'
-          help: '修改无数据时展示的文案'
         - $formkit: select
           name: archives_list_type
           id: archives_list_type
@@ -1928,13 +1850,6 @@ spec:
           label: 日志页标题
           value: '我的动态'
           help: '修改日志页顶部展示的标题'
-        - $formkit: text
-          name: journals_empty_text
-          id: journals_empty_text
-          key: journals_empty_text
-          label: 空白状态文案
-          value: '暂无日志数据'
-          help: '修改无数据时展示的文案'
         - $formkit: checkbox
           name: enable_journal_add
           id: enable_journal_add
@@ -2236,21 +2151,6 @@ spec:
             - value: false
               label: 否
 
-        - $formkit: select
-          if: '$get(enable_footer).value == true'
-          name: footer_source
-          id: footer_source
-          key: footer_source
-          label: 页脚来源
-          value: 'theme'
-          help: '设置页脚内容具体来自哪里，默认使用主题页脚，也可同时使用主题和后台配置的页脚。如果使用后台自定义页脚，建议复制主题的页脚 html 结构进行修改（/template/common/footer.ftl），然后粘贴到后台的页脚配置内（主题无法保证自定义页脚的样式及适配，请视具体情况设置，必要的时候请自行修改样式）'
-          options:
-            - value: theme
-              label: '主题页脚'
-            - value: backend
-              label: '后台页脚'
-            - value: both
-              label: '主题页脚 + 后台页脚'
         - $formkit: checkbox
           if: '$get(enable_footer).value == true'
           name: enable_birthday
@@ -2348,13 +2248,6 @@ spec:
           label: 自定义favicon
           value: ''
           help: '覆盖博客默认的favicon图标，尺寸64*64，格式jpg、png等'
-        - $formkit: attachment
-          name: custom_font
-          id: custom_font
-          key: custom_font
-          label: 自定义网站字体
-          value: ''
-          help: '修改网站使用的字体，请填入字体文件的链接（考虑兼容，建议woff2 格式字体，最好放CDN链接，另外主题无法保证使用自定义字体后的页面样式)'
         - $formkit: text
           name: iconfont
           id: iconfont
@@ -2362,13 +2255,6 @@ spec:
           label: 字体图标链接
           value: ''
           help: '填入iconfont生成的图标链接，无需link标签，将插入head标签尾部'
-        - $formkit: text
-          name: external_css
-          id: external_css
-          key: external_css
-          label: 外部CSS链接
-          value: ''
-          help: '已废弃，此设置项将在未来版本移除，请使用 Halo 自带的代码注入代替，https://docs.halo.run/user-guide/settings#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5'
         - $formkit: code
           name: custom_css
           id: custom_css
@@ -2377,13 +2263,6 @@ spec:
           value: ''
           help: '已废弃，此设置项将在未来版本移除，请使用 Halo 自带的代码注入代替，https://docs.halo.run/user-guide/settings#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5'
           language: css
-        - $formkit: text
-          name: custom_external_js_head
-          id: custom_external_js_head
-          key: custom_external_js_head
-          label: 外部JS链接（head）
-          value: ''
-          help: '已废弃，此设置项将在未来版本移除，请使用 Halo 自带的代码注入代替，https://docs.halo.run/user-guide/settings#%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5'
         - $formkit: code
           name: custom_js_head
           id: custom_js_head
@@ -2415,38 +2294,3 @@ spec:
     - group: other
       label: 其他
       formSchema:
-        - $formkit: checkbox
-          name: enable_debug
-          id: enable_debug
-          key: enable_debug
-          label: 调试模式
-          help: '调试模式开启后，页面会展示 vconsole 的绿色调试按钮，便于排查移动端的线上问题'
-        - $formkit: checkbox
-          name: rip_mode
-          id: rip_mode
-          key: rip_mode
-          label: RIP模式
-        - $formkit: checkbox
-          name: enable_clean_mode
-          id: enable_clean_mode
-          key: enable_clean_mode
-          label: 绿色模式
-        - $formkit: checkbox
-          name: check_baidu_collect
-          id: check_baidu_collect
-          key: check_baidu_collect
-          label: 检查百度收录情况
-        - $formkit: text
-          if: '$get(check_baidu_collect).value == true'
-          name: baidu_token
-          id: baidu_token
-          key: baidu_token
-          label: 百度推送Token
-          value: ''
-          help: '文章页未收录时会自动将当前链接推送给百度加快收录，Token在百度收录平台注册账号获取（必须启用“检查百度收录”并填入token才生效），https://ziyuan.baidu.com/linksubmit'
-        - $formkit: checkbox
-          name: enable_console_theme
-          id: enable_console_theme
-          key: enable_console_theme
-          label: 控制台输出主题信息
-          help: 是否在控制台输出主题相关信息
