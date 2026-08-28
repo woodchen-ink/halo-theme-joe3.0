@@ -12,7 +12,10 @@
     <th:block th:replace="~{modules/key_css :: key_css}" />
     <th:block th:if="${theme.config.theme.enable_loading_bar}">
       <!-- 加载条 -->
-      <link rel="stylesheet" th:href="${source_link+'/assets/lib/nprogress/nprogress.min.css'}" />
+      <link
+        rel="stylesheet"
+        th:href="${source_link+'/assets/lib/nprogress/nprogress.min.css?v='+theme.spec.version}"
+      />
       <style th:inline="text">
         #nprogress .bar {
           height: [[${theme.config.theme.loading_bar_height ?: '3px'}]];
@@ -22,7 +25,9 @@
           display: none;
         }
       </style>
-      <script th:src="${source_link+'/assets/lib/nprogress/nprogress.min.js'}"></script>
+      <script
+        th:src="${source_link+'/assets/lib/nprogress/nprogress.min.js?v='+theme.spec.version}"
+      ></script>
     </th:block>
     <!-- 首屏关键 CSS：直接同步加载，浏览器自动按出现顺序优先级处理 -->
     <link
@@ -59,12 +64,21 @@
         }
       }
     </style>
-    <link rel="stylesheet" th:href="${source_link+'/assets/lib/qmsg/qmsg.css'}" />
+    <link
+      rel="stylesheet"
+      th:href="${source_link+'/assets/lib/qmsg/qmsg.css?v='+theme.spec.version}"
+    />
     <th:block th:if="${htmlType == 'index'} and ${theme.config.carousel.enable_banner}">
-      <link rel="stylesheet" th:href="${source_link+'/assets/lib/swiper/swiper-bundle.min.css'}" />
+      <link
+        rel="stylesheet"
+        th:href="${source_link+'/assets/lib/swiper/swiper-bundle.min.css?v='+theme.spec.version}"
+      />
     </th:block>
     <th:block th:if="${htmlType == 'post' or htmlType == 'journals' or htmlType == 'sheet'}">
-      <link rel="stylesheet" th:href="${source_link+'/assets/lib/prism/prism.min.css'}" />
+      <link
+        rel="stylesheet"
+        th:href="${source_link+'/assets/lib/prism/prism.min.css?v='+theme.spec.version}"
+      />
       <!-- 代码块主题：CZL 自定义主题，自动跟随明暗模式，不再依赖 prism-themes 第三方主题 -->
       <link
         rel="stylesheet"
@@ -108,7 +122,7 @@
     <th:block th:if="${htmlType == 'photos'}">
       <link
         rel="stylesheet"
-        th:href="${source_link+'/assets/lib/justifiedGallery/justifiedGallery.min.css'}"
+        th:href="${source_link+'/assets/lib/justifiedGallery/justifiedGallery.min.css?v='+theme.spec.version}"
       />
       <link
         rel="stylesheet"

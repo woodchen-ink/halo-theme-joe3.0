@@ -195,7 +195,8 @@
                           })
                           .join('');
                         const leaving = document.createElement('script');
-                        leaving.src = /*[[@{/assets/js/min/leaving.min.js}]]*/ '';
+                        leaving.src =
+                          /*[[@{'/assets/js/min/leaving.min.js?v='+${theme.spec.version}}]]*/ '';
                         leaving.type = 'module';
                         document.body.appendChild(leaving);
                       });
