@@ -81,15 +81,68 @@ const commonContext = {
 	initNavbar() {
 		const $nav_menus = $(".joe_header__above-nav a");
 		const $nav_side_menus = $(".panel-side-menu .link");
-		let activeIndex = 0;
-		const { href, pathname } = location;
 
-		$nav_menus.each((index, item) => {
-			const cur_href = item.getAttribute("href");
-			if (pathname.includes(cur_href) || href.includes(cur_href)) {
-				activeIndex = index;
+		/* 归一化成不带协议/域名/查询串、无结尾斜杠的路径；"/" 保持为 "/"。
+		   站外链接与 javascript:/mailto: 之类伪协议一律不参与高亮 */
+		const normalize = (raw) => {
+			if (!raw) return null;
+			if (/^(javascript:|mailto:|tel:|#)/i.test(raw)) return null;
+			let url;
+			try {
+				url = new URL(raw, location.origin);
+			} catch (e) {
+				return null;
 			}
-		});
+			if (url.origin !== location.origin) return null;
+			const path = url.pathname;
+			return path.length > 1 ? path.replace(/\/+$/, "") : "/";
+		};
+
+		const targets = $nav_menus
+			.map((index, item) => normalize(item.getAttribute("href")))
+			.get();
+
+		const indexOfExact = (path) =>
+			path ? targets.indexOf(path) : -1;
+
+		/*
+		 * 页面自己声明归属优先（见 post.html 的 #Joe[data-nav-active]）。
+		 * 文章详情页 /archives/{slug} 天然嵌在"归档"菜单的 /archives 之下，
+		 * 任何基于 URL 的猜测都会把每篇文章高亮成归档 —— 所以由模板给出答案。
+		 * 注意用 !== null 判断："声明了但为空"(无分类文章)也算已声明，
+		 * 此时宁可不高亮，也不回退去猜（否则又落回归档）。
+		 */
+		const joeEl = document.getElementById("Joe");
+		const declared = joeEl ? joeEl.getAttribute("data-nav-active") : null;
+
+		let activeIndex;
+		if (declared !== null) {
+			activeIndex = indexOfExact(normalize(declared));
+		} else {
+			/* 列表页：先精确匹配（顺带剥掉 /page/N 分页后缀） */
+			const current = (normalize(location.pathname) || "/").replace(
+				/\/page\/\d+$/,
+				""
+			) || "/";
+			activeIndex = indexOfExact(current);
+
+			/* 再退到"最长的、落在路径分段边界上的前缀匹配"，
+			   让 /moments/{id} 这类详情页仍能命中它的列表页 /moments。
+			   "/" 不参与，否则它会命中所有页面 */
+			if (activeIndex < 0) {
+				let best = -1;
+				targets.forEach((target, index) => {
+					if (!target || target === "/") return;
+					if (current.startsWith(target + "/") && target.length > best) {
+						best = target.length;
+						activeIndex = index;
+					}
+				});
+			}
+		}
+
+		/* 一个都没匹配上就不高亮，而不是退回到第一项 */
+		if (activeIndex < 0) return;
 
 		// 高亮PC端
 		const $curMenu = $nav_menus.eq(activeIndex);

@@ -9,7 +9,16 @@
     th:with="days=${(new java.util.Date().getTime()-post.status.lastModifyTime.toEpochMilli())/86400000}"
   >
     <body>
-      <div id="Joe">
+      <!-- data-nav-active: 声明本页在导航里归属哪一项。
+           文章详情页的 URL 是 /archives/{slug}, 天然嵌在"归档"菜单的 /archives 下面,
+           光看 URL 永远分不清"归档列表页"和"一篇文章", 所以由模板直接给出答案。
+           取首个分类, 与面包屑 post_bread.html 的口径一致;
+           无分类时输出空串 —— 空串同样表示"本页已自行声明", initNavbar() 便不会
+           再回退去做前缀猜测, 从而避免无分类文章又落回"归档"。 -->
+      <div
+        id="Joe"
+        th:attr="data-nav-active=${not #lists.isEmpty(post.categories) ? post.categories[0].status.permalink : ''}"
+      >
         <!--          navbar-->
         <th:block th:replace="~{modules/macro/navbar :: navbar}" />
         <th:block th:replace="~{modules/post_bread :: post_bread}" />
