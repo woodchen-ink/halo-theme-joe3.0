@@ -17,7 +17,7 @@ spec:
   # 因此改名时刻意保持原值不动
   settingName: 'theme-Joe-setting'
   configMapName: 'theme-Joe-configMap'
-  version: '2026.09.10-1235'
+  version: '2026.09.10-1241'
   require: '>=2.19.0'
   customTemplates:
     page:
