@@ -9,17 +9,6 @@
     <link rel="apple-touch-icon" sizes="180x180" th:href="${site.favicon}" />
     <!-- 第三方域预连接：减少首屏 DNS+TLS 握手延迟 -->
     <link rel="preconnect" href="//i.czl.net" crossorigin />
-    <!-- 全站字体 Noto Serif SC（见 theme.less 的 --font-default，在 body 上生效）。
-         Google 的 css2 接口按 unicode-range 切片，中文只下载文章实际用到的字块；
-         用 media=print + onload 异步挂载，不阻塞首屏渲染，display=swap 期间先用系统衬线顶上 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
-      media="print"
-      onload="this.media = 'all'"
-    />
     <th:block th:replace="~{modules/key_css :: key_css}" />
     <th:block th:if="${theme.config.theme.enable_loading_bar}">
       <!-- 加载条 -->
