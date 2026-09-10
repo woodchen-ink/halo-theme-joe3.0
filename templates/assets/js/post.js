@@ -271,21 +271,13 @@ const postContext = {
 		const $operateEl = $(
 			".joe_detail__agree,.joe_detail__operate-share,.joe_detail__operate .joe_donate"
 		);
-		const toggleAsideMenu = (e) => {
-			const offsetLeft = $(".joe_post")[0].getBoundingClientRect().left;
-			/* 左侧导航轨占掉的宽度不算可用留白，否则浮动操作栏会压在轨道上 */
-			const railWidth =
-        parseFloat(getComputedStyle(document.getElementById("Joe")).paddingLeft) || 0;
-			if (offsetLeft - railWidth < 75) {
-				$asideEl.hide();
-				$operateEl.show();
-			} else {
-				$asideEl.show();
-				$operateEl.hide();
-			}
-		};
-		toggleAsideMenu();
-		window.addEventListener("resize", Utils.throttle(toggleAsideMenu, 500));
+		/* 浮动操作列已从正文左侧改到右下角（见 post.less 的 .aside_operations），
+		   不再依赖正文两侧的留白，所以去掉原来那套"左边不够宽就整列隐藏、
+		   改用正文底部内联按钮"的判断 —— 左栏上线后左侧只剩十几像素，
+		   那个判断会让它在桌面端也几乎永远不显示。
+		   桌面端固定用浮动列，正文底部的内联那份收起。 */
+		$asideEl.show();
+		$operateEl.hide();
 	},
 	/* 阅读进度条 */
 	initProgress() {

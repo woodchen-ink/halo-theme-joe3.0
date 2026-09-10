@@ -354,8 +354,17 @@
 .aside_operations {
   display: none;
   position: fixed;
-  top: 250px;
-  margin-left: -70px;
+  /* 从正文左侧的浮动列改到右下角，与 .joe_action 叠成一列。
+     左栏(220px) + 正文 + 右侧目录(280px) 之后两边都没有留白了 ——
+     1500px 视口实测左侧只剩 15px、右侧 30px，原来那条侧边列根本放不下，
+     post.js 的留白判断因此一直把它整个隐藏掉。 */
+  top: auto;
+  /* 与 .joe_action 同一条右下角栏位叠放：那组按钮是 bottom:90px、约 95px 高，
+     顶边落在 bottom:185px 处，这里留到 210px 空出一段间隙。
+     改动 .joe_action 的高度或 bottom 时要回来对一下这个值。 */
+  bottom: 210px;
+  right: 30px;
+  margin-left: 0;
   z-index: 10;
   user-select: none;
 
@@ -445,7 +454,9 @@
       position: absolute;
       top: -32px;
       z-index: 1;
-      margin-left: 35px;
+      /* 整列移到右下角后，浮层必须改为向左弹出，否则会飞出视口右缘 */
+      right: 100%;
+      margin-right: 12px;
       padding: 4px;
       text-align: center;
       font-size: 0;
@@ -461,15 +472,17 @@
         margin: 5px 0;
       }
 
+      /* 三角指示也要跟着翻到右侧，指回按钮 */
       &:before {
         position: absolute;
         top: 44px;
-        left: -20px;
+        left: auto;
+        right: -20px;
         content: "";
         width: 0;
         height: 0;
         border: 10px solid transparent;
-        border-right-color: var(--classG);
+        border-left-color: var(--classG);
       }
     }
 
@@ -479,7 +492,7 @@
       .share-icon-list {
         pointer-events: initial;
         opacity: 1;
-        transform: translate3d(15px, 0, 0);
+        transform: translate3d(-15px, 0, 0);
       }
     }
   }
