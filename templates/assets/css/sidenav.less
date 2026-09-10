@@ -66,9 +66,9 @@ html {
     background: var(--paper-card);
     border-right: 1px solid var(--paper-rule);
     box-shadow: none;
-    // 必须保持 visible：二级菜单是绝对定位的右侧飞出，
-    // 轨道上任何 overflow:hidden / auto 都会把它整块裁掉
-    overflow: visible;
+    // 二级/三级菜单已改成轨道内手风琴（不再是绝对定位飞出），这里可以安全裁切。
+    // 若哪天改回飞出，本处与下面的 .joe_container / -nav 必须同时改回 visible
+    overflow: hidden;
     transform: none;
     will-change: width;
     transition: width 0.28s ease, box-shadow 0.28s ease;
@@ -97,7 +97,7 @@ html {
       min-height: 0;
       margin: 0;
       padding: 18px 0 14px;
-      overflow: visible;
+      overflow: hidden;
     }
 
     // 汉堡与搜索图标是移动端顶栏的控件，轨道里不出现
@@ -143,9 +143,10 @@ html {
     flex-direction: column;
     align-items: stretch;
     padding: 0 var(--rail-pad-x);
-    // 同上：滚动容器也会裁掉飞出菜单，所以这里不做纵向滚动。
-    // 代价是超长菜单会溢出视口 —— 100vh 下约 18 个一级项以内都安全
-    overflow: visible;
+    // 手风琴展开后整列可能超过视口高度，这里做纵向滚动兜底
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
 
     .item {
       height: var(--rail-item-h);
@@ -219,12 +220,20 @@ html {
       }
     }
 
-    // ==== 二级菜单：从下拉改成右侧飞出 ====
-    // 配套改动：navbar.html 的 placement 由 60px 改成 0（JS initDropMenu 会把它写成行内 top）
+    // ==== 二级菜单：从下拉改成轨道内向下手风琴展开 ====
+    // 配套改动：navbar.html 的 placement 由 60px 改成 0（JS initDropMenu 会把它写成行内 top，
+    // 而这里改成 position:static 后 top 自然失效）。触发方式沿用原版的 hover，JS 一行未改。
+    //
+    // 收起用 max-height 而不是 grid-template-rows: 0fr —— 后者需要单一子元素包裹，
+    // 而 .joe_dropdown__menu 下面直接就是多个 <li>，加包裹层要动模板。
     .joe_dropdown {
       margin-right: 0;
+      display: block;
 
       &__link {
+        display: flex;
+        align-items: center;
+
         a {
           flex: 1;
           min-width: 0;
@@ -235,40 +244,57 @@ html {
         }
       }
 
+      // 收起指右、展开指下，是手风琴的常规指示
       &__link-icon {
         margin-left: auto;
         margin-right: var(--rail-pad-x);
-        // 指向右侧的飞出方向，展开与否都不翻转
         transform: rotate(-90deg);
       }
 
       &.active {
         .joe_dropdown__link-icon {
-          transform: rotate(-90deg);
+          transform: rotate(0);
         }
       }
 
       &__menu {
-        left: calc(100% + 6px);
-        min-width: 150px;
-        border-top: 0;
-        border-left: 3px solid var(--theme);
-        border-radius: 0 var(--radius-inner) var(--radius-inner) 0;
-        transform-origin: left center;
-        transform: translateX(-8px) perspective(600px) rotateY(-30deg);
+        position: static;
+        display: block;
+        min-width: 0;
+        max-width: none;
+        max-height: 0;
+        overflow: hidden;
+        // 子项缩进 + 左侧一条印刷细线，表达从属关系（不用卡片、不用阴影）
+        margin: 0 0 0 calc(var(--rail-pad-x) + 12px);
+        padding: 0;
+        border: 0;
+        border-left: 1px solid var(--paper-rule);
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        transform: none;
+        transition: max-height 0.28s ease, visibility 0.28s;
 
-        // 原版朝上的三角箭头，左侧标尺已经交代了指向
         &::before {
           display: none;
         }
 
         // 原版这里是 display:block，而轨道里的 .m-icon 被强制成 block（见"冲突修正"），
-        // 两者相遇会把标题挤到 34px 行框之外、再被 overflow:hidden 裁掉。改用 flex 排布。
+        // 两者相遇会把标题挤到行框之外、再被 overflow:hidden 裁掉。改用 flex 排布。
         a {
           display: flex;
           align-items: center;
-          height: 34px;
-          line-height: 34px;
+          height: 36px;
+          line-height: 36px;
+          padding: 0 var(--rail-pad-x);
+          border-radius: var(--radius-inner);
+          color: var(--ink-muted);
+
+          &:hover,
+          &.current {
+            color: var(--ink);
+            background: var(--paper-tint);
+          }
 
           .m-initial {
             display: none;
@@ -294,8 +320,56 @@ html {
 
       &.active {
         .joe_dropdown__menu {
-          transform: translateX(0) perspective(600px) rotateY(0);
+          // 上限给足即可：短菜单会在自身高度处停下，动画只是稍快一点
+          max-height: 70vh;
+          // 必须复位：global 的 .joe_dropdown.active .joe_dropdown__menu 会重新加上
+          // translateX(-50%)（横向下拉时代用来居中），在纵向轨里会把子菜单推出左边缘再被裁掉
+          transform: none;
         }
+      }
+    }
+
+    // 无序号、无项目符号：轨道里的层级靠缩进与细线表达
+    .joe_dropdown__menu li,
+    .joe_nav_sub li {
+      list-style: none;
+    }
+
+    // ==== 三级菜单：同样收进轨道内，再缩进一级 ====
+    .joe_nav_sub-li {
+      // 原版为配合横向飞出锁了 34px，纵向展开时会把子列表裁掉
+      height: auto;
+      // global 在展开态把同级 li 设成 flex 并跳过本类，这里显式声明成块级，
+      // 让它的 <a> 与嵌套 <ol> 上下堆叠而不是并排
+      display: block;
+
+      &:hover .joe_nav_sub {
+        max-height: 50vh;
+      }
+    }
+
+    .joe_nav_sub {
+      position: static;
+      visibility: visible;
+      opacity: 1;
+      max-height: 0;
+      overflow: hidden;
+      margin-left: 12px;
+      padding-left: 0;
+      border-left: 1px solid var(--paper-rule);
+      border-radius: 0;
+      box-shadow: none;
+      transform: none;
+      transition: max-height 0.28s ease;
+
+      // 原版指向右侧的三角与竖条，在纵向层级里由缩进和细线代替
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      li {
+        background: transparent;
       }
     }
   }
