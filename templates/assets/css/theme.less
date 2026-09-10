@@ -3,13 +3,14 @@
 // 纸色刻意压低黄相（石灰/stone 调而非奶油黄调），保留纸感但不显"发黄"
 // 不使用任何蓝色, 所有"主题色"统一走墨黑系, 强调靠加粗/底色/下划线
 html {
-  --font-default: -apple-system, BlinkMacSystemFont, 'Noto Sans SC', system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* 阅读字体（正文与标题）。Noto Serif SC 同时覆盖中西文, 放在最前保证两边同一副字面;
-     它由 link.html 从 Google Fonts 按 unicode-range 切片异步加载, 只下载实际用到的字块。
-     Songti SC 是 macOS 自带的离线兜底; Georgia / Cambria 兜西文; SimSun 不入列 ——
-     字面偏硬、屏幕上观感差, 宁可退到系统衬线。
-     UI 层(导航/侧栏/按钮/元信息)仍用 --font-default 的无衬线, 这是印刷品的常规分工。 */
-  --font-serif: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', Georgia, Cambria, serif;
+  /* 全站字体唯一入口，在 normalize.less 的 body 上生效，组件层禁止重复声明。
+     取值是衬线栈：印刷品的字面是衬线体，这是"像纸"与"像网页"最根本的分野。
+     曾短暂拆成 UI 无衬线 + 正文衬线两套，站长反馈"割裂、不统一"，故收回成一套。
+     Noto Serif SC 同时覆盖中西文、放最前以保证两边同一副字面，由 link.html 从
+     Google Fonts 按 unicode-range 切片异步加载，只下载实际用到的字块；
+     Songti SC 是 macOS 离线兜底。SimSun 刻意不入列——字面偏硬、屏幕观感差。
+     例外只有代码：等宽栈在 global.less 与 prism-czl.less 里各自显式声明。 */
+  --font-default: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', Georgia, Cambria, serif;
   /* 正文栏宽。40em 在 17px 下约 680px, 中文约 40 字/行, 落在舒适区间。
      注: 2026-08 曾因"卡片已限宽 735px, 再叠 measure 会挤出空档"移除过这个 token;
      全站扁平化后正文列宽已放开到 900px+, 行长过长, 该理由不再成立。 */

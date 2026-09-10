@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon" sizes="180x180" th:href="${site.favicon}" />
     <!-- 第三方域预连接：减少首屏 DNS+TLS 握手延迟 -->
     <link rel="preconnect" href="//i.czl.net" crossorigin />
-    <!-- 阅读字体 Noto Serif SC（正文与标题的衬线，见 theme.less 的 --font-serif）。
+    <!-- 全站字体 Noto Serif SC（见 theme.less 的 --font-default，在 body 上生效）。
          Google 的 css2 接口按 unicode-range 切片，中文只下载文章实际用到的字块；
          用 media=print + onload 异步挂载，不阻塞首屏渲染，display=swap 期间先用系统衬线顶上 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,17 +59,21 @@
       rel="stylesheet"
       th:href="${source_link+'/assets/css/min/theme.min.css?v='+theme.spec.version}"
     />
-    <style th:inline="text">
-      /* 内容区宽度上限。两处刻意的写法：
+    <style
+      th:inline="text"
+      th:with="cmw=${#strings.isEmpty(theme.config.basic.content_max_width) ? '1320' : theme.config.basic.content_max_width}"
+    >
+      /* 内容区宽度上限。三处刻意的写法：
          1) 选择器用直接子元素，避免连带命中左侧导航轨内部的 .joe_container
             （#Joe .joe_container 的 ID 特异性会压过 .joe_header__above .joe_container）
-         2) 断点在原 1360px 基础上加了展开轨宽度 220px + 边距 30px，
-            使同一台设备上正文的实际可用宽度与改成左侧导航之前保持一致；
-            不够宽时保持流式，由 sidenav.less 的 padding-left 负责让位 */
-      @media (min-width: [[${theme.config.basic.content_max_width + 250}]]px) {
-        #Joe > .joe_container {
-          max-width: [[${theme.config.basic.content_max_width + 'px'}]] !important;
-        }
+         2) content_max_width 未设置时在后台存的是**空字符串**而不是 null，
+            所以必须用 #strings.isEmpty 兜底（?: 只挡 null 挡不住 ""）。
+            此前拼出的是 `max-width: px` 与 `min-width: 250px` 两条废规则，
+            上限长期失效、首页一直是全宽，只是卡片背景把它掩盖了
+         3) 不需要媒体查询：max-width 本身就是"够宽才生效"的上限，
+            窄屏上自然不绑定，早先那层断点是多余的 */
+      #Joe > .joe_container {
+        max-width: [[${cmw}]]px !important;
       }
     </style>
     <link

@@ -18,9 +18,7 @@
    ============================================================ */
 
 .joe_detail__article {
-  /* 阅读区改用衬线：印刷品的正文是衬线体，这是"像纸"与"像网页"最根本的分野。
-     UI 层（导航 / 侧栏 / 按钮 / 元信息）仍留在 --font-default 的无衬线上。 */
-  font-family: var(--font-serif);
+  /* 字体不在这里声明：全站统一走 body 上的 --font-default（衬线），见 theme.less */
   /* 14px 是 UI 尺寸不是阅读尺寸；印刷阅读等效在 17px 上下 */
   font-size: 17px;
   /* 栏宽回归。全站扁平化后正文列已放开到 900px+，一行 60 字以上明显超出舒适区；
@@ -45,7 +43,6 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-serif);
     margin: 2em 0 0.75em;
     line-height: var(--leading-tight);
     color: var(--ink);
@@ -188,6 +185,16 @@
   .joe_detail__article {
     line-height: 1.75;
   }
+}
+
+/* 首页条目标题原本 15px，衬线下视觉偏小，略提以撑起标题感 */
+.joe_list__item .information .title {
+  font-size: 16px;
+}
+
+/* 博主名作为刊名，字距收一点 */
+.joe_header__above-blogger .user .link {
+  letter-spacing: -0.01em;
 }
 
 /* ============================================================
