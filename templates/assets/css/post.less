@@ -77,6 +77,24 @@
   }
 }
 
+/* 文章页版心：正文收到 --measure 后，若仍让 .joe_main 占满 900px+，
+   右侧会空出一大片死区。这里把主列收到贴合版心的宽度，并让主列与右侧目录
+   作为一组居中，页面读起来才像一份居中的印张而不是靠左的网页布局。 */
+.page-post {
+  &.joe_main_container {
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .joe_main {
+    max-width: 760px;
+  }
+
+  .joe_aside {
+    margin-left: 0;
+  }
+}
+
 /* ============================================================
    文章头部：去署名、压留白、走纸质排版
    ------------------------------------------------------------
@@ -89,9 +107,11 @@
    同特异性下会赢回去。 */
 #Joe {
   .joe_detail__title {
+    /* 标题与正文同一副衬线，构成刊头 */
+    font-family: var(--font-serif);
     padding-top: 6px;
-    margin-bottom: 10px;
-    font-size: 26px;
+    margin-bottom: 12px;
+    font-size: 30px;
     font-weight: 600;
     line-height: 1.35;
     /* 与 paper.less 的标题口径一致：靠字重与负字距拉层级，不靠字号暴涨 */
