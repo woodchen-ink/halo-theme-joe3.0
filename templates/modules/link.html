@@ -49,18 +49,15 @@
       th:href="${source_link+'/assets/css/min/theme.min.css?v='+theme.spec.version}"
     />
     <style th:inline="text">
-      #Joe .joe_container {
-        max-width: [[${theme.config.basic.content_max_width + 'px'}]] !important;
-      }
-
-      @media (max-width: 1360px) {
-        #Joe .joe_container {
-          max-width: initial !important;
-        }
-      }
-      @media (max-width: 768px) {
-        #Joe .joe_container {
-          max-width: initial !important;
+      /* 内容区宽度上限。两处刻意的写法：
+         1) 选择器用直接子元素，避免连带命中左侧导航轨内部的 .joe_container
+            （#Joe .joe_container 的 ID 特异性会压过 .joe_header__above .joe_container）
+         2) 断点在原 1360px 基础上加了展开轨宽度 220px + 边距 30px，
+            使同一台设备上正文的实际可用宽度与改成左侧导航之前保持一致；
+            不够宽时保持流式，由 sidenav.less 的 padding-left 负责让位 */
+      @media (min-width: [[${theme.config.basic.content_max_width + 250}]]px) {
+        #Joe > .joe_container {
+          max-width: [[${theme.config.basic.content_max_width + 'px'}]] !important;
         }
       }
     </style>
@@ -134,6 +131,12 @@
     <link
       rel="stylesheet"
       th:href="${source_link+'/assets/css/min/paper.min.css?v='+theme.spec.version}"
+    />
+    <!-- 左侧导航层：与 paper 同一档（global 之后、responsive 之前）。
+         只在 >=769px 生效，移动端仍走 responsive.less 的顶栏 + 抽屉 -->
+    <link
+      rel="stylesheet"
+      th:href="${source_link+'/assets/css/min/sidenav.min.css?v='+theme.spec.version}"
     />
     <link
       rel="stylesheet"

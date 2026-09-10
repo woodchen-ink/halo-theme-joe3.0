@@ -43,7 +43,7 @@
                   </th:block>
                 </th:block>
                 <th:block th:if="${not #lists.isEmpty(menuItem.children)}">
-                  <div class="joe_dropdown" trigger="hover" placement="60px">
+                  <div class="joe_dropdown" trigger="hover" placement="0">
                     <div class="joe_dropdown__link">
                       <th:block th:replace="~{modules/macro/menu-item :: menu-item(${menuItem})}" />
                       <i
@@ -51,7 +51,7 @@
                         style="color: var(--main)"
                       ></i>
                     </div>
-                    <nav class="joe_dropdown__menu" style="top: 60px">
+                    <nav class="joe_dropdown__menu">
                       <th:block th:each="childMenu : ${menuItem.children}">
                         <li
                           th:class="${not #lists.isEmpty(childMenu.children)} ? 'joe_nav_sub-li' : ''"
@@ -84,7 +84,7 @@
                       <th:block th:replace="~{modules/macro/menu-item :: menu-item(${menuItem})}" />
                     </th:block>
                     <th:block th:if="${not #lists.isEmpty(menuItem.children)}">
-                      <div class="joe_dropdown" trigger="hover" placement="60px">
+                      <div class="joe_dropdown" trigger="hover" placement="0">
                         <div class="joe_dropdown__link">
                           <th:block
                             th:replace="~{modules/macro/menu-item :: menu-item(${menuItem})}"
@@ -94,7 +94,7 @@
                             style="color: var(--main)"
                           ></i>
                         </div>
-                        <nav class="joe_dropdown__menu" style="top: 60px">
+                        <nav class="joe_dropdown__menu">
                           <li
                             th:each="childMenu : ${menuItem.children}"
                             th:class="${not #lists.isEmpty(childMenu.children)} ? 'joe_nav_sub-li' : ''"
@@ -133,13 +133,7 @@
             <!--          </th:block>-->
             <!--        </div>-->
             <!--        <input maxlength="16" autocomplete="off" placeholder="请输入关键字..." name="keyword" value="" class="input" type="text">-->
-            <button
-              type="submit"
-              id="halo-search"
-              class="submit"
-              style="border-radius: 17px 17px 17px 17px"
-              aria-label="搜索按钮"
-            >
+            <button type="submit" id="halo-search" class="submit" aria-label="搜索按钮">
               <i class="joe-font joe-icon-search"></i>
             </button>
             <!--        <span class="icon"></span>-->

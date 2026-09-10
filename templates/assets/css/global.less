@@ -787,7 +787,8 @@ body {
         color: var(--theme-foreground);
         border: none;
         background: var(--theme);
-        border-radius: 0 17px 17px 0;
+        // 原本写在 navbar.html 的行内 style，挪到这里以便 sidenav.less 覆写
+        border-radius: 17px;
 
         i {
           transform-origin: right bottom;
@@ -6242,15 +6243,15 @@ body {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #f2f2f2;
-    color: #333;
+    background-color: var(--classC);
+    color: var(--ink-soft);
     text-decoration: none;
     font-size: 24px;
     transition: background-color 0.3s, color 0.3s;
 
     &:hover {
-      background-color: var(--theme); // 这里的变量可以是LESS的全局变量
-      color: #f2f2f2;
+      background-color: var(--theme);
+      color: var(--theme-foreground);
     }
   }
 
@@ -6771,30 +6772,10 @@ body {
   }
 }
 
-// 媒体查询
-@media (min-width: 576px) {
-  #Joe>.joe_container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  #Joe>.joe_container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  #Joe>.joe_container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  #Joe>.joe_container {
-    max-width: 1140px;
-  }
-}
+// 这里原本有一组 bootstrap 式的 #Joe>.joe_container 宽度断点（540/720/960/1140），
+// 长期被 link.html 里 #Joe .joe_container 的 !important 上限完整压掉，属于死代码。
+// 改左侧导航时那条 !important 收进了媒体查询，这组断点会"诈尸"并让中等屏正文反而变窄，
+// 故整体删除；内容区宽度现在只由 link.html 的单条上限 + 流式布局决定。
 
 .takagi {
   z-index: 50 !important;

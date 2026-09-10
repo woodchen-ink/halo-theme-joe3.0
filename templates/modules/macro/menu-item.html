@@ -12,7 +12,15 @@
           th:class="'m-icon '+${#annotations.getOrDefault(menuItem, 'icon','jiewen joe-icon-zuzhijiagou')}"
         ></i>
       </th:block>
-      [[${menuItem.status.displayName}]]
+      <!-- 图标关闭时的折叠态替身：左侧导航收成图标轨后靠首字辨认，展开态由 CSS 隐藏 -->
+      <th:block th:unless="${theme.config.navbar.enable_navbar_icon}">
+        <span
+          class="m-initial"
+          th:text="${#strings.substring(menuItem.status.displayName, 0, 1)}"
+          aria-hidden="true"
+        ></span>
+      </th:block>
+      <span class="m-text">[[${menuItem.status.displayName}]]</span>
     </a>
   </th:block>
 </html>

@@ -273,7 +273,10 @@ const postContext = {
 		);
 		const toggleAsideMenu = (e) => {
 			const offsetLeft = $(".joe_post")[0].getBoundingClientRect().left;
-			if (offsetLeft < 75) {
+			/* 左侧导航轨占掉的宽度不算可用留白，否则浮动操作栏会压在轨道上 */
+			const railWidth =
+        parseFloat(getComputedStyle(document.getElementById("Joe")).paddingLeft) || 0;
+			if (offsetLeft - railWidth < 75) {
 				$asideEl.hide();
 				$operateEl.show();
 			} else {

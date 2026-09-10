@@ -1,0 +1,409 @@
+// 左侧导航层 (Side Navigation Rail)
+//
+// 把 Joe 原版的顶部横条改造成左侧固定导航轨，只在 >=769px 生效；
+// <=768px 完全不介入，交回 responsive.less 的顶栏 + 抽屉方案（.joe_header__slideout）。
+//
+// 加载位置：global / 页面级样式之后、responsive.min.css 之前（见 link.html），
+// 与 paper.less 同一档 —— 能覆写 Joe 原版横向导航，又不夺走响应式断点的最终裁定权。
+// 所有覆写规则都包在 @media (min-width: 769px) 里，属性不会泄漏到移动端。
+//
+// 三档形态：
+//   >=1401px       展开轨 220px，图标 + 文字常驻
+//   769px-1400px   图标轨 64px，hover / focus 时整条浮起展开到 220px 盖住内容
+//   <=768px        本文件不生效，回到顶栏 + 左滑抽屉
+//
+// 本文件不定义任何颜色值，颜色一律引用 theme.less 的 token。
+
+html {
+  --rail-w: 220px;
+  --rail-w-icon: 64px;
+  // 内容区实际让出的宽度：图标轨档位下只让 64px，hover 展开时浮在内容之上不推挤版面
+  --rail-w-current: var(--rail-w);
+  --rail-item-h: 42px;
+  // 图标/首字的视觉中心必须落在图标轨的正中（64 / 2 = 32px）：
+  // 轨内边距 10px + 条目内边距 10px + 图标格 24px 的一半 = 32px
+  --rail-pad-x: 10px;
+}
+
+@media (min-width: 769px) {
+  // ==== 画布让位 ====
+  // 15 个页面模板结构一致（#Joe > navbar + .joe_container.joe_main_container），
+  // 所以只需在 #Joe 上留一次白，不用逐页改模板。
+  #Joe {
+    padding-left: var(--rail-w-current);
+    transition: padding-left 0.28s ease;
+  }
+
+  // 横条时代要在文档流里占 60px 高度，纵向轨不再需要
+  .joe_header {
+    height: 0;
+  }
+
+  // 首页大图原本用 margin-top:-4rem 顶掉固定横条的高度，左栏下没有横条要顶
+  .evan-big-banner {
+    margin-top: 0;
+  }
+
+  // 顶栏消失后正文直接贴到视口顶端，补一点天头
+  #Joe .joe_main_container {
+    margin-top: 28px;
+  }
+
+  // 文章阅读进度条贴在视口底部，起点要避开导航轨。
+  // 宽度由 post.js 写成百分比（相对视口），所以还要夹一个上限，不然满进度会溢出右边缘
+  .joe_progress_bar {
+    left: var(--rail-w-current);
+    max-width: calc(100% - var(--rail-w-current));
+  }
+
+  // ==== 轨道主体 ====
+  .joe_header__above {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--rail-w-current);
+    height: 100vh;
+    background: var(--paper-card);
+    border-right: 1px solid var(--paper-rule);
+    box-shadow: none;
+    // 必须保持 visible：二级菜单是绝对定位的右侧飞出，
+    // 轨道上任何 overflow:hidden / auto 都会把它整块裁掉
+    overflow: visible;
+    transform: none;
+    will-change: width;
+    transition: width 0.28s ease, box-shadow 0.28s ease;
+
+    // 纵向轨常驻，滚动隐藏 / 毛玻璃 / 满宽这几个横条时代的开关在这里失效
+    &.active,
+    &.topInDown,
+    &.fixed {
+      transform: none;
+    }
+
+    &.glass,
+    &.solid {
+      background: var(--paper-card);
+      backdrop-filter: none;
+      box-shadow: none;
+    }
+
+    .joe_container {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      min-width: 0;
+      max-width: none !important;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+      padding: 18px 0 14px;
+      overflow: visible;
+    }
+
+    // 汉堡与搜索图标是移动端顶栏的控件，轨道里不出现
+    &-slideicon,
+    &-searchicon {
+      display: none !important;
+    }
+  }
+
+  // ==== Logo ====
+  .joe_header__above-logo {
+    height: auto;
+    margin: 0 0 14px;
+    padding: 0 var(--rail-pad-x) 14px;
+    justify-content: flex-start;
+    gap: 10px;
+
+    img {
+      flex: 0 0 44px;
+      min-width: 44px;
+      width: 44px;
+      max-width: 44px;
+      height: 44px;
+    }
+
+    // 原版是右侧竖分隔线，轨道里改成一条横向印刷细线
+    &::after {
+      top: auto;
+      right: var(--rail-pad-x);
+      bottom: 0;
+      left: var(--rail-pad-x);
+      width: auto;
+      height: 1px;
+      background: var(--paper-rule);
+      transform: none;
+    }
+  }
+
+  // ==== 导航条目 ====
+  .joe_header__above-nav {
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 var(--rail-pad-x);
+    // 同上：滚动容器也会裁掉飞出菜单，所以这里不做纵向滚动。
+    // 代价是超长菜单会溢出视口 —— 100vh 下约 18 个一级项以内都安全
+    overflow: visible;
+
+    .item {
+      height: var(--rail-item-h);
+      line-height: var(--rail-item-h);
+      padding: 0 var(--rail-pad-x);
+      margin: 0 0 2px;
+      border-radius: var(--radius-inner);
+      transition: color 0.35s, background 0.35s;
+
+      // 原版让最后一项撑满横向剩余空间，纵向轨里会把条目拉成整栏
+      &:last-child {
+        width: auto;
+      }
+
+      > i,
+      .m-icon,
+      .m-initial {
+        flex: 0 0 24px;
+        width: 24px;
+        margin-right: 10px;
+        font-size: 18px;
+        line-height: inherit;
+        text-align: center;
+      }
+
+      // 关闭菜单图标时的首字替身：只在折叠态出现
+      .m-initial {
+        display: none;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .m-text {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      // 原版是底部 3px 下划线，轨道里改成左侧 2px 墨标尺
+      &::after {
+        top: 9px;
+        right: auto;
+        bottom: 9px;
+        left: 0;
+        width: 2px;
+        height: auto;
+        border-radius: 0 2px 2px 0;
+        transform: scaleY(0.25);
+        transform-origin: center;
+      }
+
+      &.current {
+        background: var(--sib);
+
+        &::after,
+        &:hover::after {
+          transform: scaleY(1);
+        }
+      }
+
+      &:hover {
+        background: var(--paper-tint);
+
+        &::after {
+          opacity: 0.3;
+          transform: scaleY(0.7);
+        }
+      }
+    }
+
+    // ==== 二级菜单：从下拉改成右侧飞出 ====
+    // 配套改动：navbar.html 的 placement 由 60px 改成 0（JS initDropMenu 会把它写成行内 top）
+    .joe_dropdown {
+      margin-right: 0;
+
+      &__link {
+        a {
+          flex: 1;
+          min-width: 0;
+          height: var(--rail-item-h);
+          line-height: var(--rail-item-h);
+          padding-left: var(--rail-pad-x);
+          padding-right: 0;
+        }
+      }
+
+      &__link-icon {
+        margin-left: auto;
+        margin-right: var(--rail-pad-x);
+        // 指向右侧的飞出方向，展开与否都不翻转
+        transform: rotate(-90deg);
+      }
+
+      &.active {
+        .joe_dropdown__link-icon {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &__menu {
+        left: calc(100% + 6px);
+        min-width: 150px;
+        border-top: 0;
+        border-left: 3px solid var(--theme);
+        border-radius: 0 var(--radius-inner) var(--radius-inner) 0;
+        transform-origin: left center;
+        transform: translateX(-8px) perspective(600px) rotateY(-30deg);
+
+        // 原版朝上的三角箭头，左侧标尺已经交代了指向
+        &::before {
+          display: none;
+        }
+
+        // 原版这里是 display:block，而轨道里的 .m-icon 被强制成 block（见"冲突修正"），
+        // 两者相遇会把标题挤到 34px 行框之外、再被 overflow:hidden 裁掉。改用 flex 排布。
+        a {
+          display: flex;
+          align-items: center;
+          height: 34px;
+          line-height: 34px;
+
+          .m-initial {
+            display: none;
+          }
+
+          .m-text {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          .m-icon {
+            flex: 0 0 20px;
+            width: 20px;
+            margin-right: 8px;
+            font-size: 16px;
+            text-align: center;
+          }
+        }
+      }
+
+      &.active {
+        .joe_dropdown__menu {
+          transform: translateX(0) perspective(600px) rotateY(0);
+        }
+      }
+    }
+  }
+
+  // ==== 与 responsive.less 的冲突修正 ====
+  // responsive.less 排在本文件之后，同特异性下它赢；这几条是为横向顶栏"腾地方"写的，
+  // 落到纵向轨上会把轨道掏空，所以这里刻意加 #Joe 抬到 ID 级特异性来压回去。
+  // 改动 responsive.less 里对应断点时，记得回来同步。
+  #Joe {
+    // responsive.less @1000px 把菜单图标整个隐藏 —— 图标轨会因此变成一条空白
+    .joe_header__above-nav .item .m-icon {
+      display: block;
+    }
+
+    // responsive.less @1200px 关掉 logo 的分隔线 —— 轨道里它是 logo 与菜单之间的横向细线
+    .joe_header__above-logo {
+      padding-right: var(--rail-pad-x);
+
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  // ==== 搜索 / 登录：沉到轨道底部 ====
+  .joe_header__above-search {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: auto;
+    margin-left: 0;
+    padding: 12px var(--rail-pad-x) 0;
+    border-top: 1px solid var(--paper-rule);
+    gap: 6px;
+
+    .submit {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: var(--rail-item-h);
+      padding: 0 var(--rail-pad-x);
+      background: transparent;
+      color: var(--ink-soft);
+      border-radius: var(--radius-inner);
+      transition: color 0.35s, background 0.35s;
+
+      i {
+        flex: 0 0 24px;
+        width: 24px;
+        font-size: 18px;
+        text-align: center;
+        transform-origin: center;
+      }
+
+      &:hover {
+        color: var(--ink);
+        background: var(--paper-tint);
+
+        i {
+          animation: none;
+        }
+      }
+    }
+
+    .nav_login {
+      justify-content: flex-start;
+      height: var(--rail-item-h);
+      margin-left: 0;
+      padding-left: calc(var(--rail-pad-x) - 3px);
+    }
+  }
+}
+
+// ==== 档位二：图标轨 + hover 展开 ====
+@media (min-width: 769px) and (max-width: 1400px) {
+  html {
+    --rail-w-current: var(--rail-w-icon);
+  }
+
+  .joe_header__above {
+    // 展开时浮在内容之上，不推挤版面
+    z-index: 20;
+
+    &:hover,
+    &:focus-within {
+      width: var(--rail-w);
+      box-shadow: var(--container-shadow);
+    }
+
+    // 折叠态只留图标列：文字与二级箭头收起，关掉菜单图标时由首字替身顶上。
+    // 用 display 而非 opacity —— 文字若仍占位，64px 轨道会被撑开
+    &:not(:hover):not(:focus-within) {
+      .joe_header__above-nav .item .m-text,
+      .joe_header__above-nav .joe_dropdown__link-icon,
+      .joe_header__above-logo .m-text {
+        display: none;
+      }
+
+      .joe_header__above-nav .item .m-initial {
+        display: block;
+      }
+
+      .joe_header__above-nav .item > i,
+      .joe_header__above-nav .item .m-icon,
+      .joe_header__above-nav .item .m-initial,
+      .joe_header__above-search .submit i {
+        margin-right: 0;
+      }
+    }
+  }
+}

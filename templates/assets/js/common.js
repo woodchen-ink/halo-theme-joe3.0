@@ -522,6 +522,9 @@ const commonContext = {
 	/* 头部滚动 */
 	initHeadScroll() {
 		if (Joe.isMobile || ThemeConfig.enable_fixed_header) return;
+		/* 左侧导航轨常驻，"下滚隐藏顶栏"在纵向轨上没有意义，
+		   断点与 sidenav.less 的 @media (min-width: 769px) 保持一致 */
+		if (window.matchMedia("(min-width: 769px)").matches) return;
 		let last_scroll_position = 0;
 		let new_scroll_position = 0;
 		const $joeHeader = $(".joe_header__above");
