@@ -1,17 +1,27 @@
 
-<h1 align="center"> Halo Theme Joe3  </h1>
+<h1 align="center"> Inkstone </h1>
+
+<p align="center">纸墨风格的 Halo 主题 · 整页一张纸，衬线正文，细线分隔</p>
 
 <p class="badge-row" align="center">
   <a href="https://halo.run" target="_blank">
-    <img src="https://img.shields.io/badge/dynamic/yaml?label=Halo&query=%24.spec.require&url=https://raw.githubusercontent.com/jiewenhuang/halo-theme-joe3.0/main/theme.yaml&color=113,195,71" alt="Halo"/>
+    <img src="https://img.shields.io/badge/dynamic/yaml?label=Halo&query=%24.spec.require&url=https://raw.githubusercontent.com/woodchen-ink/halo-theme-inkstone/main/theme.yaml&color=113,195,71" alt="Halo"/>
   </a>
-  <a href="https://github.com/jiewenhuang/halo-theme-joe3.0/releases" target="_blank">
-    <img src="https://img.shields.io/github/v/release/jiewenhuang/halo-theme-joe3.0" alt="Release"/>
+  <a href="https://github.com/woodchen-ink/halo-theme-inkstone/releases" target="_blank">
+    <img src="https://img.shields.io/github/v/release/woodchen-ink/halo-theme-inkstone" alt="Release"/>
   </a>
-  <a href="https://halo.run" target="_blank">
+  <a href="./LICENSE" target="_blank">
     <img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-orange" alt="License"/>
   </a>
 </p>
+
+> **关于本项目**
+> Inkstone 基于 [Jiewenhuang](https://www.jiewen.run) 的 [halo-theme-joe3.0](https://github.com/jiewenhuang/halo-theme-joe3.0) 二次开发，
+> 沿用 **CC BY-NC-SA 4.0** 许可（署名 — 非商业性使用 — 相同方式共享）。
+> 视觉上已整体重做为纸墨体系：左侧导航轨、全站扁平化去卡片、衬线正文与印刷细线版式。
+>
+> 主题 ID 仍为 `theme-Joe3`（`settingName` / `configMapName` 同理）——这些是 Halo 存储主题配置的键，
+> 改动会导致后台已有设置全部丢失，故改名时刻意保留。
 
 ---
 <p align="center">

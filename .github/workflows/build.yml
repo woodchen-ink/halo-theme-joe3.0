@@ -48,10 +48,10 @@ jobs:
           npm run build
       - name: Compress zip
         run: |
-          PRE_ZIP_FOLDER=halo-theme-Joe3-${PACKAGE_VERSION}
+          PRE_ZIP_FOLDER=halo-theme-inkstone-${PACKAGE_VERSION}
           ARTIFACT_NAME=${PRE_ZIP_FOLDER}.zip
           ARTIFACT_PATHNAME=dist/${ARTIFACT_NAME}
-          echo "halo-theme-Joe3 version $PACKAGE_VERSION"
+          echo "halo-theme-inkstone version $PACKAGE_VERSION"
           echo "Artifact name: ${ARTIFACT_NAME}"
           echo "Artifact pathname: ${ARTIFACT_PATHNAME}"
           echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
@@ -63,7 +63,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: halo-theme-Joe3
+          name: halo-theme-inkstone
           path: |
             dist/*.zip
           retention-days: 7

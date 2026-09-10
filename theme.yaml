@@ -3,14 +3,17 @@ kind: Theme
 metadata:
   name: theme-Joe3
 spec:
-  displayName: Theme Joe3
+  displayName: Inkstone
   author:
-    name: Jiewenhuang
-    website: 'https://halo.run'
-  description: Halo2.0主题 Joe3
+    name: wood
+    website: 'https://woodchen.ink'
+  # CC BY-NC-SA 4.0 的 BY 条款要求保留原作者署名，改名后仍在此注明来源
+  description: 纸墨风格的 Halo 主题 · 基于 Jiewenhuang 的 halo-theme-joe3.0 二次开发
   logo: 'https://wmimg.com/i/70/2023/08/64d3c41d5bde2.webp'
-  website: 'https://www.jiewen.run'
-  repo: 'https://github.com/jiewenhuang/halo-theme-joe3.0'
+  website: 'https://woodchen.ink'
+  repo: 'https://github.com/woodchen-ink/halo-theme-inkstone'
+  # 下面两个键与 metadata.name 一样是配置的存储键，改动会让后台已有设置全部丢失，
+  # 因此改名时刻意保持原值不动
   settingName: 'theme-Joe-setting'
   configMapName: 'theme-Joe-configMap'
   version: '2026.09.10-1151'
