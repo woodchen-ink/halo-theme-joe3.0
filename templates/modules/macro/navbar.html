@@ -28,6 +28,14 @@
               />
             </a>
           </th:block>
+          <!-- 博主信息：复用右侧栏那份 modules/common/blogger 片段，不另写一套，
+               免得头像框/等级/统计组合/社交这些模板分支要维护两遍。
+               左侧导航轨(>=769px)显示这一份并隐藏 logo（头像本身就是 logo）；
+               移动端(<=768px)反过来——顶栏显示 logo，这一份隐藏，
+               博主信息仍由右侧栏挂件和左滑抽屉提供。切换逻辑在 sidenav.less。 -->
+          <div class="joe_header__above-blogger">
+            <th:block th:replace="~{modules/common/blogger :: blogger}" />
+          </div>
           <nav
             class="joe_header__above-nav"
             th:classappend="|${theme.config.navbar.enable_active_shadow ? 'active-shadow':''} ${theme.config.navbar.enable_icon_animate ? 'active-animate':''}|"

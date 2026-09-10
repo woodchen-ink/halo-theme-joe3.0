@@ -25,6 +25,12 @@ html {
   --rail-pad-x: 10px;
 }
 
+// 轨道里的博主块默认关闭：<=768px 是顶栏形态，那里显示 logo，
+// 博主信息由右侧栏挂件与左滑抽屉提供
+.joe_header__above-blogger {
+  display: none;
+}
+
 @media (min-width: 769px) {
   // ==== 画布让位 ====
   // 15 个页面模板结构一致（#Joe > navbar + .joe_container.joe_main_container），
@@ -107,7 +113,130 @@ html {
     }
   }
 
-  // ==== Logo ====
+  // ==== 博主信息（替代 logo） ====
+  // 头像即 logo，两者只留一个
+  .joe_header__above-logo {
+    display: none;
+  }
+
+  // 右侧栏那份让位给轨道这份，避免同页出现两遍。
+  // 两份都在 DOM 里、靠 CSS 二选一，是为了让 <=768px 仍走原来的右侧栏方案，
+  // 移动端零回归；代价是站点统计查询在桌面端会多跑一次。
+  .joe_aside .joe_aside__item.author {
+    display: none;
+  }
+
+  // 用 #Joe 抬到 ID 级：global 里 .joe_aside__item.author .user .avatar_wrapper
+  // 这类选择器有 4 层类特异性，不这样压不住（头像尺寸最初就是被它吃掉的）
+  #Joe .joe_header__above-blogger {
+    display: block;
+    margin: 0 0 12px;
+    padding: 0 var(--rail-pad-x) 14px;
+    border-bottom: 1px solid var(--paper-rule);
+
+    // 卸掉侧栏卡片的那层"卡面"，让它融进轨道。
+    // 两处必须显式覆写，否则轨道里会出问题：
+    //   width  —— global 给 .joe_aside__item 定死 280px，会撑破 220px 的轨道，
+    //             第三列统计被挤到可视区外
+    //   position —— 这里它是唯一子元素即 :last-child，会吃到 global 的
+    //             position: sticky; top: 75px
+    .joe_aside__item.author {
+      position: relative;
+      top: auto;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    // 这两个是按 300px 宽的侧栏卡片做的装饰，轨道里放不下
+    #canvas-strips,
+    #he-plugin-simple {
+      display: none;
+    }
+
+    .user {
+      padding-bottom: 10px;
+    }
+
+    .avatar_wrapper,
+    .avatar {
+      width: 64px;
+      height: 64px;
+      transition: width 0.28s ease, height 0.28s ease;
+    }
+
+    // 头像框/挂件按百分比跟随，换尺寸时不用逐个变体改 px
+    .avatar_frame,
+    .avatar_widget {
+      width: 100%;
+      height: 100%;
+    }
+
+    .link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .motto {
+      margin-top: 2px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-muted);
+      text-align: center;
+      // 座右铭长了不撑高轨道
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .count {
+      display: flex;
+      justify-content: space-between;
+      gap: 2px;
+      padding: 0;
+
+      .item {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+      }
+
+      .num {
+        display: block;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        // 数字等宽，三列不会因字宽不同而歪
+        font-variant-numeric: tabular-nums;
+      }
+
+      span:not(.num) {
+        font-size: 11px;
+        color: var(--ink-muted);
+        white-space: nowrap;
+      }
+    }
+
+    .social-account {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--paper-rule);
+    }
+  }
+
+  // ==== Logo（仅 <=768px 顶栏形态使用，样式保留以免回退时缺失） ====
   .joe_header__above-logo {
     height: auto;
     margin: 0 0 14px;
@@ -472,12 +601,37 @@ html {
         display: block;
       }
 
+      // 博主块折叠成一枚头像，其余信息随轨道展开再出现
       .joe_header__above-nav .item > i,
       .joe_header__above-nav .item .m-icon,
       .joe_header__above-nav .item .m-initial,
       .joe_header__above-search .submit i {
         margin-right: 0;
       }
+    }
+  }
+
+  // 折叠态的博主块：只留一枚头像，其余信息随轨道展开再出现。
+  // 单独写成一条并带 #Joe，是为了压过上面展开态那条同样带 #Joe 的规则
+  // （嵌在 &:not(:hover) 里的写法只有类特异性，会被 ID 级的展开态吃掉）
+  #Joe .joe_header__above:not(:hover):not(:focus-within) .joe_header__above-blogger {
+    padding-bottom: 12px;
+
+    .link,
+    .motto,
+    .count,
+    .social-account {
+      display: none;
+    }
+
+    .user {
+      padding-bottom: 0;
+    }
+
+    .avatar_wrapper,
+    .avatar {
+      width: 36px;
+      height: 36px;
     }
   }
 }
