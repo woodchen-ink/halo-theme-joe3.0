@@ -77,6 +77,20 @@
   }
 }
 
+/* 文章页版心组宽：主列 760 + 间距 40 + 右侧目录 280 + 容器左右内边距 30 */
+@post-group: 1110px;
+
+/* 面包屑与正文组必须共用同一条左缘。
+   .joe_bread 同样是 #Joe 的直接子元素，会吃到 link.html 那条 1320 上限，
+   不处理的话它比正文组宽出一百多像素、左缘对不齐。
+   post_bread 片段只在 post.html 用，所以可以直接对 .joe_bread 下手。
+   特异性说明：这两条与内联那条 `#Joe > .joe_container` 同为 (1,1,0)，
+   靠 post.min.css 在内联 <style> 之后加载取胜，两边都带 !important。 */
+#Joe > .joe_bread,
+#Joe > .joe_container.page-post {
+  max-width: @post-group !important;
+}
+
 /* 文章页版心：正文收到 --measure 后，若仍让 .joe_main 占满 900px+，
    右侧会空出一大片死区。这里把主列收到贴合版心的宽度，并让主列与右侧目录
    作为一组居中，页面读起来才像一份居中的印张而不是靠左的网页布局。 */
