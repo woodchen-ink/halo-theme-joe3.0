@@ -24,11 +24,8 @@
 > 改动会导致后台已有设置全部丢失，故改名时刻意保留。
 
 ---
-<p align="center">
-<img width="100%" src="https://wmimg.com/i/70/2023/08/64d3c41d5bde2.webp">
-</p>
 
-预览：[Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-Joe3)
+预览：[Wood Chen](https://woodchen.ink)（Inkstone）· [Jiewen's Blog](https://www.jiewen.run/?preview-theme=theme-Joe3)（上游 Joe3 原貌）
 
 文档：部分配置请参考 [Joe3不完全使用指导指南](https://www.jiewen.run/archives/joe3use)
 > halo-theme-Joe3 是一款 [Halo2.0](https://halo.run/) 的博客主题  

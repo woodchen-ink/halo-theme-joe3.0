@@ -9,7 +9,8 @@ spec:
     website: 'https://woodchen.ink'
   # CC BY-NC-SA 4.0 的 BY 条款要求保留原作者署名，改名后仍在此注明来源
   description: 纸墨风格的 Halo 主题 · 基于 Jiewenhuang 的 halo-theme-joe3.0 二次开发
-  logo: 'https://wmimg.com/i/70/2023/08/64d3c41d5bde2.webp'
+  # 留空：原值是上游 Joe3 的宣传图（第三方图床外链），扁平化重做后已完全不符
+  logo: ''
   website: 'https://woodchen.ink'
   repo: 'https://github.com/woodchen-ink/halo-theme-inkstone'
   # 下面两个键与 metadata.name 一样是配置的存储键，改动会让后台已有设置全部丢失，
