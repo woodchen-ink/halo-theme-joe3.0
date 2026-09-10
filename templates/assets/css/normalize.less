@@ -23,8 +23,14 @@ body {
   // 全站字体唯一入口：CZL 默认字体栈（theme.less --font-default），禁止在组件层重复声明
   font-family: var(--font-default);
   font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* 全站基准字重 500 而不是 400。中文衬线在 13-15px 的 UI 尺寸下横画极细，
+     400 会让笔画在屏幕上直接糊掉（菜单、首页条目、侧栏是重灾区）。
+     标题相应提到 700 以维持层级差，见 paper.less / post.less。 */
+  font-weight: 500;
+  /* 不再用 antialiased：它会把字画进一步削薄，正是"发虚"的帮凶之一。
+     该属性只在 macOS 上生效，Windows 无影响。 */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
   scroll-behavior: smooth;

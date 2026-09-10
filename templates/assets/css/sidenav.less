@@ -220,7 +220,8 @@ html {
       }
 
       span:not(.num) {
-        font-size: 11px;
+        /* 11px 的中文衬线横画必糊，字重再高也救不回来，抬到 12px */
+        font-size: 12px;
         color: var(--ink-muted);
         white-space: nowrap;
       }
