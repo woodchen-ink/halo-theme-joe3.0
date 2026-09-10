@@ -48,30 +48,17 @@
                     th:if="${theme.config.post.enable_page_meta} and ${#annotations.getOrDefault(post, 'enable_page_meta', 'true')}"
                   >
                     <div class="joe_detail__count">
+                      <!-- 个人博客不需要在每篇文章上署名, 头像与作者名已移除
+                           (responsive.less 在 <=768px 本来就把这两者隐藏了,
+                            等于只有桌面端在显示这份冗余信息)。
+                           外层 contributor 仍保留: .joe_detail[data-author] 还在用。 -->
                       <div class="joe_detail__count-information">
-                        <img
-                          width="35"
-                          height="35"
-                          class="avatar"
-                          loading="lazy"
-                          th:src="${contributor.avatar}"
-                          th:alt="${contributor.displayName}"
-                          onerror="Joe.errorImg(this, 'ErrAvatarImg')"
-                        />
                         <div class="meta">
-                          <div class="author">
-                            <a
-                              class="link"
-                              th:href="${theme.config.post.post_author_link == '' ? '/authors/' + contributor.name : theme.config.post.post_author_link}"
-                              th:title="${contributor.displayName}"
-                              >[[${contributor.displayName}]]</a
-                            >
-                          </div>
                           <div class="item">
                             <span class="text"
                               >[[${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}]]</span
                             >
-                            <span class="line">/</span>
+                            <span class="line">·</span>
                             <th:block
                               th:if="${theme.config.basic.comment_option == 'default'} or ${#strings.trim(theme.config.basic.waline.waline_serverURL) ==''}"
                             >
@@ -86,11 +73,11 @@
                                 >0</span
                               >&nbsp;评论
                             </th:block>
-                            <span class="line">/</span>
+                            <span class="line">·</span>
                             <span class="text">[[${post.stats.upvote}]] 点赞</span>
-                            <span class="line">/</span>
+                            <span class="line">·</span>
                             <span class="text">[[${post.stats.visit}]] 阅读</span>
-                            <span class="line">/</span>
+                            <span class="line">·</span>
                             <span class="text" id="wordCount">0 字</span>
                           </div>
                         </div>

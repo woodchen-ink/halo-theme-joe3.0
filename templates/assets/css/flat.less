@@ -1,0 +1,129 @@
+// 扁平纸面层 (Flat)
+//
+// 全站去卡片：容器不再有卡面填充 / 阴影 / 圆角，整页收敛成一张连续的纸，
+// 层级改由印刷细线（--paper-rule）与留白表达，接近杂志与书页的版面语言。
+//
+// 加载位置：paper.less 之后、sidenav.less 之前（见 link.html）。排在 paper 之后
+// 才能覆写它给 .joe_detail / .joe_aside__item 加的那圈纸面描边。
+//
+// **刻意不动 theme.less 的调色板。** 全站有 53 处元素以 --paper-card（即 --background）
+// 作底——标签、按钮、输入框、下拉、代码块……把页面画布也改成 --paper-card 会让它们
+// 集体与背景同色而消失。所以这里只摘掉"容器的浮起感"，画布仍是 --paper-base，
+// 那些小元件因此自然读作"纸上略亮的贴纸"，而不是浮空的卡片。
+//
+// 本文件不定义任何颜色值，颜色一律引用 theme.less 的 token。
+
+/* ============================================================
+   1. 主容器脱卡
+   ============================================================ */
+
+// 正文 / 首页主列 / 侧栏挂件 / 归档 / 相册的容器
+.joe_index,
+.joe_detail,
+.joe_aside__item,
+.joe_archives__lately,
+.joe_archives__census-item.category,
+.joe_archives__tags-item,
+.joe_archives__categorys-item,
+.joe_photos__type {
+  background: transparent;
+  border-radius: 0;
+  // paper.less 给 .joe_detail / .joe_aside__item 叠了一圈 --paper-edge 描边，
+  // 这里一并撤掉，否则脱卡后会剩一条无所依附的方框
+  box-shadow: none;
+}
+
+/* ============================================================
+   2. 卡片时代的内边距回收
+   ------------------------------------------------------------
+   原本的左右内边距是为了让文字离开卡片边缘；纸面上没有边缘可离，
+   留白改由外层 .joe_container 统一给，容器自身只保留纵向节奏。
+   ============================================================ */
+
+.joe_detail {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.joe_index {
+  padding: 0;
+}
+
+.joe_detail-wrapper {
+  padding: 0;
+}
+
+/* ============================================================
+   3. 分隔改用印刷细线
+   ============================================================ */
+
+// 首页条目本来就有底部细线（paper.less 已处理），
+// 脱卡后补足条目呼吸，并让最后一条不拖一条悬空的线
+.joe_index__list {
+  .joe_list__item:last-child {
+    border-bottom: 0;
+  }
+}
+
+// 侧栏挂件：改成刊头式小标签 + 一条细线，不再是一张张卡
+.joe_aside__item {
+  margin-bottom: 28px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .joe_aside__item-title {
+    margin-bottom: 10px;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--paper-rule);
+    font-size: 13px;
+    font-weight: 600;
+    // 刊头式：字号压小、字距拉开，靠字重与字距立层级而不是靠字号
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    background: transparent;
+  }
+
+  .joe_aside__item-contain {
+    padding: 0;
+    background: transparent;
+  }
+}
+
+/* ============================================================
+   3b. 说说 / 友链：气泡框改成时间轴上的纯文本
+   ------------------------------------------------------------
+   两页原本是"圆角气泡 + 描边 + 投影"的聊天卡样式。它们左侧本来就有
+   一条时间轴（竖线 + 节点），气泡等于把同一件事说了两遍；扁平化后
+   只留时间轴与一条底部细线，读起来更像日记与刊物的条目。
+   ============================================================ */
+
+.joe_journal_block,
+.joe_friend_block {
+  padding-left: 0;
+  padding-right: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--paper-rule);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+// hover 时原本让气泡浮起，纸面上不做这种立体反馈
+.joe_journals__list .item:hover .joe_journal_block,
+.joe_friends__list .item:hover .joe_friend_block {
+  box-shadow: none;
+}
+
+/* ============================================================
+   4. 仍需浮起的层保持原样
+   ------------------------------------------------------------
+   下面这些是真正"浮在纸上方"的临时层，不属于版面的一部分，
+   阴影是它们的功能性提示，不能一起摘掉：
+     .joe_header__slideout  移动端左滑抽屉
+     .joe_header__toc       移动端目录抽屉
+     .joe_action            回到顶部等浮动按钮
+     搜索 / 评论挂件的弹层
+   故本文件不触碰它们。
+   ============================================================ */

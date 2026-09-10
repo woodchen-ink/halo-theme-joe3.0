@@ -132,6 +132,11 @@
       rel="stylesheet"
       th:href="${source_link+'/assets/css/min/paper.min.css?v='+theme.spec.version}"
     />
+    <!-- 扁平纸面层：必须排在 paper 之后，才能覆写它给正文/侧栏加的那圈纸面描边 -->
+    <link
+      rel="stylesheet"
+      th:href="${source_link+'/assets/css/min/flat.min.css?v='+theme.spec.version}"
+    />
     <!-- 左侧导航层：与 paper 同一档（global 之后、responsive 之前）。
          只在 >=769px 生效，移动端仍走 responsive.less 的顶栏 + 抽屉 -->
     <link

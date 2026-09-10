@@ -77,8 +77,77 @@
   }
 }
 
-.joe_detail__title {
-  margin-bottom: 30px;
+/* ============================================================
+   文章头部：去署名、压留白、走纸质排版
+   ------------------------------------------------------------
+   原版三层叠加出约 60px 顶部空白（.joe_detail 的 20px
+   + .joe_detail__title 自带的 padding-top: 40px），标题还居中、
+   而下面的元信息左对齐，两边对不齐。这里统一改成左对齐的印刷式头部。
+
+   为什么用 #Joe 抬到 ID 级：responsive.less 排在 post.less 之后，
+   它在 <=500px 给标题留了 padding-top: 30px、又把元信息 justify 到居中，
+   同特异性下会赢回去。 */
+#Joe {
+  .joe_detail__title {
+    padding-top: 6px;
+    margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.35;
+    /* 与 paper.less 的标题口径一致：靠字重与负字距拉层级，不靠字号暴涨 */
+    letter-spacing: -0.01em;
+    text-align: left;
+    text-wrap: balance;
+    color: var(--ink);
+
+    /* 小屏收字号。这条必须自己写：上面用了 #Joe 抬特异性，
+       responsive.less 里那条 18px 的 .joe_detail__title 已经压不住了 */
+    @media (max-width: 768px) {
+      font-size: 21px;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
+  }
+
+  .joe_detail__count {
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    /* 分隔靠淡线不靠色块（paper.less 的约定） */
+    border-bottom: 1px solid var(--paper-rule);
+
+    /* 原版在细线上压了一截 80px 的主题色粗条，与纸质体系冲突 */
+    &::after {
+      display: none;
+    }
+
+    &-information {
+      .meta {
+        /* 原版是"作者名在上、元信息在下"的两行纵向布局，
+           去掉作者后只剩一行，改回横向 */
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+      }
+
+      .item {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--ink-muted);
+        /* 阅读数/字数是数字列，等宽避免跳动 */
+        font-variant-numeric: tabular-nums;
+
+        .line {
+          margin: 0 7px;
+          color: var(--ink-muted);
+          opacity: 0.5;
+        }
+      }
+    }
+  }
 }
 
 .joe_detail-wrapper {
