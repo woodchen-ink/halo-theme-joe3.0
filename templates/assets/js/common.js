@@ -81,15 +81,53 @@ const commonContext = {
 	initNavbar() {
 		const $nav_menus = $(".joe_header__above-nav a");
 		const $nav_side_menus = $(".panel-side-menu .link");
-		let activeIndex = 0;
-		const { href, pathname } = location;
+		const { pathname } = location;
 
+		/* 归一化成不带协议/域名/查询串、无结尾斜杠的路径，"/" 保持为 "/" */
+		const normalize = (raw) => {
+			if (!raw) return null;
+			if (/^(javascript:|mailto:|tel:|#)/i.test(raw)) return null;
+			let path;
+			try {
+				path = new URL(raw, location.origin).pathname;
+			} catch (e) {
+				return null;
+			}
+			/* 站外链接不参与高亮 */
+			try {
+				if (new URL(raw, location.origin).origin !== location.origin) return null;
+			} catch (e) {
+				return null;
+			}
+			return path.length > 1 ? path.replace(/\/+$/, "") : "/";
+		};
+
+		/*
+		 * 只做精确匹配（外加剥掉 /page/N 分页后缀），不做前缀匹配。
+		 *
+		 * 原实现是 pathname.includes(href) 的子串匹配：Halo 文章的固定链接是
+		 * /archives/{slug}，正好嵌在"归档"菜单的 /archives 下面，于是任意文章页
+		 * 都会把归档显示成选中态。改成"路径分段前缀匹配"同样救不了——单看 URL
+		 * 分不出归档列表页和一篇文章。所以这里退到精确匹配：
+		 *   /archives            -> 归档 选中
+		 *   /archives/hello      -> 不选中任何项（正确，文章不属于任何菜单）
+		 *   /categories/it       -> IT 选中
+		 *   /categories/it/page/2 -> 剥掉分页后精确命中 IT
+		 */
+		const stripPaging = (path) => path.replace(/\/page\/\d+$/, "") || "/";
+		const current = stripPaging(normalize(pathname));
+
+		let activeIndex = -1;
 		$nav_menus.each((index, item) => {
-			const cur_href = item.getAttribute("href");
-			if (pathname.includes(cur_href) || href.includes(cur_href)) {
+			const target = normalize(item.getAttribute("href"));
+			if (target !== null && target === current) {
 				activeIndex = index;
+				return false;
 			}
 		});
+
+		/* 一个都没匹配上就不高亮，而不是退回到第一项 */
+		if (activeIndex < 0) return;
 
 		// 高亮PC端
 		const $curMenu = $nav_menus.eq(activeIndex);
